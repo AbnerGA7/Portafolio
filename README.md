@@ -91,14 +91,4 @@ Puedes encontrarme en:
 
 ---
 
-Hecho por **Abner Gonzales**
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
->>>>>>> ba85337b3c2614d2de98fbcf55cb33ccbdc1135a
+Hecho con ❤️ por **Abner Gonzales**
