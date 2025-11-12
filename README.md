@@ -45,25 +45,6 @@
 
 ---
 
-## 📂 Estructura del Proyecto
-
-portofolio/
-│
-├── images/                     # Carpeta que contiene las imágenes usadas en el sitio
-│   ├── img.jpg                 # Imagen principal (para el perfil)
-│   └── img2.png                # Imagen secundaria (segundo perfil)
-│
-├── index.html                  # Página principal del portafolio (inicio)
-├── about.html                  # Página "Acerca de mí"
-├── contact.html                # Página de contacto con formulario
-├── project.html                # Página con lista de los proyectos realizados
-│
-├── main.js                     # Archivo JavaScript principal (interactividad, animaciones)
-├── style.css                   # Hoja de estilos CSS (define el diseño y apariencia del sitio)
-│
-├── README.md                   # Archivo de documentación del proyecto (explica propósito e instalación)
-└── screenshoot.png              # Captura de pantalla del sitio (para mostrar una vista previa en GitHub)
-
 
 ## 📌 Instalación
 
@@ -90,5 +71,6 @@ Puedes encontrarme en:
 - **Facebook**: [Abner Gonzales](https://web.facebook.com/abnerGonzalesA.7/)
 
 ---
+
 
 Hecho con ❤️ por **Abner Gonzales**
