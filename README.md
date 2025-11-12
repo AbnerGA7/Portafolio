@@ -9,16 +9,16 @@
 ---
 
 ## 🚀 Demo en Vivo
-[Ver el sitio en vivo](https://portafolio-abnergonzales.netlify.app/)
+[Ver el sitio en vivo](https://portafolio-abnergonzales7.netlify.app/)
 
 ---
 
 ## 🌟 Secciones del Sitio Web
 
 - **Inicio (`index.html`)**: Introducción al desarrollador con una breve descripción.
-- **Sobre Mí (`sobremi.html`)**: Mi experiencia, *stack* tecnológico, habilidades y un poco sobre mí.
-- **Proyectos (`proyectos.html`)**: Galería de proyectos con imágenes, descripciones y tecnologías usadas.
-- **Contacto (`contactos.html`)**: Formulario de contacto y enlaces a mis redes sociales.
+- **Yo (`about.html`)**: Mi experiencia, *stack* tecnológico, habilidades y un poco sobre mí.
+- **Proyectos (`project.html`)**: Galería de proyectos con imágenes, descripciones y tecnologías usadas.
+- **Contacto (`contact.html`)**: Formulario de contacto y enlaces a mis redes sociales.
 
 ---
 
@@ -35,9 +35,9 @@
 ## 🛠️ Tecnologías Utilizadas
 
 - **HTML5**
-- **CSS3** (Flexbox & Grid)
+- **CSS3** 
 - **JavaScript**
-- **Font Awesome** (para íconos)
+- **Font Awesome** 
 - **Git & GitHub**
 - **Angular**
 - **Node.js**
@@ -73,4 +73,4 @@ Puedes encontrarme en:
 ---
 
 
-Hecho con ❤️ por **Abner Gonzales**
+Hecho por **Abner Gonzales**
