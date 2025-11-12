@@ -69,7 +69,7 @@ portofolio/
 
 1.  Clona el repositorio:
     ```bash
-    git clone [https://github.com/AbnerGA7/Portafolio.git]
+    git clone https://github.com/AbnerGA7/Portafolio.git
     ```
 2.  Navega a la carpeta del proyecto:
     ```bash
@@ -92,6 +92,7 @@ Puedes encontrarme en:
 ---
 
 Hecho con ❤️ por **Abner Gonzales**
+
 
 
 
