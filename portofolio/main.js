@@ -1,82 +1,139 @@
 const headerLinks = document.querySelectorAll(".header-list a");
 headerLinks.forEach(link => {
-  if (link.href === window.location.href) {
+  const linkPath = new URL(link.href).pathname.split('/').pop();
+  const locationPath = window.location.pathname.split('/').pop();
+  
+  if ((locationPath === "" || locationPath === "index.html") && linkPath === "index.html") {
+    link.classList.add("active");
+  } else if (linkPath === locationPath && linkPath !== "index.html") {
     link.classList.add("active");
   }
-});
-
-const scrollBtn = document.querySelector(".scroll-btn");
-if (scrollBtn) {
-  scrollBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    window.scrollBy({
-      top: window.innerHeight,
-      left: 0,
-      behavior: "smooth"
-    });
-  });
-}
-
-const internalLinks = document.querySelectorAll('a[href^="#"]');
-internalLinks.forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const target = document.querySelector(link.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  });
-});
-
-const contactForm = document.querySelector(".contact-form");
-if (contactForm) {
-  contactForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    alert("Thank you! Your message has been sent."); 
-    contactForm.reset();
-  });
-}
-
-const socialIcons = document.querySelectorAll(".social-links-contact a");
-socialIcons.forEach(icon => {
-  icon.addEventListener("mouseover", () => {
-    icon.style.transform = "translateY(-5px) scale(1.2)";
-  });
-  icon.addEventListener("mouseout", () => {
-    icon.style.transform = "translateY(0) scale(1)";
-  });
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const fadeElements = document.querySelectorAll(".fade-in-element");
-    fadeElements.forEach((el, i) => {
-        setTimeout(() => {
-            el.classList.add("visible");
-        }, i * 150); 
-    });
-
-
-    const links = document.querySelectorAll("a.fade-link[data-link]");
-    links.forEach(link => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault(); 
-            const href = link.getAttribute("href");
-            document.body.classList.add("page-fade-out");
-            setTimeout(() => {
-                window.location.href = href;
-            }, 600);
-        });
-    });
 });
 
 
 const menuToggle = document.getElementById('menu-toggle');
 const slideMenu = document.getElementById('slide-menu');
 
-menuToggle.addEventListener('click', () => {
-    slideMenu.classList.toggle('active');
+if (menuToggle && slideMenu) {
+    menuToggle.addEventListener('click', () => {
+        slideMenu.classList.toggle('active');
+        const icon = menuToggle.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll("a.fade-link[data-link]");
+    links.forEach(link => {
+        link.addEventListener("click", (e) => {
+            const href = link.getAttribute("href");
+            if (link.target !== "_blank" && !link.hasAttribute('download') && href && !href.startsWith('#')) {
+                e.preventDefault(); 
+                document.body.classList.add("page-fade-out");
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 600); 
+            }
+        });
+    });
 });
 
 
+const scrollTopBtn = document.querySelector('.scroll-top');
+
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+    scrollTopBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+
+const contactForm = document.getElementById('contact-form');
+const submitBtn = document.getElementById('submit-btn');
+const statusMessage = document.getElementById('status-message');
+
+if (contactForm && submitBtn && statusMessage) {
+    
+  
+    const emailjsPublicKey = "YAF5HMO7VeLLT_NlX";    
+    const emailjsServiceID = "service_h9lnkxt";    
+    const emailjsTemplateID = "template_bxpl6yb";   
+   
+    emailjs.init(emailjsPublicKey); 
+
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        const templateParams = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message')
+        };
+
+        if (!templateParams.name || !templateParams.email || !templateParams.subject || !templateParams.message) {
+            statusMessage.innerText = "Por favor, completa todos los campos.";
+            statusMessage.style.color = "red";
+            statusMessage.style.display = "block";
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Enviando...";
+        statusMessage.style.display = "none";
+
+        emailjs.send(emailjsServiceID, emailjsTemplateID, templateParams)
+            .then(function(response) {
+                console.log('ÉXITO!', response.status, response.text);
+                contactForm.reset();
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Enviar mensaje";
+                statusMessage.innerText = "¡Mensaje enviado con éxito! Gracias por contactarme.";
+                statusMessage.style.color = "green";
+                statusMessage.style.display = "block";
+
+            }, function(error) {
+                console.log('FALLÓ...', error);
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Enviar mensaje";
+                statusMessage.innerText = "Error al enviar el mensaje. Inténtalo de nuevo.";
+                statusMessage.style.color = "red";
+                statusMessage.style.display = "block";
+            });
+    });
+}
+
+
+const elementsToAnimate = document.querySelectorAll('.fade-in-element');
+
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); 
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+elementsToAnimate.forEach(el => {
+    observer.observe(el);
+});
