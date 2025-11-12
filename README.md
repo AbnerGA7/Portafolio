@@ -47,14 +47,29 @@
 
 ## 📂 Estructura del Proyecto
 
-(Esta estructura está basada en las capturas de tu VS Code)
-Portafolio/ │ ├─ index.html # Página de Inicio ├─ sobremi.html # Página "Sobre Mí" ├─ proyectos.html # Página de Proyectos ├─ contactos.html # Página de Contacto ├─ styles.css # Hoja de estilos (Asumo el nombre) ├─ script.js # Archivo JavaScript (Asumo el nombre) ├─ images/ # Carpeta con imágenes └─ README.md # La documentación del proyecto ---
+portofolio/
+│
+├── images/                     # Carpeta que contiene las imágenes usadas en el sitio
+│   ├── img.jpg                 # Imagen principal (para el perfil)
+│   └── img2.png                # Imagen secundaria (segundo perfil)
+│
+├── index.html                  # Página principal del portafolio (inicio)
+├── about.html                  # Página "Acerca de mí"
+├── contact.html                # Página de contacto con formulario
+├── project.html                # Página con lista de los proyectos realizados
+│
+├── main.js                     # Archivo JavaScript principal (interactividad, animaciones)
+├── style.css                   # Hoja de estilos CSS (define el diseño y apariencia del sitio)
+│
+├── README.md                   # Archivo de documentación del proyecto (explica propósito e instalación)
+└── screenshoot.png              # Captura de pantalla del sitio (para mostrar una vista previa en GitHub)
+
 
 ## 📌 Instalación
 
 1.  Clona el repositorio:
     ```bash
-    git clone [https://github.com/AbnerGA7/Portafolio.git](https://github.com/AbnerGA7/Portafolio.git)
+    git clone [https://github.com/AbnerGA7/Portafolio.git]
     ```
 2.  Navega a la carpeta del proyecto:
     ```bash
@@ -77,6 +92,7 @@ Puedes encontrarme en:
 ---
 
 Hecho con ❤️ por **Abner Gonzales**
+
 
 
 
