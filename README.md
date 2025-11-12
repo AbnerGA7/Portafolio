@@ -15,7 +15,7 @@
 
 ## 🌟 Secciones del Sitio Web
 
-- **Inicio (`index.html`)**: Introducción al desarrollador con una breve descripción.
+- **Inicio (`index.html`)**: Introducción del desarrollador con una breve descripción.
 - **Yo (`about.html`)**: Mi experiencia, *stack* tecnológico, habilidades y un poco sobre mí.
 - **Proyectos (`project.html`)**: Galería de proyectos con imágenes, descripciones y tecnologías usadas.
 - **Contacto (`contact.html`)**: Formulario de contacto y enlaces a mis redes sociales.
