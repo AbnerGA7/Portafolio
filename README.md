@@ -1,4 +1,4 @@
-![Captura de tu Portafolio](screenshoot7.png)
+![Captura de tu Portafolio](screenshoot.png)
 
 ---
 
