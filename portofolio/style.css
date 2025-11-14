@@ -218,7 +218,7 @@ header {
     font-family: var(--font-secondary);
     background: var(--bg-dark-secondary);
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30x rgba(0,0,0,0.3);
 }
 
 .about-info {
@@ -281,7 +281,6 @@ header {
 }
 
 .photo-container {
-    flex: 1;
     position: relative;
     display: inline-block;
     padding: 10px;
