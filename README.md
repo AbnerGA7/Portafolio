@@ -1,76 +1,69 @@
-![Captura de tu Portafolio](screenshoot.png)
+![Portafolio Abner Gonzales](screenshoot.png)
+
+# Portafolio — Abner Gonzales
+
+Portafolio personal construido con **Next.js 15 + Tailwind CSS**. Diseño dark minimalista con gradientes violet/cyan, scroll tipo página y modo responsivo para móvil.
+
+## Demo en vivo
+
+[portafolio-abnergonzales7.netlify.app](https://portafolio-abnergonzales7.netlify.app/)
 
 ---
 
-# Portafolio de Abner Gonzales
+## Secciones
 
-🚀 **¡Bienvenido a mi Portafolio!** Este es mi portafolio personal donde muestro mis **proyectos**, **habilidades** e **información de contacto**. Construido como parte de mi formación en Ingeniería de Software.
-
----
-
-## 🚀 Demo en Vivo
-[Ver el sitio en vivo](https://portafolio-abnergonzales7.netlify.app/)
-
----
-
-## 🌟 Secciones del Sitio Web
-
-- **Inicio (`index.html`)**: Introducción del desarrollador con una breve descripción.
-- **Yo (`about.html`)**: Mi experiencia, *stack* tecnológico, habilidades y un poco sobre mí.
-- **Proyectos (`project.html`)**: Galería de proyectos con imágenes, descripciones y tecnologías usadas.
-- **Contacto (`contact.html`)**: Formulario de contacto y enlaces a mis redes sociales.
+| Sección | Descripción |
+|---|---|
+| **Hero** | Presentación con efecto typewriter y foto de perfil animada |
+| **Sobre mí** | Skills con barras de progreso agrupadas por categoría |
+| **Proyectos** | 6 proyectos con filtros por categoría y links a demos |
+| **Contacto** | Formulario + redes sociales (WhatsApp, Instagram, Facebook, LinkedIn) |
 
 ---
 
-## ✨ Características
+## Stack
 
-- **Diseño Responsivo:** Funciona perfectamente en computadoras, tablets y móviles.
-- **Galería de Proyectos:** Muestra de mis trabajos con descripciones y tecnologías.
-- **Tarjetas Interactivas:** Efectos *hover* para mostrar mis habilidades y servicios.
-- **Página de Contacto:** Formulario funcional y enlaces directos a mis perfiles.
-- **UI/UX Moderna:** Un diseño limpio y profesional.
-
----
-
-## 🛠️ Tecnologías Utilizadas
-
-- **HTML5**
-- **CSS3** 
-- **JavaScript**
-- **Font Awesome** 
-- **Git & GitHub**
-- **Angular**
-- **Node.js**
-- **SQL Server**
+- **Next.js 15** — App Router, output export estático
+- **React 19** — Componentes con `'use client'`
+- **Tailwind CSS 3** — Tema personalizado, dark mode, animaciones
+- **next/image** — Optimización de foto de perfil
 
 ---
 
+## Skills mostradas
 
-## 📌 Instalación
+**Frontend:** React, React Native, Next.js, Angular, HTML/CSS, JavaScript, Tailwind CSS
 
-1.  Clona el repositorio:
-    ```bash
-    git clone https://github.com/AbnerGA7/Portafolio.git
-    ```
-2.  Navega a la carpeta del proyecto:
-    ```bash
-    cd Portafolio
-    ```
-3.  Abre `index.html` en tu navegador favorito para ver el sitio.
+**Backend & BD:** Node.js, Firebase/Firestore, SQL Server, Sanity CMS, Python, Java
+
+**Mobile:** Android (Kotlin), Framer Motion, Recharts, jsPDF/ExcelJS
+
+**Herramientas:** Git & GitHub, Vite, Netlify/Vercel, Figma
 
 ---
 
-## 📬 Contacto
+## Instalación local
 
-Puedes encontrarme en:
+```bash
+git clone https://github.com/AbnerGA7/Portafolio.git
+cd Portafolio
+npm install
+npm run dev
+```
 
-- **Email**: abner.gonzales.work@gmail.com
-- **LinkedIn**: [linkedin.com/in/abnergonzales7](https://www.linkedin.com/in/abnergonzales7)
-- **GitHub**: [github.com/AbnerGA7](https://github.com/AbnerGA7)
-- **Instagram**: [@abner_gonzales7](https://www.instagram.com/abner_gonzales7/)
-- **Facebook**: [Abner Gonzales](https://web.facebook.com/abnerGonzalesA.7/)
+Abre [http://localhost:3000](http://localhost:3000)
 
 ---
 
+## Contacto
+
+- **Email:** abner.gonzales.work@gmail.com
+- **WhatsApp:** +51 904 100 380
+- **LinkedIn:** [linkedin.com/in/abnergonzales7](https://www.linkedin.com/in/abnergonzales7)
+- **Instagram:** [@abner_gonzales7](https://www.instagram.com/abner_gonzales7)
+- **Facebook:** [abnerGonzalesA.7](https://www.facebook.com/abnerGonzalesA.7)
+- **GitHub:** [github.com/AbnerGA7](https://github.com/AbnerGA7)
+
+---
 
 Hecho por **Abner Gonzales**
