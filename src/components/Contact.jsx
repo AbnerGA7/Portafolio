@@ -87,7 +87,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contacto" className="py-28 px-6 relative overflow-hidden">
+    <section id="contacto" className="min-h-[100svh] snap-start py-16 md:py-24 px-6 relative overflow-hidden flex flex-col justify-center">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent via-violet-500/30 to-transparent" />
 
       {/* Bottom glow */}
@@ -97,7 +97,7 @@ export default function Contact() {
       />
 
       <div className="max-w-6xl mx-auto">
-        <div className="mb-14">
+        <div className="mb-8 md:mb-12">
           <span className="section-number">03. contacto</span>
           <h2 className="text-4xl md:text-5xl font-black text-white mt-2">Hablemos</h2>
           <p className="text-gray-500 mt-3 max-w-md text-[15px]">
