@@ -35,7 +35,7 @@ export default function Hero() {
   }, [displayed, deleting, roleIdx]);
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20">
+    <section id="inicio" className="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-6 pt-20 scroll-snap-start snap-start">
       {/* Animated background blobs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -108,15 +108,14 @@ export default function Hero() {
             </div>
 
             {/* Stats */}
-            <div className="mt-12 flex items-center justify-center md:justify-start gap-8">
+            <div className="mt-8 flex items-center justify-center md:justify-start gap-6 divide-x divide-white/10">
               {[
                 { num: '6+', label: 'Proyectos' },
                 { num: '5+', label: 'Tecnologías' },
                 { num: '100%', label: 'Dedicación' },
               ].map((s, i) => (
-                <div key={s.label} className="text-center md:text-left">
-                  {i > 0 && <div className="hidden md:block absolute w-px h-8 bg-white/10 -ml-4 mt-1" />}
-                  <div className="text-2xl font-bold text-gradient-warm">{s.num}</div>
+                <div key={s.label} className={`text-center md:text-left ${i > 0 ? 'pl-6' : ''}`}>
+                  <div className="text-xl md:text-2xl font-bold text-gradient-warm">{s.num}</div>
                   <div className="text-xs text-gray-500 mt-0.5">{s.label}</div>
                 </div>
               ))}
@@ -126,7 +125,7 @@ export default function Hero() {
           {/* Right: Photo */}
           <div className="flex-shrink-0 order-1 md:order-2 flex flex-col items-center gap-4 animate-float">
             <div className="photo-ring animate-pulse-glow">
-              <div className="w-52 h-52 md:w-64 md:h-64 rounded-full overflow-hidden bg-surface-2">
+              <div className="w-36 h-36 sm:w-48 sm:h-48 md:w-64 md:h-64 rounded-full overflow-hidden bg-surface-2">
                 <Image
                   src="/perfil.jpg"
                   alt="Abner Gonzales"
