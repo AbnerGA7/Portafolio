@@ -1,0 +1,35 @@
+---
+import DotIcon from "@/components/icons/DotIcon.astro";
+import { aboutTimelineItems } from "@/components/about/data/aboutTimelineItems";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<ol
+  class="flex flex-col gap-10 border-s border-gray-700"
+  data-aos="fade-up"
+  data-aos-duration="400"
+>
+  {
+    aboutTimelineItems.map((data) => {
+      const { description, title } = data;
+      return (
+        <li class="relative ms-6 xs:ps-2 xl:p-0">
+          <span
+            class="absolute flex items-center justify-center size-6 rounded-full top-1 -start-6 -translate-x-[50%]
+              ring-5 ring-gray-600 bg-gray-800"
+          >
+            <DotIcon class="size-2.5 text-white" />
+          </span>
+          <h3 class="text-base xl:text-lg font-bold text-white">{t(title)}</h3>
+          <p
+            set:html={t(description)}
+            class="mt-1 text-justify text-pretty text-white/80 max-w-2xl xl:max-w-full text-sm xs:text-base xl:text-sm"
+          />
+        </li>
+      );
+    })
+  }
+</ol>
