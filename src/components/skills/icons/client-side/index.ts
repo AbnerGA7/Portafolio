@@ -11,3 +11,4 @@ export { RechartsIcon } from "./RechartsIcon";
 export { PdfIcon } from "./PdfIcon";
 export { ExcelIcon } from "./ExcelIcon";
 export { TensorFlowIcon } from "./TensorFlowIcon";
+export { FlutterIcon } from "./FlutterIcon";

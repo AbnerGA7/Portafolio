@@ -36,7 +36,7 @@ Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio es
 | **Inicio** | Presentación con efecto typewriter, foto y stack flotante |
 | **Habilidades** | Tecnologías agrupadas por pestañas: Frontend, Mobile, Lenguajes, Backend & BD, Librerías y Herramientas |
 | **Experiencia** | Desarrollo Full Stack freelance, desarrollo Android y formación en Ingeniería de Software |
-| **Proyectos** | Las Torres, Reconocedor MNIST (Android + TensorFlow Lite), Smart Market Pro, GCorp Store, Admin Cactus, Bella Market Mobile y Exprésate |
+| **Proyectos** | Las Torres, Vitalis (Flutter + IA local), Reconocedor MNIST, Memoria Viva, Smart Market Pro, GCorp Store, RescueMal, Admin Cactus, Bella Market Mobile, La Nota Final (Unity) y Exprésate |
 | **Sobre mí** | Quién soy, mi enfoque y mi trayectoria |
 | **Contacto** | Formulario y redes |
 

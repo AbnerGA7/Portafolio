@@ -5,3 +5,4 @@ export { JavaIcon } from "./JavaIcon";
 export { KotlinIcon } from "./KotlinIcon";
 export { JavaScriptIcon } from "./JavaScriptIcon";
 export { SQLLanguageIcon } from "./SQLLanguageIcon";
+export { DartIcon } from "./DartIcon";
