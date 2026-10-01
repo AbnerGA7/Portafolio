@@ -19,6 +19,8 @@ const {
   title,
   tagline,
   demoUrl,
+  demoLabel,
+  codeUrl,
   category,
   status,
   color,
@@ -52,6 +54,10 @@ const {
         ))
       }
     </ul>
-    <CallToActionButtons demoUrl={demoUrl} />
+    <CallToActionButtons
+      demoUrl={demoUrl}
+      demoLabel={demoLabel}
+      codeUrl={codeUrl}
+    />
   </div>
 </article>

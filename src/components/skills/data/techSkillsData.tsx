@@ -12,6 +12,7 @@ import {
   ReactIcon,
   RechartsIcon,
   TailwindIcon,
+  TensorFlowIcon,
   ViteIcon,
 } from "@/components/skills/icons/client-side";
 import {
@@ -74,6 +75,7 @@ export const techSkillsData: Partial<Record<TranslationKey, TechGridItem[]>> = {
   ],
 
   "skills.categories.libraries": [
+    { Icon: TensorFlowIcon, name: "TensorFlow Lite", tooltip: { color: "#E65100" } },
     { Icon: FramerMotionIcon, name: "Framer Motion", tooltip: { color: "#0055FF" } },
     { Icon: RechartsIcon, name: "Recharts", tooltip: { color: "#22B5BF" } },
     { Icon: PdfIcon, name: "jsPDF", tooltip: { color: "#E5252A" } },

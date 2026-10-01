@@ -1,4 +1,7 @@
 import lasTorresImage from "@/assets/projects/las_torres.webp";
+import mnistImage from "@/assets/projects/mnist_android.webp";
+import TensorFlowIcon from "@/components/icons/colored/TensorFlowIcon.astro";
+import PythonIcon from "@/components/icons/colored/PythonIcon.astro";
 import type { Project, ProjectCategory } from "@/types/Project";
 import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
 import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
@@ -26,13 +29,34 @@ export const projectsData: Project[] = [
     color: "#3b82f6",
     emoji: "🏗️",
     image: lasTorresImage,
-    demoUrl: "https://las-torres-demo.netlify.app",
+    demoUrl: "https://lastorres.abnergonzales.dev",
     stack: [
       { title: "React", Icon: ReactIcon },
       { title: "Firebase", Icon: FirebaseIcon },
       { title: "Tailwind CSS", Icon: TailwindCSSIcon },
       { title: "Recharts", Icon: RechartsIcon },
       { title: "jsPDF", Icon: PdfIcon },
+    ],
+  },
+  {
+    id: "mnist-android",
+    title: "projects.mnist.title",
+    tagline: "projects.mnist.tagline",
+    description: "projects.mnist.description",
+    category: "mobile",
+    status: "completed",
+    color: "#ff8f3f",
+    emoji: "✍️",
+    image: mnistImage,
+    demoUrl:
+      "https://github.com/AbnerGA7/caso1-mnist-android/releases/latest/download/caso1.apk",
+    demoLabel: "projects.button.apk",
+    codeUrl: "https://github.com/AbnerGA7/caso1-mnist-android",
+    stack: [
+      { title: "Kotlin", Icon: KotlinIcon },
+      { title: "Android", Icon: AndroidIcon },
+      { title: "TensorFlow Lite", Icon: TensorFlowIcon },
+      { title: "Python", Icon: PythonIcon },
     ],
   },
   {
@@ -60,6 +84,8 @@ export const projectsData: Project[] = [
     status: "production",
     color: "#22d3ee",
     emoji: "🛍️",
+    demoUrl: "https://gcorpstore.abnergonzales.dev",
+    codeUrl: "https://github.com/AbnerGA7/freestore-fullstack",
     stack: [
       { title: "React", Icon: ReactIcon },
       { title: "Sanity CMS", Icon: SanityIcon },
@@ -110,6 +136,7 @@ export const projectsData: Project[] = [
     status: "completed",
     color: "#f43f5e",
     emoji: "🎨",
+    demoUrl: "https://expresate.abnergonzales.dev",
     stack: [
       { title: "HTML", Icon: HtmlIcon },
       { title: "CSS", Icon: CssIcon },
