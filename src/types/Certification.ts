@@ -10,7 +10,4 @@ export interface Certification {
   landscape?: boolean;
   /** Documento completo (PDF) */
   documentUrl: string;
-  /** Página oficial de verificación */
-  verifyUrl?: string;
-  verifyCode?: string;
 }
