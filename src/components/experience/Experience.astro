@@ -1,0 +1,34 @@
+---
+import ExperienceItem from "./components/ExperienceItem.astro";
+import { experienceData } from "./data/experienceData";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section
+  id={id}
+  class="flex flex-col justify-start items-center py-10 text-white font-bold"
+>
+  <h1 class="section-title" data-aos="fade-up" data-aos-duration="800">
+    {t("experience.title")}
+  </h1>
+  <ol
+    class="ps-8 xs:ps-15 xs:pe-5 xl:px-10 w-full relative mt-8 xs:mt-10 md:mt-16 flex flex-col items-center lg:block"
+  >
+    {
+      experienceData.map((item) => (
+        <li>
+          <ExperienceItem item={item} />
+        </li>
+      ))
+    }
+  </ol>
+</section>
