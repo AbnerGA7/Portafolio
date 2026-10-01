@@ -1,0 +1,40 @@
+---
+import { contactMeData } from "@/data/contactMeData";
+import SendMessageForm from "./components/SendMessageForm";
+import SocialContact from "./components/SocialContact.astro";
+import ContactTitle from "./components/ContactTitle.astro";
+import { getLangFromUrl, getContactFormTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const translations = getContactFormTranslations(lang);
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section id={id} class="py-5 text-white px-5">
+  <ContactTitle />
+  <div
+    class="w-full mt-5 xl:mt-20 flex flex-col xl:flex-row justify-evenly gap-5"
+  >
+    <div
+      class="gap-5 flex flex-col
+            items-center xl:justify-start
+            xl:w-[45%] 2xl:w-[50%]"
+      data-aos="fade-up"
+      data-aos-duration="900"
+    >
+      {contactMeData.map((item) => <SocialContact item={item} />)}
+    </div>
+    <div
+      class="xl:w-[45%] 2xl:w-[50%] flex items-center justify-center mt-5 xl:mt-0"
+      data-aos="fade-up"
+      data-aos-duration="900"
+    >
+      <SendMessageForm translations={translations} client:visible />
+    </div>
+  </div>
+</section>
