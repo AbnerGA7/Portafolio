@@ -1,0 +1,33 @@
+---
+import AboutClosing from "./components/AboutClosing.astro";
+import AboutTimeline from "./components/AboutTimeline.astro";
+import AboutTitle from "./components/AboutTitle.astro";
+import PersonalInfoCard from "./components/PersonalInfoCard.astro";
+import WhoIAm from "./components/WhoIAm.astro";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<section
+  id={id}
+  class="flex flex-col items-center gap-10 text-white py-10 px-5 xs:px-10 sm:px-15"
+>
+  <AboutTitle />
+
+  <div class="flex flex-col xl:flex-row w-full max-w-3xl gap-10 xl:max-w-full">
+    <div
+      class="w-full xl:w-[50%] flex flex-col items-start justify-center gap-4 xl:gap-10"
+      data-aos="fade-up"
+      data-aos-duration="400"
+    >
+      <WhoIAm />
+      <PersonalInfoCard />
+    </div>
+    <div class="flex justify-center xl:w-[50%]"><AboutTimeline /></div>
+  </div>
+  <AboutClosing />
+</section>

@@ -1,0 +1,36 @@
+---
+import { personalInfoItems } from "@/components/about/data/personalInfoItems";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import type { TranslationKey } from "@/i18n/types";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="w-full flex flex-wrap justify-center gap-3 xl:gap-4">
+  {
+    personalInfoItems.map((data) => {
+      const {
+        icon: { Icon },
+        content,
+        label,
+        translate,
+      } = data;
+      const value = translate ? t(content as TranslationKey) : content;
+      return (
+        <div
+          class={`min-w-[45%] w-full xs:w-auto flex items-center gap-3 py-2 px-4 rounded-xl shadow-[var(--shadow-white-sm)] transition-transform duration-500 hover:scale-110`}
+        >
+          <div class="flex items-center justify-center size-10 bg-accent/10 text-accent rounded-full">
+            <Icon class="size-5" />
+          </div>
+
+          <div class="grid grid-cols-[auto,1fr] gap-x-2 text-white text-sm">
+            <span class="text-gray-400 font-bold">{t(label)}:</span>
+            <span class="font-medium">{value}</span>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
