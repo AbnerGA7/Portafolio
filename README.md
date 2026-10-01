@@ -36,7 +36,7 @@ Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio es
 | **Inicio** | Presentación con efecto typewriter, foto y stack flotante |
 | **Habilidades** | Tecnologías agrupadas por pestañas: Frontend, Mobile, Lenguajes, Backend & BD, Librerías y Herramientas |
 | **Experiencia** | Desarrollo Full Stack freelance, desarrollo Android y formación en Ingeniería de Software |
-| **Proyectos** | Las Torres, Smart Market Pro, FreeStore, Admin Cactus, Bella Market Mobile y Exprésate |
+| **Proyectos** | Las Torres, Smart Market Pro, GCorp Store, Admin Cactus, Bella Market Mobile y Exprésate |
 | **Sobre mí** | Quién soy, mi enfoque y mi trayectoria |
 | **Contacto** | Formulario y redes |
 

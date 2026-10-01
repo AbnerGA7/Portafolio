@@ -137,9 +137,9 @@ export const ui = {
     "projects.bella_market.description":
       "Native Android app for sales and cash register management. Tablet-optimized interface, sales recording, inventory control and real-time synchronization.",
 
-    "projects.freestore.title": "FreeStore",
-    "projects.freestore.tagline": "Full-stack E-commerce",
-    "projects.freestore.description":
+    "projects.gcorp_store.title": "GCorp Store",
+    "projects.gcorp_store.tagline": "Full-stack E-commerce",
+    "projects.gcorp_store.description":
       "Online store built with React + Sanity CMS. Cart with Context API, Framer Motion animations, dynamic catalog and an admin panel to manage products, categories and banners.",
 
     "projects.button.demo": "View demo",
@@ -350,9 +350,9 @@ export const ui = {
     "projects.bella_market.description":
       "Aplicación Android nativa para gestión de ventas y caja. Interfaz optimizada para tablets, registro de ventas, control de inventario y sincronización en tiempo real.",
 
-    "projects.freestore.title": "FreeStore",
-    "projects.freestore.tagline": "E-commerce Fullstack",
-    "projects.freestore.description":
+    "projects.gcorp_store.title": "GCorp Store",
+    "projects.gcorp_store.tagline": "E-commerce Fullstack",
+    "projects.gcorp_store.description":
       "Tienda online con React + Sanity CMS. Carrito con Context API, animaciones Framer Motion, catálogo dinámico y panel admin para gestionar productos, categorías y banners.",
 
     "projects.button.demo": "Ver demo",
