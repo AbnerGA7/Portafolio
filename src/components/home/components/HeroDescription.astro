@@ -1,0 +1,14 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<p
+  class="text-pretty text-left
+        mt-4 xl:mt-8 max-w-2xl xl:max-w-full text-base sm:text-lg 2xl:text-xl"
+  data-aos="fade-up"
+  data-aos-duration="1200"
+  set:html={t("home.description")}
+/>

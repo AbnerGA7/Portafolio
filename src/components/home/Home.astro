@@ -1,0 +1,53 @@
+---
+import FloatingOrbs from "./components/FloatingOrbs.astro";
+import ContactMe from "./components/ContactMe.astro";
+import HeroDescription from "./components/HeroDescription.astro";
+import HeroTitle from "./components/HeroTitle.astro";
+import Myself from "./components/Myself.astro";
+import { floatingOrbsData } from "./data/floatingOrbsData";
+import HeroCTA from "./components/HeroCTA.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section
+  id={id}
+  class="pt-10 gap-10 xl:p-0 flex flex-col items-center xl:flex-row xl:gap-5 2xl:gap-10"
+>
+  <div
+    class="w-[90%] md:w-[70%] lg:w-[55%] xl:w-[52%] 2xl:w-[48%] relative flex justify-center"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  >
+    <Myself />
+    {floatingOrbsData.map((orb) => <FloatingOrbs {...orb} />)}
+  </div>
+  <div
+    class="xl:w-[48%] px-5 sm:px-10 h-full flex flex-col items-center xl:items-start xl:justify-center text-white xl:pe-5"
+  >
+    <p
+      class="mb-5 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-xs sm:text-sm font-medium text-accent"
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
+      <span class="relative flex size-2">
+        <span
+          class="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-75"
+        ></span>
+        <span class="relative inline-flex size-2 rounded-full bg-accent"></span>
+      </span>
+      {t("home.available")}
+    </p>
+    <HeroTitle />
+    <HeroDescription />
+    <ContactMe />
+    <HeroCTA />
+  </div>
+</section>

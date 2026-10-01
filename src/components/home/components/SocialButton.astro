@@ -1,0 +1,26 @@
+---
+import type { ContactMeItem } from "@/types/ContactMeItem";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+interface Props {
+  item: ContactMeItem;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const { item } = Astro.props;
+const { title, Icon, url } = item;
+---
+
+<a
+  href={t(url) as string}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={t(title) as string}
+  class="group aspect-square rounded-full bg-white flex items-center justify-center p-1 sm:p-2
+        cursor-pointer transition-transform duration-300 hover:scale-115"
+>
+  <Icon class="text-primary size-5 sm:size-6 2xl:size-7" />
+  <span class="tooltip">{t(title)}</span>
+</a>

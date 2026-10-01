@@ -1,0 +1,39 @@
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+
+interface Props {
+  position?: string;
+  size?: string;
+  Icon: AstroComponentFactory;
+  tooltip: string;
+  url: string;
+}
+
+const getRandomDelay = () => Math.floor(Math.random() * 1000);
+
+const {
+  position = "top-10 left-10",
+  size = "size-8",
+  Icon,
+  url,
+  tooltip,
+} = Astro.props;
+const delay = getRandomDelay();
+---
+
+<a
+  href={url}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={tooltip}
+  class={`group absolute ${position} aspect-square rounded-full bg-white align-middle p-1 xs:p-2 sm:p-3 
+        pointer-events-none xl:pointer-events-auto
+        cursor-pointer animate-float transition-transform duration-300 hover:scale-115 z-10 hover:z-40`}
+  style={{
+    animationDelay: `${delay}ms`,
+  }}
+>
+  <Icon class={`${size} text-primary`} />
+
+  <span class="tooltip">{tooltip}</span>
+</a>
