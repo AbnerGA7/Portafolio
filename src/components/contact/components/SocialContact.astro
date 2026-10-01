@@ -1,0 +1,38 @@
+---
+import ArrowIcon from "@/components/icons/ArrowIcon.astro";
+import type { ContactMeItem } from "@/types/ContactMeItem";
+
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+  item: ContactMeItem;
+}
+
+const { item } = Astro.props;
+const { Icon, description, title, url } = item;
+---
+
+<a
+  target="_blank"
+  rel="noopener noreferrer"
+  href={t(url) as string}
+  class="relative w-full rounded-3xl border-1 sm:border-2 border-white flex items-center gap-4
+        py-3 xl:py-4 px-6
+        max-w-3xl xl:max-w-full hover:animate-lift"
+>
+  <ArrowIcon
+    class="absolute right-2 sm:right-10 top-[50%] -translate-y-[50%]"
+  />
+  <span class="bg-white rounded-xl p-2"
+    ><Icon class="size-7 xl:size-8 text-primary" /></span
+  >
+  <div>
+    <h4 class="text-xl xl:text-2xl font-bold">{t(title)}</h4>
+    <p class="text-base max-w-[95%] sm:max-w-full xl:text-lg">
+      {t(description)}
+    </p>
+  </div>
+</a>
