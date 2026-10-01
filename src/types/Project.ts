@@ -24,4 +24,7 @@ export interface Project {
   emoji: string;
   image?: ImageMetadata;
   demoUrl?: string;
+  /** Texto del botón principal (por defecto "Ver demo") */
+  demoLabel?: TranslationKey;
+  codeUrl?: string;
 }

@@ -142,8 +142,15 @@ export const ui = {
     "projects.gcorp_store.description":
       "Online store built with React + Sanity CMS. Cart with Context API, Framer Motion animations, dynamic catalog and an admin panel to manage products, categories and banners.",
 
+    "projects.mnist.title": "MNIST Digit Recognizer",
+    "projects.mnist.tagline": "Offline AI on Android",
+    "projects.mnist.description":
+      "Android app in Kotlin that recognizes handwritten digits (0-9) on the device, without Internet: a CNN trained on MNIST with Python and converted to TensorFlow Lite.",
+
     "projects.button.demo": "View demo",
     "projects.button.private": "Private demo",
+    "projects.button.apk": "Download APK",
+    "projects.button.code": "Code",
     "about.title": `
       I build <span class="text-accent">apps</span> that
       <span class="text-accent">solve</span>,
@@ -355,8 +362,15 @@ export const ui = {
     "projects.gcorp_store.description":
       "Tienda online con React + Sanity CMS. Carrito con Context API, animaciones Framer Motion, catálogo dinámico y panel admin para gestionar productos, categorías y banners.",
 
+    "projects.mnist.title": "Reconocedor de dígitos MNIST",
+    "projects.mnist.tagline": "IA offline en Android",
+    "projects.mnist.description":
+      "App Android en Kotlin que reconoce dígitos escritos a mano (0-9) en el propio dispositivo, sin Internet: una CNN entrenada con MNIST en Python y convertida a TensorFlow Lite.",
+
     "projects.button.demo": "Ver demo",
     "projects.button.private": "Demo privada",
+    "projects.button.apk": "Descargar APK",
+    "projects.button.code": "Código",
     "about.title": `
       Construyo <span class="text-accent">apps</span> que
       <span class="text-accent">resuelven</span>,
