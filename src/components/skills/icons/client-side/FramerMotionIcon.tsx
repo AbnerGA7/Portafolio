@@ -1,0 +1,11 @@
+interface Props {
+  className?: string;
+}
+
+const FramerMotionIcon: React.FC<Props> = ({ className = "" }) => (
+  <svg className={className} viewBox="0 0 24 24" width="128" height="128">
+    <path fill="#0055FF" d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z"></path>
+  </svg>
+);
+
+export { FramerMotionIcon };
