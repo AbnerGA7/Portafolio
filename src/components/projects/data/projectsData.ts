@@ -1,6 +1,12 @@
 import lasTorresImage from "@/assets/projects/las_torres.webp";
 import mnistImage from "@/assets/projects/mnist_android.webp";
 import vitalisImage from "@/assets/projects/vitalis.webp";
+import rescuemalImage from "@/assets/projects/rescuemal.webp";
+import memoriaImage from "@/assets/projects/memoria_viva.webp";
+import smartMarketImage from "@/assets/projects/smart_market.webp";
+import adminCactusImage from "@/assets/projects/admin_cactus.webp";
+import expresateImage from "@/assets/projects/expresate.webp";
+import gcorpStoreImage from "@/assets/projects/gcorp_store.webp";
 import FlutterIcon from "@/components/icons/colored/FlutterIcon.astro";
 import DartIcon from "@/components/icons/colored/DartIcon.astro";
 import GeminiIcon from "@/components/icons/colored/GeminiIcon.astro";
@@ -95,6 +101,7 @@ export const projectsData: Project[] = [
     status: "development",
     color: "#f59e0b",
     emoji: "📸",
+    image: memoriaImage,
     stack: [
       { title: "Kotlin", Icon: KotlinIcon },
       { title: "Jetpack Compose", Icon: JetpackComposeIcon },
@@ -111,6 +118,7 @@ export const projectsData: Project[] = [
     status: "production",
     color: "#10b981",
     emoji: "🛒",
+    image: smartMarketImage,
     stack: [
       { title: "HTML", Icon: HtmlIcon },
       { title: "CSS", Icon: CssIcon },
@@ -127,6 +135,7 @@ export const projectsData: Project[] = [
     status: "production",
     color: "#22d3ee",
     emoji: "🛍️",
+    image: gcorpStoreImage,
     demoUrl: "https://gcorpstore.abnergonzales.dev",
     codeUrl: "https://github.com/AbnerGA7/GCorpStoreFull-stack",
     stack: [
@@ -145,6 +154,7 @@ export const projectsData: Project[] = [
     status: "completed",
     color: "#f97316",
     emoji: "🐾",
+    image: rescuemalImage,
     stack: [
       { title: "Kotlin", Icon: KotlinIcon },
       { title: "Java", Icon: JavaIcon },
@@ -161,6 +171,7 @@ export const projectsData: Project[] = [
     status: "completed",
     color: "#8b5cf6",
     emoji: "📊",
+    image: adminCactusImage,
     stack: [
       { title: "React", Icon: ReactIcon },
       { title: "Firebase", Icon: FirebaseIcon },
@@ -209,6 +220,7 @@ export const projectsData: Project[] = [
     status: "completed",
     color: "#f43f5e",
     emoji: "🎨",
+    image: expresateImage,
     demoUrl: "https://expresate.abnergonzales.dev",
     stack: [
       { title: "HTML", Icon: HtmlIcon },

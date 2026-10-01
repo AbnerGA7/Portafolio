@@ -163,7 +163,7 @@ export const ui = {
     "projects.rescuemal.description": "Android app to report stray animals with geolocation on Google Maps, manage adoptions, partner shelters and an admin panel with metrics, built on Firebase (Auth, Firestore and Storage).",
     "projects.notafinal.title": "La Nota Final",
     "projects.notafinal.tagline": "3D Game in Unity · Team project",
-    "projects.notafinal.description": "Low-poly PS1-style third-person game set on our university campus: explore, collect items and avoid the patrolling guard. I worked on camera/player synchronization and automatic item pickup.",
+    "projects.notafinal.description": "Low-poly PS1-style 3D stealth game: a student who failed his final exam sneaks into the university at night (Building J) to recover the professor's exams while avoiding the patrolling guard. I worked on camera/player synchronization and automatic item pickup.",
     "certifications.title": "Certifications",
     "certifications.description": `
       Academic credentials <span class="text-accent">verifiable online</span> that back my training.
@@ -421,7 +421,7 @@ export const ui = {
     "projects.rescuemal.description": "App Android para reportar animales en situación de calle con geolocalización en Google Maps, gestionar adopciones, albergues afiliados y un panel administrativo con métricas, sobre Firebase (Auth, Firestore y Storage).",
     "projects.notafinal.title": "La Nota Final",
     "projects.notafinal.tagline": "Videojuego 3D en Unity · Proyecto en equipo",
-    "projects.notafinal.description": "Juego en tercera persona de estilo low-poly PS1 ambientado en nuestra universidad: explora, recolecta ítems y evita al guardia que patrulla. Trabajé en la sincronización de cámara y jugador y en la recolección automática de ítems.",
+    "projects.notafinal.description": "Juego 3D de sigilo con estética PS1 low-poly: un estudiante que desaprobó el examen final se infiltra de noche en la universidad (Pabellón J) para recuperar los exámenes del profesor, evitando al guardia que patrulla. Trabajé en la sincronización de cámara y jugador y en la recolección automática de ítems.",
     "certifications.title": "Certificaciones",
     "certifications.description": `
       Credenciales académicas <span class="text-accent">verificables en línea</span> que respaldan mi formación.
