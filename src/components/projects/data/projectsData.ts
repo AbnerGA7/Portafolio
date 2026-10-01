@@ -177,7 +177,7 @@ export const projectsData: Project[] = [
       { title: "Firebase", Icon: FirebaseIcon },
       { title: "Tailwind CSS", Icon: TailwindCSSIcon },
       { title: "Recharts", Icon: RechartsIcon },
-      { title: "jsPDF", Icon: PdfIcon },
+      { title: "PDF / Excel", Icon: PdfIcon },
     ],
   },
   {
