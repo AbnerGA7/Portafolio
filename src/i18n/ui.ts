@@ -156,6 +156,9 @@ export const ui = {
       Academic credentials <span class="text-accent">verifiable online</span> that back my training.
     `,
     "certifications.ua": "Universidad Autónoma del Perú",
+    "certifications.challenge.title": "Autónoma Challenge 2026 — Finalist",
+    "certifications.challenge.date": "July 6, 2026",
+    "certifications.challenge.detail": "Diploma for reaching the finals with an entrepreneurship project, organized by the Business Administration program.",
     "certifications.analista.title": "Programmer Analyst",
     "certifications.analista.date": "November 2025",
     "certifications.analista.detail": "Diploma awarded by the Faculty of Engineering and Architecture for meeting the requirements of the Programmer Analyst degree.",
@@ -398,6 +401,9 @@ export const ui = {
       Credenciales académicas <span class="text-accent">verificables en línea</span> que respaldan mi formación.
     `,
     "certifications.ua": "Universidad Autónoma del Perú",
+    "certifications.challenge.title": "Autónoma Challenge 2026 — Finalista",
+    "certifications.challenge.date": "6 de julio de 2026",
+    "certifications.challenge.detail": "Diploma por obtener la condición de finalista con un proyecto de emprendimiento, organizado por la Escuela Profesional de Administración de Empresas.",
     "certifications.analista.title": "Analista Programador",
     "certifications.analista.date": "Noviembre 2025",
     "certifications.analista.detail": "Diploma otorgado por la Facultad de Ingeniería y Arquitectura por cumplir los requisitos del grado de Analista Programador.",

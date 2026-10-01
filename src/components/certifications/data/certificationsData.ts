@@ -1,8 +1,20 @@
 import analistaImage from "@/assets/certificates/analista-programador.png";
 import congresoImage from "@/assets/certificates/congreso-ia.png";
+import challengeImage from "@/assets/certificates/autonoma-challenge-2026.png";
 import type { Certification } from "@/types/Certification";
 
 export const certificationsData: Certification[] = [
+  {
+    title: "certifications.challenge.title",
+    issuer: "certifications.ua",
+    date: "certifications.challenge.date",
+    detail: "certifications.challenge.detail",
+    image: challengeImage,
+    landscape: true,
+    documentUrl: "/documents/diploma-autonoma-challenge-2026.pdf",
+    verifyUrl: "https://virtual.autonoma.edu.pe/Certificados",
+    verifyCode: "ADM-00458-2026",
+  },
   {
     title: "certifications.analista.title",
     issuer: "certifications.ua",
