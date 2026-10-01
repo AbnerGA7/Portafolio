@@ -124,9 +124,8 @@ export const ui = {
       "System for a land-lot development: interactive map with per-lot status, clients and sales advisors, payment installments, Excel/PDF reports and a sales metrics dashboard.",
 
     "projects.admin_cactus.title": "Admin Cactus",
-    "projects.admin_cactus.tagline": "Admin Dashboard",
-    "projects.admin_cactus.description":
-      "Administrative dashboard with authentication, inventory management, interactive charts, PDF report export and role-based user access control.",
+    "projects.admin_cactus.tagline": "Land-Lot Management · G&M Corporation",
+    "projects.admin_cactus.description": "Internal system for G&M Corporation to manage land-lot sales: interactive lot map, clients, payments and installments, refunds, overdue alerts, role-based users and a real-time executive dashboard with PDF and Excel reports.",
 
     "projects.expresate.title": "Exprésate",
     "projects.expresate.tagline": "Design & Print Boutique",
@@ -382,9 +381,8 @@ export const ui = {
       "Sistema para urbanización de lotes: mapa interactivo con estado por lote, control de clientes y asesores, cuotas de pago, reportes Excel/PDF y dashboard de métricas de ventas.",
 
     "projects.admin_cactus.title": "Admin Cactus",
-    "projects.admin_cactus.tagline": "Panel Administrativo",
-    "projects.admin_cactus.description":
-      "Dashboard administrativo con autenticación, gestión de inventario, gráficas interactivas, exportación de reportes PDF y control de usuarios con roles de acceso.",
+    "projects.admin_cactus.tagline": "Gestión de lotes · G&M Corporation",
+    "projects.admin_cactus.description": "Sistema interno de G&M Corporation para la venta de lotes: plano interactivo, clientes, pagos y cuotas, devoluciones, alertas de mora, usuarios con roles y dashboard ejecutivo en tiempo real con reportes en PDF y Excel.",
 
     "projects.expresate.title": "Exprésate",
     "projects.expresate.tagline": "Boutique de Diseño & Impresión",
