@@ -4,6 +4,7 @@ import {
   AndroidIcon,
   AngularIcon,
   ExcelIcon,
+  ExpoIcon,
   FlutterIcon,
   FramerMotionIcon,
   JetpackComposeIcon,
@@ -56,6 +57,7 @@ export const techSkillsData: Partial<Record<TranslationKey, TechGridItem[]>> = {
 
   "skills.categories.mobile": [
     { Icon: ReactIcon, name: "React Native", tooltip: { color: "#087EA4" } },
+    { Icon: ExpoIcon, name: "Expo", tooltip: { color: "#1C2024" } },
     { Icon: AndroidIcon, name: "Android", tooltip: { color: "#3DDC84" } },
     { Icon: KotlinIcon, name: "Kotlin", tooltip: { color: "#7F52FF" } },
     { Icon: FlutterIcon, name: "Flutter", tooltip: { color: "#02569B" } },

@@ -43,7 +43,7 @@ const t = useTranslations(lang);
   >
     {
       certificationsData.map(
-        ({ title, issuer, date, detail, image, landscape, documentUrl, verifyUrl, verifyCode }) => (
+        ({ title, issuer, date, detail, image, landscape, documentUrl }) => (
           <li class="group flex flex-col sm:flex-row rounded-3xl overflow-hidden bg-white/10 hover:animate-lift">
             <a
               href={documentUrl}
@@ -72,12 +72,6 @@ const t = useTranslations(lang);
                 {t(date)}
               </p>
               <p class="text-sm text-neutral-300">{t(detail)}</p>
-              {verifyCode && (
-                <p class="text-xs text-gray-400">
-                  {t("certifications.code")}:{" "}
-                  <span class="font-mono text-white/90">{verifyCode}</span>
-                </p>
-              )}
               <div class="flex gap-3 mt-auto pt-3">
                 <div class="flex-1">
                   <ProjectButton href={documentUrl} primary>
@@ -85,13 +79,6 @@ const t = useTranslations(lang);
                     <OpenLinkIcon class="size-4" />
                   </ProjectButton>
                 </div>
-                {verifyUrl && (
-                  <div class="flex-1">
-                    <ProjectButton href={verifyUrl}>
-                      {t("certifications.button.verify")}
-                    </ProjectButton>
-                  </div>
-                )}
               </div>
             </div>
           </li>

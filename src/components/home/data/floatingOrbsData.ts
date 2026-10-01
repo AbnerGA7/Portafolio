@@ -2,12 +2,12 @@ import type { FloatingOrbConfig } from "@/types/FloatingOrbConfig";
 import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
 import NextIcon from "@/components/icons/colored/NextIcon.astro";
 import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
-import JavaScriptIcon from "@/components/icons/colored/JavaScriptIcon.astro";
-import TailwindCSSIcon from "@/components/icons/colored/TailwindCSSIcon.astro";
+import ExpoIcon from "@/components/icons/colored/ExpoIcon.astro";
+import FlutterIcon from "@/components/icons/colored/FlutterIcon.astro";
 import NodeIcon from "@/components/icons/colored/NodeIcon.astro";
 import KotlinIcon from "@/components/icons/colored/KotlinIcon.astro";
 import AndroidIcon from "@/components/icons/colored/AndroidIcon.astro";
-import PythonIcon from "@/components/icons/colored/PythonIcon.astro";
+import SqlServerIcon from "@/components/icons/colored/SqlServerIcon.astro";
 import GithubIcon from "@/components/icons/GithubIcon.astro";
 
 export const floatingOrbsData: FloatingOrbConfig[] = [
@@ -26,11 +26,11 @@ export const floatingOrbsData: FloatingOrbConfig[] = [
     url: "https://nextjs.org/",
   },
   {
-    Icon: JavaScriptIcon,
+    Icon: ExpoIcon,
     position: "top-15 md:top-50 left-0 xs:left-4 xl:left-5 2xl:left-2",
-    size: "size-4 md:size-5 2xl:size-6",
-    tooltip: "JavaScript",
-    url: "https://developer.mozilla.org/docs/Web/JavaScript",
+    size: "size-5 md:size-6 2xl:size-7",
+    tooltip: "Expo (React Native)",
+    url: "https://expo.dev/",
   },
   {
     Icon: FirebaseIcon,
@@ -40,11 +40,11 @@ export const floatingOrbsData: FloatingOrbConfig[] = [
     url: "https://firebase.google.com/",
   },
   {
-    Icon: TailwindCSSIcon,
+    Icon: FlutterIcon,
     position: "bottom-0 left-0 xl:left-5 2xl:left-2",
-    size: "size-4 md:size-5 2xl:size-6",
-    tooltip: "Tailwind CSS",
-    url: "https://tailwindcss.com/",
+    size: "size-5 md:size-6 2xl:size-7",
+    tooltip: "Flutter",
+    url: "https://flutter.dev/",
   },
   {
     Icon: AndroidIcon,
@@ -77,10 +77,10 @@ export const floatingOrbsData: FloatingOrbConfig[] = [
     url: "https://github.com/AbnerGA7",
   },
   {
-    Icon: PythonIcon,
+    Icon: SqlServerIcon,
     position: "bottom-0 right-3 sm:right-0",
-    size: "size-4 md:size-5 2xl:size-6",
-    tooltip: "Python",
-    url: "https://www.python.org/",
+    size: "size-5 md:size-6 2xl:size-7",
+    tooltip: "SQL Server",
+    url: "https://www.microsoft.com/sql-server",
   },
 ];

@@ -165,7 +165,7 @@ export const ui = {
     "projects.notafinal.description": "Low-poly PS1-style 3D stealth game: a student who failed his final exam sneaks into the university at night (Building J) to recover the professor's exams while avoiding the patrolling guard. I worked on camera/player synchronization and automatic item pickup.",
     "certifications.title": "Certifications",
     "certifications.description": `
-      Academic credentials <span class="text-accent">verifiable online</span> that back my training.
+      Academic credentials and <span class="text-accent">achievements</span> that back my training.
     `,
     "certifications.ua": "Universidad Autónoma del Perú",
     "certifications.challenge.title": "Autónoma Challenge 2026 — Finalist",
@@ -177,9 +177,7 @@ export const ui = {
     "certifications.congreso.title": "International Congress of Engineering and Architecture: AI Applied to Engineering and Architecture",
     "certifications.congreso.date": "June 1–8, 2023 · 38 academic hours",
     "certifications.congreso.detail": "International talks on artificial intelligence, affective computing and BIM applied to engineering projects.",
-    "certifications.code": "Verification code",
     "certifications.button.view": "View certificate",
-    "certifications.button.verify": "Verify",
     "about.title": `
       I build <span class="text-accent">apps</span> that
       <span class="text-accent">solve</span>,
@@ -422,7 +420,7 @@ export const ui = {
     "projects.notafinal.description": "Juego 3D de sigilo con estética PS1 low-poly: un estudiante que desaprobó el examen final se infiltra de noche en la universidad (Pabellón J) para recuperar los exámenes del profesor, evitando al guardia que patrulla. Trabajé en la sincronización de cámara y jugador y en la recolección automática de ítems.",
     "certifications.title": "Certificaciones",
     "certifications.description": `
-      Credenciales académicas <span class="text-accent">verificables en línea</span> que respaldan mi formación.
+      Credenciales académicas y <span class="text-accent">logros</span> que respaldan mi formación.
     `,
     "certifications.ua": "Universidad Autónoma del Perú",
     "certifications.challenge.title": "Autónoma Challenge 2026 — Finalista",
@@ -434,9 +432,7 @@ export const ui = {
     "certifications.congreso.title": "Congreso Internacional de Ingeniería y Arquitectura: IA aplicada a la Ingeniería y Arquitectura",
     "certifications.congreso.date": "1 al 8 de junio de 2023 · 38 horas académicas",
     "certifications.congreso.detail": "Ponencias internacionales sobre inteligencia artificial, computación afectiva y BIM aplicados a proyectos de ingeniería.",
-    "certifications.code": "Código de verificación",
     "certifications.button.view": "Ver certificado",
-    "certifications.button.verify": "Verificar",
     "about.title": `
       Construyo <span class="text-accent">apps</span> que
       <span class="text-accent">resuelven</span>,
