@@ -1,6 +1,6 @@
 <div align="center">
 
-![Portafolio Abner Gonzales](screenshoot.png)
+![Portafolio Abner Gonzales](public/og-image.png)
 
 # Abner Gonzales — Portafolio
 
@@ -16,41 +16,58 @@
 
 ## Sobre el proyecto
 
-Portafolio personal con diseño **dark minimalista** — gradientes violet/cyan, scroll tipo página y totalmente responsivo para móvil. Construido con Next.js 15 + Tailwind CSS.
+Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio estático, rápido y bilingüe, con modo claro/oscuro, animaciones al hacer scroll y una escena 3D interactiva en la sección de habilidades.
 
----
+## Características
+
+- 🌍 **Bilingüe (ES / EN)** — rutas `/` (español) y `/en/` con selector de idioma
+- 🌗 **Modo claro / oscuro** — respeta la preferencia del sistema y se recuerda entre visitas, sin parpadeo al cargar
+- 🧊 **Escena 3D** con React Three Fiber en la sección de habilidades
+- 🗂️ **Proyectos con filtros** por categoría (Web App, Mobile App, E-commerce, Landing Page) y estado (Producción, Completado, En desarrollo)
+- 📬 **Formulario de contacto** funcional vía FormSubmit, además de WhatsApp, correo, LinkedIn, GitHub, Instagram y Facebook
+- 🔎 **SEO** — Open Graph, Twitter Cards, `hreflang`, URL canónica y datos estructurados (Schema.org `Person`)
+- ♿ **Accesibilidad** — foco visible con teclado, etiquetas ARIA y soporte para `prefers-reduced-motion`
+- 📱 **Responsive** — diseñado para móvil, tablet y escritorio
 
 ## Secciones
 
-- **Hero** — Presentación con efecto typewriter y foto de perfil animada
-- **Sobre mí** — Skills con barras de progreso agrupadas por categoría
-- **Proyectos** — 6 proyectos con filtros por categoría y links a demos en vivo
-- **Contacto** — Formulario + WhatsApp, Instagram, Facebook, LinkedIn
-
----
+| Sección | Contenido |
+|---|---|
+| **Inicio** | Presentación con efecto typewriter, foto y stack flotante |
+| **Habilidades** | Tecnologías agrupadas por pestañas: Frontend, Mobile, Lenguajes, Backend & BD, Librerías y Herramientas |
+| **Experiencia** | Desarrollo Full Stack freelance, desarrollo Android y formación en Ingeniería de Software |
+| **Proyectos** | Las Torres, Smart Market Pro, FreeStore, Admin Cactus, Bella Market Mobile y Exprésate |
+| **Sobre mí** | Quién soy, mi enfoque y mi trayectoria |
+| **Contacto** | Formulario y redes |
 
 ## Stack
 
-![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-BC52EE?style=flat-square&logo=astro&logoColor=white)
 ![React](https://img.shields.io/badge/React_19-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=threedotjs&logoColor=white)
 ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)
 
----
+## Estructura
 
-## Skills
-
-| Área | Tecnologías |
-|---|---|
-| **Frontend** | React, React Native, Next.js, Angular, HTML/CSS, JavaScript, Tailwind CSS |
-| **Backend & BD** | Node.js, Firebase/Firestore, SQL Server, Sanity CMS, Python, Java |
-| **Mobile** | Android (Kotlin), Jetpack Compose, Material Design |
-| **Herramientas** | Git & GitHub, Vite, Netlify, Vercel, Figma |
-
----
+```bash
+src/
+├── assets/       # Foto de perfil y capturas de proyectos
+├── components/   # Secciones (home, skills, experience, projects, about, contact...)
+│   └── */data/   # Contenido de cada sección (proyectos, skills, experiencia...)
+├── data/         # Navegación y enlaces de contacto
+├── i18n/         # Textos en español e inglés (ui.ts) y utilidades
+├── layouts/      # Layout base con SEO
+├── pages/        # Rutas: / y /[lang]/
+├── react/        # Componentes React reutilizables (Typewriter, TabSwitcher)
+├── styles/       # Estilos globales, tema y fuentes
+└── types/        # Interfaces de TypeScript
+```
 
 ## Instalación local
+
+Requiere **Node.js 22.19+**.
 
 ```bash
 git clone https://github.com/AbnerGA7/Portafolio.git
@@ -59,9 +76,26 @@ npm install
 npm run dev
 ```
 
-Abre [http://localhost:3000](http://localhost:3000)
+Abre [http://localhost:4321](http://localhost:4321)
 
----
+| Comando | Acción |
+|---|---|
+| `npm run dev` | Servidor de desarrollo |
+| `npm run build` | Genera el sitio estático en `dist/` |
+| `npm run preview` | Sirve la build localmente |
+| `npm run check` | Verificación de tipos con `astro check` |
+
+## Personalización
+
+- **Textos (ES/EN):** `src/i18n/ui.ts`
+- **Proyectos:** `src/components/projects/data/projectsData.ts` (capturas en `src/assets/projects/`)
+- **Habilidades:** `src/components/skills/data/techSkillsData.tsx`
+- **Experiencia:** `src/components/experience/data/experienceData.ts`
+- **Colores del tema:** variables en `src/styles/global.css`
+
+## Despliegue
+
+Se despliega en **Netlify** a partir de la rama `main` (`netlify.toml`: `npm run build` → `dist/`).
 
 ## Contacto
 
@@ -73,6 +107,10 @@ Abre [http://localhost:3000](http://localhost:3000)
 [![Facebook](https://img.shields.io/badge/Facebook-abnerGonzalesA.7-1877F2?style=flat-square&logo=facebook&logoColor=white)](https://www.facebook.com/abnerGonzalesA.7)
 
 </div>
+
+## Licencia
+
+Distribuido bajo [Licencia MIT](LICENSE).
 
 ---
 
