@@ -28,7 +28,7 @@ const { demoUrl, demoLabel = "projects.button.demo", codeUrl } = Astro.props;
           <OpenLinkIcon class="size-4" />
         </ProjectButton>
       </div>
-    ) : (
+    ) : !codeUrl ? (
       <span class="flex-1 flex justify-center items-center text-sm sm:text-base gap-2 rounded-2xl py-1 xl:py-2 border border-white/20 text-white/60 no-select">
         <svg
           class="size-4"
@@ -46,7 +46,7 @@ const { demoUrl, demoLabel = "projects.button.demo", codeUrl } = Astro.props;
         </svg>
         {t("projects.button.private")}
       </span>
-    )
+    ) : null
   }
   {
     codeUrl && (

@@ -1,5 +1,15 @@
 import lasTorresImage from "@/assets/projects/las_torres.webp";
 import mnistImage from "@/assets/projects/mnist_android.webp";
+import vitalisImage from "@/assets/projects/vitalis.webp";
+import FlutterIcon from "@/components/icons/colored/FlutterIcon.astro";
+import DartIcon from "@/components/icons/colored/DartIcon.astro";
+import GeminiIcon from "@/components/icons/colored/GeminiIcon.astro";
+import SupabaseIcon from "@/components/icons/colored/SupabaseIcon.astro";
+import MediaPipeIcon from "@/components/icons/colored/MediaPipeIcon.astro";
+import GoogleMapsIcon from "@/components/icons/colored/GoogleMapsIcon.astro";
+import UnityIcon from "@/components/icons/colored/UnityIcon.astro";
+import CSharpIcon from "@/components/icons/colored/CSharpIcon.astro";
+import JavaIcon from "@/components/icons/colored/JavaIcon.astro";
 import TensorFlowIcon from "@/components/icons/colored/TensorFlowIcon.astro";
 import PythonIcon from "@/components/icons/colored/PythonIcon.astro";
 import type { Project, ProjectCategory } from "@/types/Project";
@@ -39,6 +49,23 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    id: "vitalis",
+    title: "projects.vitalis.title",
+    tagline: "projects.vitalis.tagline",
+    description: "projects.vitalis.description",
+    category: "mobile",
+    status: "completed",
+    color: "#a78bfa",
+    emoji: "💪",
+    image: vitalisImage,
+    codeUrl: "https://github.com/AbnerGA7/vitalis",
+    stack: [
+      { title: "Flutter", Icon: FlutterIcon },
+      { title: "Dart", Icon: DartIcon },
+      { title: "Gemma (IA local)", Icon: GeminiIcon },
+    ],
+  },
+  {
     id: "mnist-android",
     title: "projects.mnist.title",
     tagline: "projects.mnist.tagline",
@@ -57,6 +84,22 @@ export const projectsData: Project[] = [
       { title: "Android", Icon: AndroidIcon },
       { title: "TensorFlow Lite", Icon: TensorFlowIcon },
       { title: "Python", Icon: PythonIcon },
+    ],
+  },
+  {
+    id: "memoria-viva",
+    title: "projects.memoria.title",
+    tagline: "projects.memoria.tagline",
+    description: "projects.memoria.description",
+    category: "mobile",
+    status: "development",
+    color: "#f59e0b",
+    emoji: "📸",
+    stack: [
+      { title: "Kotlin", Icon: KotlinIcon },
+      { title: "Jetpack Compose", Icon: JetpackComposeIcon },
+      { title: "Supabase", Icon: SupabaseIcon },
+      { title: "MediaPipe LLM", Icon: MediaPipeIcon },
     ],
   },
   {
@@ -85,12 +128,28 @@ export const projectsData: Project[] = [
     color: "#22d3ee",
     emoji: "🛍️",
     demoUrl: "https://gcorpstore.abnergonzales.dev",
-    codeUrl: "https://github.com/AbnerGA7/freestore-fullstack",
+    codeUrl: "https://github.com/AbnerGA7/GCorpStoreFull-stack",
     stack: [
       { title: "React", Icon: ReactIcon },
       { title: "Sanity CMS", Icon: SanityIcon },
       { title: "Tailwind CSS", Icon: TailwindCSSIcon },
       { title: "Framer Motion", Icon: FramerMotionIcon },
+    ],
+  },
+  {
+    id: "rescuemal",
+    title: "projects.rescuemal.title",
+    tagline: "projects.rescuemal.tagline",
+    description: "projects.rescuemal.description",
+    category: "mobile",
+    status: "completed",
+    color: "#f97316",
+    emoji: "🐾",
+    stack: [
+      { title: "Kotlin", Icon: KotlinIcon },
+      { title: "Java", Icon: JavaIcon },
+      { title: "Firebase", Icon: FirebaseIcon },
+      { title: "Google Maps", Icon: GoogleMapsIcon },
     ],
   },
   {
@@ -128,6 +187,20 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    id: "la-nota-final",
+    title: "projects.notafinal.title",
+    tagline: "projects.notafinal.tagline",
+    description: "projects.notafinal.description",
+    category: "game",
+    status: "completed",
+    color: "#22c55e",
+    emoji: "🎮",
+    stack: [
+      { title: "Unity 3D", Icon: UnityIcon },
+      { title: "C#", Icon: CSharpIcon },
+    ],
+  },
+  {
     id: "expresate",
     title: "projects.expresate.title",
     tagline: "projects.expresate.tagline",
@@ -151,4 +224,5 @@ export const projectCategories: ProjectCategory[] = [
   "mobile",
   "ecommerce",
   "landing",
+  "game",
 ];

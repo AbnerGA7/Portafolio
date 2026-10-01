@@ -6,7 +6,7 @@ interface TechStack {
   Icon: AstroComponentFactory;
 }
 
-export type ProjectCategory = "web" | "mobile" | "ecommerce" | "landing";
+export type ProjectCategory = "web" | "mobile" | "ecommerce" | "landing" | "game";
 
 export type ProjectStatus = "production" | "completed" | "development";
 
