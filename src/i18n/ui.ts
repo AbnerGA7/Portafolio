@@ -35,6 +35,7 @@ export const ui = {
     "nav.projects": "Projects",
     "nav.about": "About",
     "nav.contact": "Contact",
+    "nav.certifications": "Certifications",
     "nav.menu.open": "Open menu",
     "nav.menu.close": "Close menu",
     "nav.theme": "Toggle light/dark theme",
@@ -54,6 +55,7 @@ export const ui = {
     `,
     "home.contact-me": "Contact me:",
     "home.cta": "See my projects",
+    "home.cv": "Download CV",
     "home.photo-alt": "Photo of Abner Gonzales",
     "skills.title": "Tech Stack",
     "skills.description": `
@@ -68,6 +70,22 @@ export const ui = {
     "skills.categories.tools": "Tools",
     "experience.title": "My Experience",
 
+    "experience.gm.title": "Software Support",
+    "experience.gm.company": "Corporation G&M Fabian S.A.C.",
+    "experience.gm.date": "January 2025 – May 2026",
+    "experience.gm.description": `
+      Provided comprehensive <span class="text-accent">hardware and software technical support</span>, ensuring operational continuity and direct user assistance.
+      Managed and optimized <span class="text-accent">relational databases with SQL</span> to generate reports, and supported the technical documentation of processes.
+      Developed <span class="text-accent">internal web systems and modules</span> that streamlined inventory control and information flows, solving complex issues in the company's IT infrastructure.
+    `,
+    "experience.rescuemal.title": "Full Stack Mobile Developer",
+    "experience.rescuemal.company": "RescueMal",
+    "experience.rescuemal.date": "September – December 2025",
+    "experience.rescuemal.description": `
+      Built a native <span class="text-accent">Android app with Kotlin and Java</span> to tackle stray animals, aligned with the Sustainable Development Goals (SDGs).
+      Integrated <span class="text-accent">Google Maps Platform</span> to geolocate rescue reports and plot routes for rescuers, and designed the data layer on
+      <span class="text-accent">Firebase</span> (Cloud Firestore for real-time sync and Storage for photo evidence), turning an informal rescue and adoption process into a traceable, centralized platform.
+    `,
     "experience.freelance.title": "Freelance Full Stack Developer",
     "experience.freelance.company": "Projects for businesses",
     "experience.freelance.description": `
@@ -78,24 +96,6 @@ export const ui = {
       I work with <span class="text-accent">React, Firebase and Tailwind CSS</span>, focusing on real-time data, a polished user experience and solutions that solve concrete problems.
     `,
     "experience.freelance.date": "Freelance · Present",
-
-    "experience.android.title": "Android Developer",
-    "experience.android.company": "Bella Market Mobile",
-    "experience.android.description": `
-      I'm developing a native <span class="text-accent">Android app with Kotlin</span> to manage sales and the cash register of a market,
-      with an interface optimized for <span class="text-accent">tablets</span>, sales recording, inventory control and
-      <span class="text-accent">real-time synchronization with Firebase</span>, following <span class="text-accent">Material Design</span> guidelines and the Jetpack ecosystem.
-    `,
-    "experience.android.date": "In development",
-
-    "experience.education.title": "Software Engineering Student",
-    "experience.education.company": "University education · Lima, Peru",
-    "experience.education.description": `
-      Studying <span class="text-accent">Software Engineering</span>, where I built solid foundations in programming logic,
-      <span class="text-accent">relational databases (SQL Server)</span>, object-oriented programming with <span class="text-accent">Java</span> and <span class="text-accent">Python</span>,
-      and modern web development with <span class="text-accent">HTML, CSS, JavaScript, Angular and Node.js</span>.
-    `,
-    "experience.education.date": "In progress",
 
     "projects.title": "Projects",
     "projects.description": `
@@ -151,6 +151,20 @@ export const ui = {
     "projects.button.private": "Private demo",
     "projects.button.apk": "Download APK",
     "projects.button.code": "Code",
+    "certifications.title": "Certifications",
+    "certifications.description": `
+      Academic credentials <span class="text-accent">verifiable online</span> that back my training.
+    `,
+    "certifications.ua": "Universidad Autónoma del Perú",
+    "certifications.analista.title": "Programmer Analyst",
+    "certifications.analista.date": "November 2025",
+    "certifications.analista.detail": "Diploma awarded by the Faculty of Engineering and Architecture for meeting the requirements of the Programmer Analyst degree.",
+    "certifications.congreso.title": "International Congress of Engineering and Architecture: AI Applied to Engineering and Architecture",
+    "certifications.congreso.date": "June 1–8, 2023 · 38 academic hours",
+    "certifications.congreso.detail": "International talks on artificial intelligence, affective computing and BIM applied to engineering projects.",
+    "certifications.code": "Verification code",
+    "certifications.button.view": "View certificate",
+    "certifications.button.verify": "Verify",
     "about.title": `
       I build <span class="text-accent">apps</span> that
       <span class="text-accent">solve</span>,
@@ -168,12 +182,6 @@ export const ui = {
     "about.personal.name": "Name",
     "about.personal.place": "Location",
     "about.personal.education": "Education",
-    "about.personal.education.value": "Software Engineering",
-    "about.timeline.foundation.title": "Foundation: Software Engineering",
-    "about.timeline.foundation.desc": `
-      I started my <span class="font-medium text-accent">Software Engineering</span> degree, building foundations in programming logic, relational databases with SQL Server, and object-oriented programming.
-    `,
-
     "about.timeline.transition.title": "First Steps: Frontend",
     "about.timeline.transition.desc": `
       I fell in love with frontend development: <span class="text-accent">HTML, CSS and JavaScript</span>, then Angular and Node.js. I published my first portfolio and started building personal projects to grow.
@@ -239,6 +247,20 @@ export const ui = {
       "Full Stack Developer · React · Firebase · Android | Real apps for real businesses",
     "footer.copyright": "Abner Gonzales. All rights reserved.",
     "scroll-top": "Back to top",
+    "about.personal.education.value": "Universidad Autónoma del Perú",
+    "about.timeline.foundation.title": "Foundation: Programmer Analyst",
+    "about.timeline.foundation.desc": `
+      Started <span class="font-medium text-accent">Software Engineering</span> at Universidad Autónoma del Perú in 2023 and earned the <span class="font-medium text-accent">Programmer Analyst</span> diploma in 2025, with foundations in programming logic, SQL Server and object-oriented programming.
+    `,
+    "experience.education.title": "Programmer Analyst · Software Engineering",
+    "experience.education.company": "Universidad Autónoma del Perú",
+    "experience.education.date": "Programmer Analyst 2025 · Software Engineering 2023 – Present",
+    "experience.education.description": `
+      Earned the <span class="text-accent">Programmer Analyst</span> diploma from the Faculty of Engineering and Architecture (November 2025) while studying
+      <span class="text-accent">Software Engineering</span> (since March 2023), with solid foundations in programming logic, <span class="text-accent">relational databases (SQL Server)</span>,
+      object-oriented programming with <span class="text-accent">Java</span> and <span class="text-accent">Python</span>, and web development with
+      <span class="text-accent">HTML, CSS, JavaScript, Angular, .NET and Node.js</span>. Also completed English I and II.
+    `,
   },
   es: {
     "site.title": "Abner Gonzales",
@@ -255,6 +277,7 @@ export const ui = {
     "nav.projects": "Proyectos",
     "nav.about": "Sobre mí",
     "nav.contact": "Contacto",
+    "nav.certifications": "Certificaciones",
     "nav.menu.open": "Abrir menú",
     "nav.menu.close": "Cerrar menú",
     "nav.theme": "Cambiar tema claro/oscuro",
@@ -274,6 +297,7 @@ export const ui = {
     `,
     "home.contact-me": "Contáctame:",
     "home.cta": "Ver mis proyectos",
+    "home.cv": "Descargar CV",
     "home.photo-alt": "Foto de Abner Gonzales",
     "skills.title": "Stack Tecnológico",
     "skills.description": `
@@ -288,6 +312,22 @@ export const ui = {
     "skills.categories.tools": "Herramientas",
     "experience.title": "Mi Experiencia",
 
+    "experience.gm.title": "Soporte de Software",
+    "experience.gm.company": "Corporation G&M Fabian S.A.C.",
+    "experience.gm.date": "Enero 2025 – Mayo 2026",
+    "experience.gm.description": `
+      Brindé <span class="text-accent">soporte técnico integral en hardware y software</span>, garantizando la continuidad operativa y la asistencia directa a los usuarios.
+      Gestioné y optimicé <span class="text-accent">bases de datos relacionales con SQL</span> para la generación de reportes y apoyé en la documentación técnica de procesos.
+      Desarrollé <span class="text-accent">sistemas y módulos web internos</span> que agilizaron el control de inventarios y los flujos de información, resolviendo problemas complejos en la infraestructura informática de la empresa.
+    `,
+    "experience.rescuemal.title": "Desarrollador Full Stack Mobile",
+    "experience.rescuemal.company": "RescueMal",
+    "experience.rescuemal.date": "Septiembre – Diciembre 2025",
+    "experience.rescuemal.description": `
+      Desarrollé una app <span class="text-accent">Android nativa con Kotlin y Java</span> para el problema de los animales en situación de calle, alineada con los Objetivos de Desarrollo Sostenible (ODS).
+      Integré <span class="text-accent">Google Maps Platform</span> para geolocalizar los reportes y trazar rutas para los rescatistas, y diseñé la capa de datos en
+      <span class="text-accent">Firebase</span> (Cloud Firestore para la sincronización en tiempo real y Storage para las evidencias fotográficas), convirtiendo un proceso informal de rescate y adopción en una plataforma centralizada y trazable.
+    `,
     "experience.freelance.title": "Desarrollador Full Stack Freelance",
     "experience.freelance.company": "Proyectos para negocios",
     "experience.freelance.description": `
@@ -298,24 +338,6 @@ export const ui = {
       Trabajo con <span class="text-accent">React, Firebase y Tailwind CSS</span>, priorizando datos en tiempo real, una experiencia de usuario cuidada y soluciones que resuelven problemas concretos.
     `,
     "experience.freelance.date": "Freelance · Actualidad",
-
-    "experience.android.title": "Desarrollador Android",
-    "experience.android.company": "Bella Market Mobile",
-    "experience.android.description": `
-      Desarrollo una app <span class="text-accent">Android nativa con Kotlin</span> para la gestión de ventas y caja de un market,
-      con interfaz optimizada para <span class="text-accent">tablets</span>, registro de ventas, control de inventario y
-      <span class="text-accent">sincronización en tiempo real con Firebase</span>, siguiendo los lineamientos de <span class="text-accent">Material Design</span> y el ecosistema Jetpack.
-    `,
-    "experience.android.date": "En desarrollo",
-
-    "experience.education.title": "Estudiante de Ingeniería de Software",
-    "experience.education.company": "Formación universitaria · Lima, Perú",
-    "experience.education.description": `
-      Curso la carrera de <span class="text-accent">Ingeniería de Software</span>, donde formé bases sólidas en lógica de programación,
-      <span class="text-accent">bases de datos relacionales (SQL Server)</span>, programación orientada a objetos con <span class="text-accent">Java</span> y <span class="text-accent">Python</span>,
-      y desarrollo web moderno con <span class="text-accent">HTML, CSS, JavaScript, Angular y Node.js</span>.
-    `,
-    "experience.education.date": "En curso",
 
     "projects.title": "Proyectos",
     "projects.description": `
@@ -371,6 +393,20 @@ export const ui = {
     "projects.button.private": "Demo privada",
     "projects.button.apk": "Descargar APK",
     "projects.button.code": "Código",
+    "certifications.title": "Certificaciones",
+    "certifications.description": `
+      Credenciales académicas <span class="text-accent">verificables en línea</span> que respaldan mi formación.
+    `,
+    "certifications.ua": "Universidad Autónoma del Perú",
+    "certifications.analista.title": "Analista Programador",
+    "certifications.analista.date": "Noviembre 2025",
+    "certifications.analista.detail": "Diploma otorgado por la Facultad de Ingeniería y Arquitectura por cumplir los requisitos del grado de Analista Programador.",
+    "certifications.congreso.title": "Congreso Internacional de Ingeniería y Arquitectura: IA aplicada a la Ingeniería y Arquitectura",
+    "certifications.congreso.date": "1 al 8 de junio de 2023 · 38 horas académicas",
+    "certifications.congreso.detail": "Ponencias internacionales sobre inteligencia artificial, computación afectiva y BIM aplicados a proyectos de ingeniería.",
+    "certifications.code": "Código de verificación",
+    "certifications.button.view": "Ver certificado",
+    "certifications.button.verify": "Verificar",
     "about.title": `
       Construyo <span class="text-accent">apps</span> que
       <span class="text-accent">resuelven</span>,
@@ -390,13 +426,6 @@ export const ui = {
     "about.personal.name": "Nombre",
     "about.personal.place": "Ubicación",
     "about.personal.education": "Educación",
-    "about.personal.education.value": "Ingeniería de Software",
-
-    "about.timeline.foundation.title": "Base: Ingeniería de Software",
-    "about.timeline.foundation.desc": `
-      Inicié la carrera de <span class="font-medium text-accent">Ingeniería de Software</span>, formando bases en lógica de programación, bases de datos relacionales con SQL Server y programación orientada a objetos.
-    `,
-
     "about.timeline.transition.title": "Primeros pasos: Frontend",
     "about.timeline.transition.desc": `
       Me apasioné por el desarrollo frontend: <span class="text-accent">HTML, CSS y JavaScript</span>, luego Angular y Node.js. Publiqué mi primer portafolio y empecé a crear proyectos personales para crecer.
@@ -462,5 +491,19 @@ export const ui = {
       "Full Stack Developer · React · Firebase · Android | Apps reales para negocios reales",
     "footer.copyright": "Abner Gonzales. Todos los derechos reservados.",
     "scroll-top": "Volver arriba",
+    "about.personal.education.value": "Universidad Autónoma del Perú",
+    "about.timeline.foundation.title": "Base: Analista Programador",
+    "about.timeline.foundation.desc": `
+      Inicié <span class="font-medium text-accent">Ingeniería de Software</span> en la Universidad Autónoma del Perú en 2023 y en 2025 obtuve el diploma de <span class="font-medium text-accent">Analista Programador</span>, con bases en lógica de programación, SQL Server y programación orientada a objetos.
+    `,
+    "experience.education.title": "Analista Programador · Ingeniería de Software",
+    "experience.education.company": "Universidad Autónoma del Perú",
+    "experience.education.date": "Analista Programador 2025 · Ing. de Software 2023 – Actualidad",
+    "experience.education.description": `
+      Obtuve el diploma de <span class="text-accent">Analista Programador</span> otorgado por la Facultad de Ingeniería y Arquitectura (noviembre 2025) mientras curso
+      <span class="text-accent">Ingeniería de Software</span> (desde marzo 2023), con bases sólidas en lógica de programación, <span class="text-accent">bases de datos relacionales (SQL Server)</span>,
+      programación orientada a objetos con <span class="text-accent">Java</span> y <span class="text-accent">Python</span>, y desarrollo web con
+      <span class="text-accent">HTML, CSS, JavaScript, Angular, .NET y Node.js</span>. También completé Inglés I y II.
+    `,
   },
 } as const;

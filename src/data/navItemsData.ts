@@ -5,6 +5,7 @@ import HomeIcon from "@/components/icons/HomeIcon.astro";
 import PersonIconOutline from "@/components/icons/PersonIconOutline.astro";
 import SkillIcon from "@/components/icons/Skill_Icon.astro";
 import StatisticsIcon from "@/components/icons/StatisticsIcon.astro";
+import CertificateIcon from "@/components/icons/CertificateIcon.astro";
 
 export const navItemsData: NavItem[] = [
   {
@@ -26,6 +27,11 @@ export const navItemsData: NavItem[] = [
     link: "#projects",
     title: "nav.projects",
     icon: { Icon: CodeIcon },
+  },
+  {
+    link: "#certifications",
+    title: "nav.certifications",
+    icon: { Icon: CertificateIcon },
   },
   {
     link: "#about",

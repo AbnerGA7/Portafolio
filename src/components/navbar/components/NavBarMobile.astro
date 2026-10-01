@@ -10,7 +10,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
 
-<div class="flex items-center z-950 lg:hidden">
+<div class="flex items-center z-950 xl:hidden">
   <LangToggle langToggleId="lang-toggle-mobile" />
 
   <input type="checkbox" id="menu-toggle" class="hidden peer" />
@@ -26,7 +26,7 @@ const t = useTranslations(lang);
 
   <label
     for="menu-toggle"
-    class="fixed inset-0 bg-black/50 peer-checked:block hidden lg:hidden z-4000 h-[100dvh]"
+    class="fixed inset-0 bg-black/50 peer-checked:block hidden xl:hidden z-4000 h-[100dvh]"
   ></label>
 
   <div
@@ -34,7 +34,7 @@ const t = useTranslations(lang);
          translate-x-full peer-checked:translate-x-0
          transition-transform duration-300 ease-in-out
          will-change-transform
-         lg:hidden
+         xl:hidden
          flex flex-col justify-between"
   >
     <label
