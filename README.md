@@ -47,7 +47,7 @@ Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio es
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
 ![Three.js](https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=threedotjs&logoColor=white)
-![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 
 ## Estructura
 
@@ -95,7 +95,7 @@ Abre [http://localhost:4321](http://localhost:4321)
 
 ## Despliegue
 
-Se despliega en **Netlify** a partir de la rama `main` (`netlify.toml`: `npm run build` → `dist/`).
+Se despliega en **Vercel** automáticamente con cada push a la rama `main` (`vercel.json`: `npm run build` → `dist/`).
 
 ## Contacto
 
