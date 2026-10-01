@@ -1,0 +1,12 @@
+---
+import { navItemsData } from "@/data/navItemsData";
+import NavItemDesktop from "./NavItemDesktop.astro";
+import LangToggle from "./LangToggle.astro";
+---
+
+<div class="z-950 items-center gap-8 hidden lg:flex">
+  <ul class="flex justify-center items-center h-full gap-7 xl:gap-10">
+    {navItemsData.map((item) => <NavItemDesktop item={item} />)}
+  </ul>
+  <LangToggle langToggleId="lang-toggle-desktop" />
+</div>

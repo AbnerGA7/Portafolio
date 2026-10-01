@@ -1,0 +1,51 @@
+---
+import DarkModeIcon from "@/components/icons/DarkModeIcon.astro";
+import LightModeIcon from "@/components/icons/LightModeIcon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<button
+  id="theme-toggle"
+  type="button"
+  class="z-950 size-8 flex items-center justify-center text-white"
+  aria-label={t("nav.theme")}
+  title={t("nav.theme")}
+>
+  <span id="dark-icon" class="block">
+    <LightModeIcon class="size-4 sm:size-5" />
+  </span>
+  <span id="light-icon" class="hidden">
+    <DarkModeIcon class="size-4 sm:size-5" />
+  </span>
+</button>
+
+<script type="module" is:inline>
+  // El tema inicial ya lo aplica el script del <head> (Layout.astro)
+  const html = document.documentElement;
+  const toggleBtn = document.getElementById("theme-toggle");
+  const darkIcon = document.getElementById("dark-icon");
+  const lightIcon = document.getElementById("light-icon");
+
+  const syncIcons = () => {
+    const isLight = html.classList.contains("light");
+    darkIcon.classList.toggle("hidden", isLight);
+    lightIcon.classList.toggle("hidden", !isLight);
+  };
+
+  const setTheme = (theme) => {
+    html.classList.toggle("light", theme === "light");
+    try {
+      localStorage.setItem("theme", theme);
+    } catch {}
+    syncIcons();
+  };
+
+  syncIcons();
+
+  toggleBtn.addEventListener("click", () => {
+    setTheme(html.classList.contains("light") ? "dark" : "light");
+  });
+</script>

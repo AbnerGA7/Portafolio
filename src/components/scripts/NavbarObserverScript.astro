@@ -1,0 +1,66 @@
+<script type="module" lang="ts" is:inline>
+  const initLogicDesktop = () => {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a");
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const navLink = document.querySelector(`nav a[href="#${id}"]`);
+
+        if (!entry.isIntersecting) return;
+
+        navLinks.forEach((link) => link.classList.remove("nav-item-activate"));
+        navLink?.classList.add("nav-item-activate");
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+  };
+
+  const initLogicMobile = () => {
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll('li label[for="menu-toggle"]');
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.2,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const id = entry.target.getAttribute("id");
+        const navLink = Array.from(navLinks).find((el) =>
+          el.getAttribute("onclick")?.includes(`#${id}`),
+        );
+
+        if (!entry.isIntersecting) return;
+
+        navLinks.forEach((link) =>
+          link.classList.remove("nav-item-mobile-activate"),
+        );
+        navLink?.classList.add("nav-item-mobile-activate");
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+  };
+
+  const handleResize = () => {
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+    const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+
+    if (isDesktop) initLogicDesktop();
+    if (isMobile) initLogicMobile();
+  };
+
+  document.addEventListener("DOMContentLoaded", handleResize);
+  window.addEventListener("resize", handleResize);
+</script>
