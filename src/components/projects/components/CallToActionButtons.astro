@@ -1,0 +1,47 @@
+---
+import ProjectButton from "./ProjectButton.astro";
+import OpenLinkIcon from "@/components/icons/OpenLinkIcon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+  demoUrl?: string;
+}
+
+const { demoUrl } = Astro.props;
+---
+
+<span class="h-[20px] w-full"></span>
+
+<div class="flex justify-between mt-auto">
+  <div class="w-full">
+    {
+      demoUrl ? (
+        <ProjectButton href={demoUrl} primary>
+          {t("projects.button.demo")}
+          <OpenLinkIcon class="size-4" />
+        </ProjectButton>
+      ) : (
+        <span class="w-full flex justify-center items-center text-sm sm:text-base gap-2 rounded-2xl py-1 xl:py-2 border border-white/20 text-white/60 no-select">
+          <svg
+            class="size-4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+            />
+          </svg>
+          {t("projects.button.private")}
+        </span>
+      )
+    }
+  </div>
+</div>
