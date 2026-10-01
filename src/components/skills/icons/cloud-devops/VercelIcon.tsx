@@ -1,0 +1,17 @@
+interface Props {
+  className?: string;
+}
+
+const VercelIcon: React.FC<Props> = ({ className = "" }) => (
+  <svg
+    className={className}
+    fill="#000000"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+  >
+    <path d="M24 22.525H0l12-21.05 12 21.05z" />
+  </svg>
+);
+
+export { VercelIcon };

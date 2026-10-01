@@ -1,0 +1,20 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<h1
+  class="font-bold text-center z-100 section-title"
+  data-aos="fade-up"
+  data-aos-duration="800"
+>
+  {t("skills.title")}
+</h1>
+<p
+  class="text-center z-100 section-description"
+  data-aos="fade-up"
+  data-aos-duration="800"
+  set:html={t("skills.description")}
+/>
