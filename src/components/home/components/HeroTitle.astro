@@ -1,0 +1,31 @@
+---
+import Typewriter from "@/react/Typewriter";
+import { type TypedOptions } from "typed.js";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const typedWriterOptions: TypedOptions = {
+  strings: [...t("home.roles")],
+  typeSpeed: 50,
+  backSpeed: 30,
+  backDelay: 2000,
+  loop: true,
+};
+---
+
+<h1
+  class="font-bold text-center xl:text-start section-title"
+  data-aos="fade-up"
+  data-aos-duration="1000"
+>
+  {t("home.intro")}
+  <br />
+  <span
+    class="text-accent relative text-nowrap text-2xl sm:text-[clamp(2.5rem,3dvw,3rem)] xl:text-5xl"
+  >
+    <Typewriter options={typedWriterOptions} client:load />
+    <span class="absolute bottom-0 left-0 h-[3px] w-full bg-accent"></span>
+  </span>
+</h1>

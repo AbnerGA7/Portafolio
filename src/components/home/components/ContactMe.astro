@@ -1,0 +1,22 @@
+---
+import { contactMeData } from "@/data/contactMeData";
+import SocialButton from "./SocialButton.astro";
+
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+  class="flex flex-wrap justify-center xl:justify-start items-center gap-x-8 gap-y-3 mt-8 xl:mt-15"
+  data-aos="fade-up"
+  data-aos-duration="1400"
+>
+  <p class="font-bold text-sm sm:text-base 2xl:text-lg">
+    {t("home.contact-me")}
+  </p>
+  <div class="flex justify-start gap-2">
+    {contactMeData.map((d) => <SocialButton item={d} />)}
+  </div>
+</div>
