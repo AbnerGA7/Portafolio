@@ -2,6 +2,9 @@ import type { Experience } from "@/types/Experience";
 import CodeIcon from "@/components/icons/CodeIcon.astro";
 import AndroidOutlineIcon from "@/components/icons/AndroidIcon.astro";
 import GraduationIcon from "@/components/icons/GraduationIcon.astro";
+import ContactIcon from "@/components/icons/ContactIcon.astro";
+import LocationIcon from "@/components/icons/LocationIcon.astro";
+import JavaScriptIcon from "@/components/icons/colored/JavaScriptIcon.astro";
 import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
 import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
 import TailwindCSSIcon from "@/components/icons/colored/TailwindCSSIcon.astro";
@@ -10,8 +13,6 @@ import RechartsIcon from "@/components/icons/colored/RechartsIcon.astro";
 import PdfIcon from "@/components/icons/colored/PdfIcon.astro";
 import KotlinIcon from "@/components/icons/colored/KotlinIcon.astro";
 import AndroidIcon from "@/components/icons/colored/AndroidIcon.astro";
-import JetpackComposeIcon from "@/components/icons/colored/JetpackComposeIcon.astro";
-import MaterialDesignIcon from "@/components/icons/colored/MaterialDesignIcon.astro";
 import SqlServerIcon from "@/components/icons/colored/SqlServerIcon.astro";
 import JavaIcon from "@/components/icons/colored/JavaIcon.astro";
 import PythonIcon from "@/components/icons/colored/PythonIcon.astro";
@@ -20,6 +21,19 @@ import NodeIcon from "@/components/icons/colored/NodeIcon.astro";
 import HtmlIcon from "@/components/icons/colored/HtmlIcon.astro";
 
 export const experienceData: Experience[] = [
+  {
+    title: "experience.gm.title",
+    company: "experience.gm.company",
+    description: "experience.gm.description",
+    Icon: ContactIcon,
+    date: "experience.gm.date",
+    stack: [
+      { title: "SQL Server", Icon: SqlServerIcon },
+      { title: "JavaScript", Icon: JavaScriptIcon },
+      { title: "HTML / CSS", Icon: HtmlIcon },
+      { title: "Hardware & Software", Icon: ContactIcon },
+    ],
+  },
   {
     title: "experience.freelance.title",
     company: "experience.freelance.company",
@@ -36,17 +50,17 @@ export const experienceData: Experience[] = [
     ],
   },
   {
-    title: "experience.android.title",
-    company: "experience.android.company",
-    description: "experience.android.description",
+    title: "experience.rescuemal.title",
+    company: "experience.rescuemal.company",
+    description: "experience.rescuemal.description",
     Icon: AndroidOutlineIcon,
-    date: "experience.android.date",
+    date: "experience.rescuemal.date",
     stack: [
       { title: "Kotlin", Icon: KotlinIcon },
+      { title: "Java", Icon: JavaIcon },
       { title: "Android", Icon: AndroidIcon },
-      { title: "Jetpack", Icon: JetpackComposeIcon },
       { title: "Firebase", Icon: FirebaseIcon },
-      { title: "Material Design", Icon: MaterialDesignIcon },
+      { title: "Google Maps Platform", Icon: LocationIcon },
     ],
   },
   {

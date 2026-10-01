@@ -1,22 +1,36 @@
 ---
 import ArrowIcon from "@/components/icons/ArrowIcon.astro";
+import DownloadIcon from "@/components/icons/DownloadIcon.astro";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const buttonBase =
+  "group py-1 sm:py-2 border-2 border-white rounded-3xl flex-1 flex justify-center items-center gap-3 text-sm 2xl:text-base transition-all duration-300";
 ---
 
-<a
-  href="#projects"
-  class="group py-1 sm:py-2 border-2 border-white rounded-3xl w-full
-      flex justify-center items-center gap-3
-      text-sm 2xl:text-base mt-8 xl:mt-15
-      transition-all duration-300 hover:bg-white hover:text-primary hover:font-bold"
+<div
+  class="w-full flex flex-col xs:flex-row gap-3 mt-8 xl:mt-15"
   data-aos="fade-up"
   data-aos-duration="1600"
 >
-  {t("home.cta")}
-  <ArrowIcon
-    class="size-5 rotate-90 transition-transform duration-300 group-hover:translate-y-0.5"
-  />
-</a>
+  <a
+    href="/documents/cv-abner-gonzales.pdf"
+    target="_blank"
+    rel="noopener"
+    class={`${buttonBase} bg-white text-primary font-bold hover:bg-transparent hover:text-white`}
+  >
+    {t("home.cv")}
+    <DownloadIcon class="size-4 2xl:size-5 -translate-y-[1px]" />
+  </a>
+  <a
+    href="#projects"
+    class={`${buttonBase} hover:bg-white hover:text-primary hover:font-bold`}
+  >
+    {t("home.cta")}
+    <ArrowIcon
+      class="size-5 rotate-90 transition-transform duration-300 group-hover:translate-y-0.5"
+    />
+  </a>
+</div>
