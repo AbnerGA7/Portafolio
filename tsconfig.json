@@ -1,0 +1,30 @@
+{
+  "extends": "./node_modules/astro/tsconfigs/strict.json",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "types": [
+      "astro/client",
+      "aos"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}
