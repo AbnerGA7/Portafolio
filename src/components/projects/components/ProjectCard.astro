@@ -1,0 +1,57 @@
+---
+import type { Project } from "@/types/Project";
+import ProjectImage from "./ProjectImage.astro";
+import CallToActionButtons from "./CallToActionButtons.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+  item: Project;
+}
+
+const { item } = Astro.props;
+const {
+  description,
+  image,
+  stack,
+  title,
+  tagline,
+  demoUrl,
+  category,
+  status,
+  color,
+  emoji,
+} = item;
+---
+
+<article
+  data-project-card
+  data-category={category}
+  class="group grid grid-rows-[auto_1fr] w-full max-w-[400px] rounded-3xl overflow-hidden bg-white/10 hover:animate-lift"
+>
+  <ProjectImage
+    alt={t(title) as string}
+    image={image}
+    color={color}
+    emoji={emoji}
+    status={status}
+  />
+
+  <div class="p-6 flex flex-col justify-start">
+    <h3 class="text-xl font-semibold text-white">{t(title)}</h3>
+    <p class="text-sm font-medium mb-2" style={{ color }}>{t(tagline)}</p>
+    <p class="text-neutral-300 text-sm mb-4">{t(description)}</p>
+    <ul class="flex flex-wrap gap-2 text-xs xs:text-sm">
+      {
+        stack.map(({ Icon, title }) => (
+          <li class="flex items-center gap-2 px-3 py-1 rounded-full text-white font-medium bg-white/10 hover:bg-white/20 border-white/10 hover:animate-lift-soft no-select">
+            <Icon class="size-4 xs:size-5" /> {title}
+          </li>
+        ))
+      }
+    </ul>
+    <CallToActionButtons demoUrl={demoUrl} />
+  </div>
+</article>

@@ -1,0 +1,82 @@
+---
+import ProjectsTitle from "./components/ProjectsTitle.astro";
+import { projectCategories, projectsData } from "./data/projectsData";
+import ProjectCard from "./components/ProjectCard.astro";
+import type { TranslationKey } from "@/i18n/types";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const filters = [
+  { value: "all", label: t("projects.filter.all") },
+  ...projectCategories.map((category) => ({
+    value: category,
+    label: t(`projects.category.${category}` as TranslationKey),
+  })),
+];
+---
+
+<section
+  id={id}
+  class="py-5 flex flex-col items-center justify-start gap-10 text-white px-4 sm:px-8"
+>
+  <ProjectsTitle />
+
+  <div
+    class="flex flex-wrap justify-center gap-2"
+    role="group"
+    aria-label={t("projects.filter.label")}
+    data-aos="fade-up"
+    data-aos-duration="900"
+  >
+    {
+      filters.map(({ value, label }, i) => (
+        <button
+          type="button"
+          data-project-filter={value}
+          aria-pressed={i === 0 ? "true" : "false"}
+          class="rounded-2xl border px-4 py-1.5 text-sm font-semibold transition-all duration-200
+            border-white/10 bg-white/10 text-on-container-inactive hover:bg-white/20
+            aria-pressed:border-transparent aria-pressed:bg-accent/90 aria-pressed:text-on-container aria-pressed:shadow-md"
+        >
+          {label}
+        </button>
+      ))
+    }
+  </div>
+
+  <div
+    class="grid sm:grid-cols-2 xl:grid-cols-3 gap-5 justify-items-center"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  >
+    {projectsData.map((item) => <ProjectCard item={item} />)}
+  </div>
+</section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>(
+    "[data-project-filter]"
+  );
+  const cards = document.querySelectorAll<HTMLElement>("[data-project-card]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.projectFilter;
+
+      buttons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b === button))
+      );
+      cards.forEach((card) => {
+        const visible = filter === "all" || card.dataset.category === filter;
+        card.hidden = !visible;
+      });
+    });
+  });
+</script>
