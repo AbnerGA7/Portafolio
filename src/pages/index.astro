@@ -1,0 +1,24 @@
+---
+import About from "@/components/about/About.astro";
+import Contact from "@/components/contact/Contact.astro";
+import Experience from "@/components/experience/Experience.astro";
+import Footer from "@/components/footer/Footer.astro";
+import Home from "@/components/home/Home.astro";
+import Navbar from "@/components/navbar/Navbar.astro";
+import Projects from "@/components/projects/Projects.astro";
+import ScrollTopButton from "@/components/scroll-top-button/ScrollTopButton.astro";
+import Skills from "@/components/skills/Skills.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout>
+  <Navbar />
+  <Home id="home" />
+  <Skills id="skills" />
+  <Experience id="experience" />
+  <Projects id="projects" />
+  <About id="about" />
+  <Contact id="contact" />
+  <Footer />
+  <ScrollTopButton />
+</Layout>

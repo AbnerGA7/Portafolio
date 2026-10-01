@@ -1,0 +1,46 @@
+---
+import CodeIcon from "@/components/icons/CodeIcon.astro";
+import { contactMeData } from "@/data/contactMeData";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<footer class="w-[100dvw] bg-primary-900 text-white py-10 px-6 mt-20">
+  <div
+    class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6"
+  >
+    <div class="text-center md:text-left">
+      <h2 class="text-xl font-semibold flex gap-2 items-center">
+        <CodeIcon /> Abner Gonzales
+      </h2>
+      <p class="text-sm text-white/70 text-justify max-w-md">
+        {t("footer.description")}
+      </p>
+    </div>
+
+    <ul class="flex flex-wrap justify-center gap-6 text-white/80">
+      {
+        contactMeData.map(({ title, url, Icon }) => (
+          <li>
+            <a
+              href={t(url) as string}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col items-center gap-1 justify-center hover:text-accent transition"
+            >
+              <Icon class="size-5" />
+              <p class="text-xs">{t(title)}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <p class="mt-6 text-center text-sm text-white">
+    &copy; {new Date().getFullYear()}
+    {t("footer.copyright")}
+  </p>
+</footer>

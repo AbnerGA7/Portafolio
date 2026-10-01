@@ -1,0 +1,36 @@
+---
+import CodeFileIcon from "@/components/icons/CodeFileIcon.astro";
+import NavBarDesktop from "./components/NavBarDesktop.astro";
+import NavBarMobile from "./components/NavBarMobile.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import ThemeToggle from "./components/ThemeToggle.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<nav
+  aria-label="Main navigation"
+  class="sticky z-999 top-0 right-0 h-[var(--navbar-height)] w-[100dvw] px-5 xl:px-10
+  shadow-2xl shadow-black/25 bg-transparent"
+>
+  <div
+    class="h-full flex items-center justify-between max-w-[90rem] w-full mx-auto text-white"
+  >
+    <span
+      class="absolute top-0 left-0 backdrop-blur w-[100dvw] h-[var(--navbar-height)] z-900"
+    ></span>
+    <a
+      class="font-bold flex items-center gap-1 xl:gap-2 text-xl xl:text-3xl z-950"
+      href={getRelativeLocaleUrl(lang, "/")}
+    >
+      <CodeFileIcon class="size-6 xl:size-8" />{t("site.title")}
+    </a>
+    <div class="flex items-center sm:gap-2">
+      <NavBarDesktop />
+      <ThemeToggle />
+      <NavBarMobile />
+    </div>
+  </div>
+</nav>

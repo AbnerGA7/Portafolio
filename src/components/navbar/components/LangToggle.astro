@@ -1,0 +1,58 @@
+---
+import ArrowIcon from "@/components/icons/ArrowIcon.astro";
+import { defaultLanguage, languages } from "@/i18n/ui";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getRelativeLocaleUrl } from "astro:i18n";
+
+interface Props {
+  langToggleId: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const currentLanguage =
+  languages.find(({ code }) => code === lang) ?? defaultLanguage;
+
+const { Icon: CurrentIcon } = currentLanguage;
+const { langToggleId } = Astro.props;
+---
+
+<div class="group relative">
+  <input type="checkbox" id={langToggleId} class="peer hidden" />
+  <label
+    for={langToggleId}
+    aria-label={t("nav.lang")}
+    title={t("nav.lang")}
+    class="rounded-4xl flex items-center cursor-pointer py-1 px-3 gap-1
+        hover:text-primary hover:bg-white"
+  >
+    <CurrentIcon class="size-5 sm:size-6" />
+    <ArrowIcon class="size-6 rotate-90" />
+  </label>
+  <div class="absolute left-0 top-full h-2 w-full"></div>
+  <div
+    class="absolute overflow-hidden left-0 mt-2 bg-white rounded-xl opacity-0 invisible
+            group-hover:opacity-100 group-hover:visible peer-checked:visible peer-checked:opacity-100
+            transition duration-200"
+  >
+    {
+      languages.map(({ Icon, code, title }) => {
+        const isSelected = currentLanguage.code === code;
+
+        const baseClasses = "font-bold flex items-center gap-1 px-4 py-2";
+        const selectedClasses = isSelected
+          ? "bg-accent text-white"
+          : "text-primary hover:bg-accent hover:text-white";
+        return (
+          <a
+            href={getRelativeLocaleUrl(code, "/")}
+            class={`${baseClasses} ${selectedClasses}`}
+          >
+            <Icon class="size-4 sm:size-5" />
+            {title}
+          </a>
+        );
+      })
+    }
+  </div>
+</div>

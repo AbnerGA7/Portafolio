@@ -1,0 +1,58 @@
+---
+import CloseIcon from "@/components/icons/CloseIcon.astro";
+import MenuIcon from "@/components/icons/MenuIcon.astro";
+import { navItemsData } from "@/data/navItemsData";
+import NavItemMobile from "./NavItemMobile.astro";
+import LangToggle from "./LangToggle.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="flex items-center z-950 lg:hidden">
+  <LangToggle langToggleId="lang-toggle-mobile" />
+
+  <input type="checkbox" id="menu-toggle" class="hidden peer" />
+
+  <label
+    for="menu-toggle"
+    class="cursor-pointer p-2"
+    aria-label={t("nav.menu.open")}
+    title={t("nav.menu.open")}
+  >
+    <MenuIcon class="size-7" />
+  </label>
+
+  <label
+    for="menu-toggle"
+    class="fixed inset-0 bg-black/50 peer-checked:block hidden lg:hidden z-4000 h-[100dvh]"
+  ></label>
+
+  <div
+    class="z-5000 fixed top-0 right-0 h-[100dvh] w-[300px] bg-primary
+         translate-x-full peer-checked:translate-x-0
+         transition-transform duration-300 ease-in-out
+         will-change-transform
+         lg:hidden
+         flex flex-col justify-between"
+  >
+    <label
+      for="menu-toggle"
+      class="absolute top-4 right-5 cursor-pointer"
+      aria-label={t("nav.menu.close")}
+      title={t("nav.menu.close")}
+    >
+      <CloseIcon class="size-6" />
+    </label>
+    <ul class="mt-20 w-full flex flex-col items-center gap-4 px-2">
+      {navItemsData.map((item) => <NavItemMobile item={item} />)}
+    </ul>
+    <div class="p-6 border-t border-white/10">
+      <div class="text-center text-sm text-white/60">
+        © {new Date().getFullYear()}
+        {t("footer.copyright")}
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<script type="module" lang="ts" is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const scrollTopBtn = document.querySelector("#scrollTopButton");
+    const navbarHeight = parseFloat(
+      getComputedStyle(document.documentElement).getPropertyValue(
+        "--navbar-height"
+      )
+    );
+
+    const toggleButtonVisibility = () => {
+      const showScrollTopBtn = window.scrollY > navbarHeight;
+      if (showScrollTopBtn) {
+        scrollTopBtn?.classList.remove("opacity-0", "pointer-events-none");
+        return;
+      }
+      scrollTopBtn?.classList.add("opacity-0", "pointer-events-none");
+    };
+
+    window.addEventListener("scroll", toggleButtonVisibility);
+    toggleButtonVisibility();
+  });
+</script>

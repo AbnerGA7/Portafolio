@@ -1,0 +1,27 @@
+---
+import type { NavItem } from "@/types/NavItem";
+import { useTranslations, getLangFromUrl } from "@/i18n/utils";
+
+interface Props {
+  item: NavItem;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { item } = Astro.props;
+const {
+  icon: { Icon, className = "size-5" },
+  link,
+  title,
+} = item;
+---
+
+<li>
+  <a
+    href={link}
+    class="flex items-center text-base transition-all duration-300 ease-in-out gap-1 xl:gap-2"
+  >
+    <Icon class={className} />
+    {t(title)}
+  </a>
+</li>

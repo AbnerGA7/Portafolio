@@ -1,0 +1,30 @@
+---
+import ArrowIcon from "@/components/icons/ArrowIcon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import type { NavItem } from "@/types/NavItem";
+
+interface Props {
+  item: NavItem;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { item } = Astro.props;
+const {
+  icon: { Icon, className = "size-5" },
+  link,
+  title,
+} = item;
+---
+
+<li class="w-[90%]">
+  <label
+    for="menu-toggle"
+    onclick={`location.href='${link}'`}
+    class="relative text-white rounded-xl py-3 px-4 flex gap-2 items-center cursor-pointer w-full"
+  >
+    <Icon class={className} />
+    {t(title)}
+    <ArrowIcon class="absolute size-5 right-5" />
+  </label>
+</li>

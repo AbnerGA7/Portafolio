@@ -1,0 +1,130 @@
+---
+import "aos/dist/aos.css";
+import "react-tooltip/dist/react-tooltip.css";
+import "@/styles/global.css";
+import NavbarObserverScript from "@/components/scripts/NavbarObserverScript.astro";
+import ScrollTopButtonObserverScript from "@/components/scripts/ScrollTopButtonObserverScript.astro";
+import AosInitScript from "@/components/scripts/AosInitScript.astro";
+import { languages } from "@/i18n/ui";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getAbsoluteLocaleUrl } from "astro:i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const canonicalUrl = getAbsoluteLocaleUrl(lang, "/");
+const ogImage = new URL("/og-image.png", Astro.site).href;
+const ogLocale = lang === "es" ? "es_PE" : "en_US";
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Abner Gonzales",
+  jobTitle: "Full Stack Developer",
+  url: canonicalUrl,
+  image: ogImage,
+  email: "mailto:abner.gonzales.work@gmail.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Lima",
+    addressCountry: "PE",
+  },
+  knowsAbout: [
+    "React",
+    "React Native",
+    "Next.js",
+    "Firebase",
+    "Android",
+    "Kotlin",
+    "JavaScript",
+    "Tailwind CSS",
+  ],
+  sameAs: [
+    "https://github.com/AbnerGA7",
+    "https://www.linkedin.com/in/abnergonzales7/",
+    "https://www.instagram.com/abner_gonzales7",
+    "https://www.facebook.com/abnerGonzalesA.7",
+  ],
+};
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t("meta.title")}</title>
+    <meta name="description" content={t("meta.description")} />
+    <meta name="author" content="Abner Gonzales" />
+    <meta name="theme-color" content="#1a2232" />
+
+    <link rel="canonical" href={canonicalUrl} />
+    {
+      languages.map(({ code }) => (
+        <link
+          rel="alternate"
+          hreflang={code}
+          href={getAbsoluteLocaleUrl(code, "/")}
+        />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={getAbsoluteLocaleUrl("es", "/")}
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      href="/fonts/dm-sans/DMSans-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <meta property="og:site_name" content={t("meta.og.site_name")} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:title" content={t("meta.og.title")} />
+    <meta property="og:description" content={t("meta.og.description")} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={t("meta.og.title")} />
+    <meta name="twitter:description" content={t("meta.og.description")} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(personSchema)}
+    />
+
+    <script is:inline>
+      // Aplica el tema antes del primer pintado para evitar parpadeos
+      (() => {
+        let theme = null;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+        }
+        document.documentElement.classList.toggle("light", theme === "light");
+      })();
+    </script>
+
+    <meta name="generator" content={Astro.generator} />
+  </head>
+  <body class="overflow-x-hidden body-bg">
+    <slot />
+  </body>
+  <AosInitScript />
+  <NavbarObserverScript />
+  <ScrollTopButtonObserverScript />
+</html>

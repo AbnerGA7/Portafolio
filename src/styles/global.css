@@ -1,0 +1,181 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+@theme static {
+  --breakpoint-xs: 30rem;
+
+  --gradient-radial: radial-gradient(
+    ellipse 80% 80% at 50% -20%,
+    rgba(139, 92, 246, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+
+  --base-white: #f9f9f9;
+  --base-primary-dark: oklch(23% 0.033 256.848);
+
+  --color-primary: var(--base-primary-dark);
+  --color-primary-900: oklch(15% 0.033 256.848);
+  --color-white: var(--base-white);
+  --color-on-container: var(--base-white);
+  --color-on-container-inactive: #d1d5db;
+  --color-accent: oklch(72% 0.17 293);
+
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-lift: lift 0.2s ease-out forwards;
+  --animate-lift-soft: lift-soft 0.2s ease-out forwards;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes lift {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-8px);
+    }
+  }
+  @keyframes lift-soft {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    font-family: "DM Sans", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    --navbar-height: 5rem;
+    --shadow-primary: 0 0 5px rgba(0, 0, 0, 0.8);
+    --shadow-white: 0 0 10px rgba(249, 249, 249, 0.8);
+    --shadow-white-sm: 0 0 4px rgba(249, 249, 249, 0.3);
+  }
+
+  .light {
+    --color-primary: var(--base-white);
+    --color-primary-900: oklch(92% 0.02 256.848);
+    --color-white: var(--base-primary-dark);
+    --color-accent: oklch(52% 0.24 293);
+
+    --color-on-container-inactive: var(--color-white);
+
+    --color-gray-300: oklch(70% 0.01 260);
+    --color-gray-600: oklch(50% 0.01 260);
+    --color-gray-700: oklch(60% 0.01 260);
+    --color-gray-800: oklch(40% 0.01 260);
+    --color-neutral-300: #4b4b4b;
+
+    --shadow-primary: 0 0 5px rgba(0, 0, 0, 0.1);
+    --shadow-white: 0 0 10px rgba(0, 0, 0, 0.25);
+    --shadow-white-sm: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+
+  html,
+  body {
+    min-height: 100dvh;
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  body > section {
+    min-height: calc(100dvh - var(--navbar-height));
+    scroll-margin-top: var(--navbar-height);
+    @apply max-w-7xl w-[100dvw];
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  .nav-item-activate {
+    @apply bg-white text-primary py-2 px-4 rounded-lg font-bold;
+  }
+
+  .nav-item-mobile-activate {
+    @apply bg-white text-primary font-bold;
+  }
+
+  .tooltip {
+    @apply absolute -top-8 left-1/2 -translate-x-1/2 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none whitespace-nowrap;
+    color: var(--base-white);
+    background-color: var(--base-primary-dark);
+  }
+
+  .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: var(--base-primary-dark) transparent transparent transparent;
+    z-index: 1000;
+  }
+
+  .no-select {
+    @apply select-none cursor-default;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-[clamp(2.5rem,3dvw,3rem)] xl:text-5xl 2xl:text-6xl;
+  }
+
+  .section-description {
+    @apply max-w-2xl xl:max-w-4xl text-base sm:text-lg xl:text-2xl 2xl:text-3xl;
+  }
+
+  .body-bg {
+    @apply bg-primary;
+  }
+
+  html:not(.light) .body-bg {
+    background-image: var(--gradient-radial);
+  }
+}
