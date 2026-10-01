@@ -14,7 +14,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
-  site: "https://portafolio-abnergonzales.netlify.app",
+  site: "https://abnergonzales.dev",
   vite: {
     assetsInclude: ["**/*.lottie"],
     plugins: [tailwindcss()],
