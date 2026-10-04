@@ -142,6 +142,11 @@ export const ui = {
     "projects.gcorp_store.description":
       "Online store built with React + Sanity CMS. Cart with Context API, Framer Motion animations, dynamic catalog and an admin panel to manage products, categories and banners.",
 
+    "projects.utilscan.title": "UtilScan",
+    "projects.utilscan.tagline": "Real-time school supplies detection with on-device AI",
+    "projects.utilscan.description":
+      "Android app in Kotlin + Jetpack Compose that recognizes school supplies through the camera in real time, 100% offline: a YOLO11s model I fine-tuned on ~4,000 images (mAP50 0.80 across 11 classes) running on LiteRT with optional GPU acceleration.",
+
     "projects.mnist.title": "MNIST Digit Recognizer",
     "projects.mnist.tagline": "Offline AI on Android",
     "projects.mnist.description":
@@ -396,6 +401,11 @@ export const ui = {
     "projects.gcorp_store.tagline": "E-commerce Fullstack",
     "projects.gcorp_store.description":
       "Tienda online con React + Sanity CMS. Carrito con Context API, animaciones Framer Motion, catálogo dinámico y panel admin para gestionar productos, categorías y banners.",
+
+    "projects.utilscan.title": "UtilScan",
+    "projects.utilscan.tagline": "Detección de útiles escolares en tiempo real con IA local",
+    "projects.utilscan.description":
+      "App Android en Kotlin + Jetpack Compose que reconoce útiles escolares con la cámara en tiempo real, 100% sin Internet: un modelo YOLO11s que afiné con ~4.000 imágenes (mAP50 0,80 en 11 clases) corriendo en LiteRT con aceleración GPU opcional.",
 
     "projects.mnist.title": "Reconocedor de dígitos MNIST",
     "projects.mnist.tagline": "IA offline en Android",
