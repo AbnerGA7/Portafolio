@@ -1,5 +1,6 @@
 import lasTorresImage from "@/assets/projects/las_torres.webp";
 import mnistImage from "@/assets/projects/mnist_android.webp";
+import utilscanImage from "@/assets/projects/utilscan.webp";
 import vitalisImage from "@/assets/projects/vitalis.webp";
 import rescuemalImage from "@/assets/projects/rescuemal.webp";
 import memoriaImage from "@/assets/projects/memoria_viva.webp";
@@ -69,6 +70,26 @@ export const projectsData: Project[] = [
       { title: "Flutter", Icon: FlutterIcon },
       { title: "Dart", Icon: DartIcon },
       { title: "Gemma (IA local)", Icon: GeminiIcon },
+    ],
+  },
+  {
+    id: "utilscan",
+    title: "projects.utilscan.title",
+    tagline: "projects.utilscan.tagline",
+    description: "projects.utilscan.description",
+    category: "mobile",
+    status: "completed",
+    color: "#4ade80",
+    emoji: "📐",
+    image: utilscanImage,
+    demoUrl: "https://github.com/AbnerGA7/utilscan/releases/latest/download/utilscan.apk",
+    demoLabel: "projects.button.apk",
+    codeUrl: "https://github.com/AbnerGA7/utilscan",
+    stack: [
+      { title: "Kotlin", Icon: KotlinIcon },
+      { title: "Jetpack Compose", Icon: JetpackComposeIcon },
+      { title: "YOLO11 + LiteRT", Icon: TensorFlowIcon },
+      { title: "Python", Icon: PythonIcon },
     ],
   },
   {
