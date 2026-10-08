@@ -10,6 +10,11 @@ export type ProjectCategory = "web" | "mobile" | "ecommerce" | "landing" | "game
 
 export type ProjectStatus = "production" | "completed" | "development";
 
+export interface ProjectScreenshot {
+  image: ImageMetadata;
+  caption: TranslationKey;
+}
+
 export interface Project {
   id: string;
   title: TranslationKey;
@@ -27,4 +32,6 @@ export interface Project {
   /** Texto del botón principal (por defecto "Ver demo") */
   demoLabel?: TranslationKey;
   codeUrl?: string;
+  /** Capturas que se ven en la galería del proyecto */
+  gallery?: ProjectScreenshot[];
 }
