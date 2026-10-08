@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import type { ProjectScreenshot } from "@/types/Project";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+  id: string;
+  title: string;
+  items: ProjectScreenshot[];
+}
+
+const { id, title, items } = Astro.props;
+---
+
+<button
+  type="button"
+  data-gallery-open={id}
+  class="mt-4 w-full flex justify-center items-center gap-2 rounded-2xl py-1 xl:py-2 text-sm sm:text-base text-white border border-white/20 hover:bg-white/10 hover:animate-lift"
+>
+  <svg class="size-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.6-4.6a2 2 0 012.8 0L16 16m-2-2l1.6-1.6a2 2 0 012.8 0L20 14M14 8h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+  </svg>
+  {t("projects.gallery.open")} ({items.length})
+</button>
+
+<dialog
+  data-gallery={id}
+  aria-label={`${t("projects.gallery.open")}: ${title}`}
+  class="m-auto w-[min(1200px,94vw)] max-h-[94vh] rounded-2xl bg-slate-950 p-0 text-white shadow-2xl backdrop:bg-black/80"
+>
+  <div class="relative">
+    {
+      items.map(({ image, caption }, index) => (
+        <figure data-slide class={index === 0 ? "" : "hidden"}>
+          <Image src={image} alt={t(caption) as string} width={1600} class="w-full h-auto max-h-[80vh] object-contain bg-white" loading="lazy" />
+          <figcaption class="px-5 py-3 text-sm text-neutral-300">
+            <span class="text-accent font-semibold">{index + 1} / {items.length}</span> · {t(caption)}
+          </figcaption>
+        </figure>
+      ))
+    }
+    <button type="button" data-gallery-close aria-label={t("projects.gallery.close")} class="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-black/70 text-xl hover:bg-black">
+      ×
+    </button>
+    <button type="button" data-gallery-prev aria-label={t("projects.gallery.prev")} class="absolute left-3 top-[40%] flex size-10 items-center justify-center rounded-full bg-black/70 text-2xl hover:bg-black">
+      ‹
+    </button>
+    <button type="button" data-gallery-next aria-label={t("projects.gallery.next")} class="absolute right-3 top-[40%] flex size-10 items-center justify-center rounded-full bg-black/70 text-2xl hover:bg-black">
+      ›
+    </button>
+  </div>
+</dialog>
+
+<script>
+  for (const opener of document.querySelectorAll<HTMLButtonElement>("[data-gallery-open]")) {
+    const dialog = document.querySelector<HTMLDialogElement>(`[data-gallery="${opener.dataset.galleryOpen}"]`);
+    if (!dialog) continue;
+    const slides = [...dialog.querySelectorAll<HTMLElement>("[data-slide]")];
+    let current = 0;
+    const show = (next: number) => {
+      slides[current].classList.add("hidden");
+      current = (next + slides.length) % slides.length;
+      slides[current].classList.remove("hidden");
+    };
+    opener.addEventListener("click", () => {
+      show(0);
+      dialog.showModal();
+    });
+    dialog.querySelector("[data-gallery-close]")?.addEventListener("click", () => dialog.close());
+    dialog.querySelector("[data-gallery-prev]")?.addEventListener("click", () => show(current - 1));
+    dialog.querySelector("[data-gallery-next]")?.addEventListener("click", () => show(current + 1));
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.key === "ArrowRight") show(current + 1);
+    });
+    // Clic fuera de la imagen (en el fondo) cierra la galería
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  }
+</script>

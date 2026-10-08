@@ -2,6 +2,7 @@
 import type { Project } from "@/types/Project";
 import ProjectImage from "./ProjectImage.astro";
 import CallToActionButtons from "./CallToActionButtons.astro";
+import ProjectGallery from "./ProjectGallery.astro";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -25,6 +26,8 @@ const {
   status,
   color,
   emoji,
+  gallery,
+  id,
 } = item;
 ---
 
@@ -54,6 +57,7 @@ const {
         ))
       }
     </ul>
+    {gallery && gallery.length > 0 && <ProjectGallery id={id} title={t(title) as string} items={gallery} />}
     <CallToActionButtons
       demoUrl={demoUrl}
       demoLabel={demoLabel}
