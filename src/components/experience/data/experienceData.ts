@@ -27,6 +27,7 @@ export const experienceData: Experience[] = [
     description: "experience.gm.description",
     Icon: ContactIcon,
     date: "experience.gm.date",
+    documentUrl: "/documents/constancia-trabajo-gm-fabian.pdf",
     stack: [
       { title: "SQL Server", Icon: SqlServerIcon },
       { title: "JavaScript", Icon: JavaScriptIcon },

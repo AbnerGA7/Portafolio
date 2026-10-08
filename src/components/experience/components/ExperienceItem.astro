@@ -1,5 +1,6 @@
 ---
 import CalendarIcon from "@/components/icons/CalendarIcon.astro";
+import CertificateIcon from "@/components/icons/CertificateIcon.astro";
 import type { Experience } from "@/types/Experience";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
@@ -11,7 +12,7 @@ interface Props {
 }
 
 const { item } = Astro.props;
-const { title, company, description, date, Icon, stack } = item;
+const { title, company, description, date, Icon, stack, documentUrl } = item;
 ---
 
 <div
@@ -41,6 +42,19 @@ const { title, company, description, date, Icon, stack } = item;
             <CalendarIcon class="size-5 text-accent" />
             {t(date)}
           </p>
+          {
+            documentUrl && (
+              <a
+                href={documentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-1 inline-flex w-fit items-center gap-1 text-xs xl:text-sm font-medium text-accent hover:underline"
+              >
+                <CertificateIcon class="size-4" />
+                {t("experience.button.certificate")}
+              </a>
+            )
+          }
         </div>
       </div>
     </div>

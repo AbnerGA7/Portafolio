@@ -13,4 +13,6 @@ export interface Experience {
   description: TranslationKey;
   stack: TechStack[];
   date: TranslationKey;
+  /** Constancia o certificado que respalda la experiencia */
+  documentUrl?: string;
 }
