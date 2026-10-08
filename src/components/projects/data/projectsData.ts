@@ -1,3 +1,13 @@
+import minkaImage from "@/assets/projects/minka.webp";
+import minkaAdmin from "@/assets/projects/minka/admin-empresas.webp";
+import minkaFicha from "@/assets/projects/minka/admin-ficha.webp";
+import minkaInicio from "@/assets/projects/minka/empresa-inicio.webp";
+import minkaGeneral from "@/assets/projects/minka/config-general.webp";
+import minkaRoles from "@/assets/projects/minka/config-roles.webp";
+import minkaSoporte from "@/assets/projects/minka/soporte-solo-lectura.webp";
+import minkaAuditoria from "@/assets/projects/minka/auditoria.webp";
+import NextIcon from "@/components/icons/colored/NextIcon.astro";
+import VercelIcon from "@/components/icons/colored/VercelIcon.astro";
 import lasTorresImage from "@/assets/projects/las_torres.webp";
 import mnistImage from "@/assets/projects/mnist_android.webp";
 import utilscanImage from "@/assets/projects/utilscan.webp";
@@ -36,6 +46,35 @@ import SanityIcon from "@/components/icons/colored/SanityIcon.astro";
 import FramerMotionIcon from "@/components/icons/colored/FramerMotionIcon.astro";
 
 export const projectsData: Project[] = [
+  {
+    id: "minka",
+    title: "projects.minka.title",
+    tagline: "projects.minka.tagline",
+    description: "projects.minka.description",
+    category: "web",
+    status: "development",
+    color: "#0a68eb",
+    emoji: "🧩",
+    image: minkaImage,
+    demoUrl: "https://minka.abnergonzales.dev",
+    demoLabel: "projects.button.site",
+    gallery: [
+      { image: minkaAdmin, caption: "projects.minka.gallery.admin" },
+      { image: minkaFicha, caption: "projects.minka.gallery.ficha" },
+      { image: minkaInicio, caption: "projects.minka.gallery.inicio" },
+      { image: minkaGeneral, caption: "projects.minka.gallery.general" },
+      { image: minkaRoles, caption: "projects.minka.gallery.roles" },
+      { image: minkaSoporte, caption: "projects.minka.gallery.soporte" },
+      { image: minkaAuditoria, caption: "projects.minka.gallery.auditoria" },
+    ],
+    stack: [
+      { title: "Next.js", Icon: NextIcon },
+      { title: "React", Icon: ReactIcon },
+      { title: "Supabase (PostgreSQL + RLS)", Icon: SupabaseIcon },
+      { title: "Tailwind CSS", Icon: TailwindCSSIcon },
+      { title: "Vercel", Icon: VercelIcon },
+    ],
+  },
   {
     id: "las-torres-lotes",
     title: "projects.las_torres.title",
