@@ -1,9 +1,18 @@
 import analistaImage from "@/assets/certificates/analista-programador.png";
 import congresoImage from "@/assets/certificates/congreso-ia.png";
 import challengeImage from "@/assets/certificates/autonoma-challenge-2026.png";
+import constanciaGmImage from "@/assets/certificates/constancia-gm-fabian.webp";
 import type { Certification } from "@/types/Certification";
 
 export const certificationsData: Certification[] = [
+  {
+    title: "certifications.gm_work.title",
+    issuer: "certifications.gm",
+    date: "certifications.gm_work.date",
+    detail: "certifications.gm_work.detail",
+    image: constanciaGmImage,
+    documentUrl: "/documents/constancia-trabajo-gm-fabian.pdf",
+  },
   {
     title: "certifications.challenge.title",
     issuer: "certifications.ua",
