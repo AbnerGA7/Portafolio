@@ -56,8 +56,8 @@ export const projectsData: Project[] = [
     color: "#0a68eb",
     emoji: "🧩",
     image: minkaImage,
-    demoUrl: "https://minka.abnergonzales.dev",
-    demoLabel: "projects.button.site",
+    demoUrl: "https://demo.minka.abnergonzales.dev",
+    demoLabel: "projects.button.demo",
     gallery: [
       { image: minkaAdmin, caption: "projects.minka.gallery.admin" },
       { image: minkaFicha, caption: "projects.minka.gallery.ficha" },
