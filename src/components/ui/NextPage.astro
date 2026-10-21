@@ -16,7 +16,7 @@ const number = navLinks.indexOf(next) + 1;
 <div class="container-page mt-24">
   <a
     href={getRoute(next.key, lang)}
-    class="group card flex items-center justify-between gap-6 p-6 transition-colors hover:border-accent sm:p-10"
+    class="group card flex items-center justify-between gap-6 p-6 sm:p-10"
   >
     <div>
       <p class="kicker">
@@ -29,7 +29,7 @@ const number = navLinks.indexOf(next) + 1;
       </p>
     </div>
     <span
-      class="grid size-12 shrink-0 place-items-center rounded-full bg-accent text-accent-ink transition-transform group-hover:translate-x-1 sm:size-16"
+      class="relative z-[2] grid size-12 shrink-0 place-items-center rounded-full bg-gradient-to-br from-accent to-accent-2 text-accent-ink shadow-[0_10px_30px_-8px_var(--accent)] transition-transform duration-500 group-hover:translate-x-2 group-hover:-rotate-45 sm:size-16"
     >
       <Icon name="arrow-right" class="size-5 sm:size-6" />
     </span>

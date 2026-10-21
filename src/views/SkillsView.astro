@@ -39,10 +39,10 @@ const groups = Object.entries(techSkillsData) as [
             <ul class="mt-6 grid grid-cols-2 gap-2 xs:grid-cols-3">
               {items.map(({ Icon, name, tooltip }) => (
                 <li
-                  class="group flex items-center gap-2.5 rounded-xl border border-line bg-surface-2/60 px-3 py-2.5 transition-colors hover:border-(--brand)"
+                  class="group flex items-center gap-2.5 rounded-2xl border border-line bg-surface px-3 py-2.5 transition-all duration-300 hover:-translate-y-1 hover:border-(--brand) hover:shadow-[0_10px_30px_-12px_var(--brand)]"
                   style={`--brand:${tooltip.color}`}
                 >
-                  <Icon className="size-6 shrink-0 transition-transform group-hover:scale-110" />
+                  <Icon className="size-6 shrink-0 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-[-8deg]" />
                   <span class="truncate text-sm">{name}</span>
                 </li>
               ))}
