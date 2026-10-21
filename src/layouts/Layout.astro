@@ -4,7 +4,6 @@ import { ClientRouter } from "astro:transitions";
 import SiteFooter from "@/components/layout/SiteFooter.astro";
 import SiteHeader from "@/components/layout/SiteHeader.astro";
 import BootLoader from "@/components/layout/BootLoader.astro";
-import Terminal from "@/components/layout/Terminal.astro";
 import { languages } from "@/i18n/ui";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import { getAlternatePath } from "@/lib/routes";
@@ -149,7 +148,6 @@ const personSchema = {
       <slot />
     </main>
     <SiteFooter />
-    <Terminal />
 
     <button
       type="button"
