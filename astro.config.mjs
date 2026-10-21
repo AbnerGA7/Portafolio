@@ -16,7 +16,6 @@ export default defineConfig({
   },
   site: "https://abnergonzales.dev",
   vite: {
-    assetsInclude: ["**/*.lottie"],
     plugins: [tailwindcss()],
     resolve: {
       alias: {
