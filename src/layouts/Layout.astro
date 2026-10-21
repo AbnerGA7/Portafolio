@@ -66,7 +66,7 @@ const personSchema = {
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Abner Gonzales" />
-    <meta name="theme-color" content="#1a2232" />
+    <meta name="theme-color" content="#050507" />
 
     <link rel="canonical" href={canonicalUrl} />
     {
@@ -124,6 +124,7 @@ const personSchema = {
     <BootLoader />
     <div class="aurora" aria-hidden="true" transition:persist="aurora">
       <span class="grid"></span>
+      <canvas data-code-bg class="absolute inset-0 size-full"></canvas>
       <span class="blob b1"></span>
       <span class="blob b2"></span>
       <span class="blob b3"></span>
@@ -249,6 +250,69 @@ const personSchema = {
     },
     { passive: true }
   );
+
+  // Fondo de código: fragmentos que flotan y se encienden cerca del cursor
+  const canvas = document.querySelector<HTMLCanvasElement>("[data-code-bg]");
+  const ctx = canvas?.getContext("2d");
+  if (canvas && ctx && !reduced) {
+    const tokens = [
+      "const", "=>", "{ }", "</>", "async", "await", "npm run dev", "git push",
+      "return", "import", "useState()", "SELECT *", "fun main()", "[]", "&&",
+      "200 OK", "deploy()", "true", "null", "λ", "0x1F", "01101", "#!/bin", "export",
+    ];
+    let w = 0;
+    let h = 0;
+    let mx = -9999;
+    let my = -9999;
+    type Glyph = { x: number; y: number; v: number; t: string; s: number; a: number };
+    let glyphs: Glyph[] = [];
+
+    const spawn = (y?: number): Glyph => ({
+      x: Math.random() * w,
+      y: y ?? h + 20,
+      v: 0.15 + Math.random() * 0.35,
+      t: tokens[(Math.random() * tokens.length) | 0],
+      s: 11 + Math.random() * 6,
+      a: 0.07 + Math.random() * 0.12,
+    });
+
+    const resize = () => {
+      const dpr = Math.min(devicePixelRatio, 2);
+      w = innerWidth;
+      h = innerHeight;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round((w * h) / 26000);
+      glyphs = Array.from({ length: count }, () => spawn(Math.random() * h));
+    };
+    resize();
+    addEventListener("resize", resize);
+    addEventListener("pointermove", (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+    }, { passive: true });
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      const light = root.classList.contains("light");
+      for (const g of glyphs) {
+        g.y -= g.v;
+        if (g.y < -20) Object.assign(g, spawn());
+        const dist = Math.hypot(g.x - mx, g.y - my);
+        const near = Math.max(0, 1 - dist / 180);
+        ctx.font = `${g.s}px "JetBrains Mono Variable", monospace`;
+        ctx.fillStyle = near > 0
+          ? `rgba(167, 139, 250, ${g.a + near * 0.7})`
+          : light
+            ? `rgba(26, 34, 50, ${g.a})`
+            : `rgba(255, 255, 255, ${g.a})`;
+        ctx.fillText(g.t, g.x + (g.x - mx) * near * 0.08, g.y + (g.y - my) * near * 0.08);
+      }
+      requestAnimationFrame(draw);
+    };
+    requestAnimationFrame(draw);
+  }
 
   // --- Por página: se vuelve a ejecutar tras cada navegación ---
   const countUp = (el: HTMLElement) => {
