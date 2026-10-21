@@ -1,0 +1,142 @@
+---
+import { Image } from "astro:assets";
+import profile from "@/assets/profile.jpg";
+import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
+import FlutterIcon from "@/components/icons/colored/FlutterIcon.astro";
+import JavaScriptIcon from "@/components/icons/colored/JavaScriptIcon.astro";
+import KotlinIcon from "@/components/icons/colored/KotlinIcon.astro";
+import NextIcon from "@/components/icons/colored/NextIcon.astro";
+import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
+import SupabaseIcon from "@/components/icons/colored/SupabaseIcon.astro";
+import TailwindCSSIcon from "@/components/icons/colored/TailwindCSSIcon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Anillo exterior e interior con las tecnologías que más uso
+const outer = [ReactIcon, KotlinIcon, FirebaseIcon, NextIcon, FlutterIcon];
+const inner = [TailwindCSSIcon, JavaScriptIcon, SupabaseIcon];
+---
+
+<div class="profile-orbit relative mx-auto">
+  <!-- Halo de color -->
+  <div class="animate-morph absolute inset-[14%] -z-10 bg-gradient-to-br from-accent to-accent-2 opacity-50 blur-3xl" aria-hidden="true"></div>
+
+  <!-- Órbita exterior -->
+  <div class="orbit absolute inset-[4%] rounded-full border border-dashed border-fg/20" style="--speed: 48s; --dir: normal; --dir-inv: reverse" aria-hidden="true">
+    {
+      outer.map((OrbitIcon, i) => (
+        <span class="orbit-item" style={`--a:${(360 / outer.length) * i}deg`}>
+          <span class="orbit-badge glass grid size-11 place-items-center rounded-2xl">
+            <OrbitIcon class="size-6" />
+          </span>
+        </span>
+      ))
+    }
+  </div>
+
+  <!-- Órbita interior, gira al revés -->
+  <div class="orbit absolute inset-[17%] rounded-full border border-fg/12" style="--speed: 32s; --dir: reverse; --dir-inv: normal" aria-hidden="true">
+    {
+      inner.map((OrbitIcon, i) => (
+        <span class="orbit-item" style={`--a:${(360 / inner.length) * i + 30}deg`}>
+          <span class="orbit-badge glass grid size-9 place-items-center rounded-xl">
+            <OrbitIcon class="size-5" />
+          </span>
+        </span>
+      ))
+    }
+  </div>
+
+  <!-- Foto con anillo de gradiente girando -->
+  <div class="absolute inset-[27%]">
+    <div class="avatar-ring size-full rounded-full p-[3px]">
+      <div class="size-full overflow-hidden rounded-full bg-bg p-1.5">
+        <Image
+          src={profile}
+          alt={t("home.photo-alt")}
+          widths={[240, 400, 560]}
+          sizes="(min-width: 1024px) 220px, 50vw"
+          loading="eager"
+          class="size-full rounded-full object-cover object-[center_22%] transition-transform duration-700 hover:scale-110"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Etiquetas -->
+  <span class="chip animate-float absolute top-[6%] left-0 z-10 px-3 py-1.5 text-xs" style="--r:-6deg">
+    <span class="text-accent">&lt;</span>dev<span class="text-accent">&nbsp;/&gt;</span>
+  </span>
+  <span class="chip animate-float absolute right-0 bottom-[12%] z-10 gap-2 px-3 py-1.5 text-xs [animation-delay:-3s]" style="--r:4deg">
+    <span class="pulse-dot size-2 rounded-full bg-emerald-400"></span>
+    {lang === "es" ? "disponible" : "available"}
+  </span>
+  <span class="chip absolute bottom-0 left-1/2 z-10 -translate-x-1/2 px-3 py-1.5 text-xs whitespace-nowrap">
+    📍 {t("home.location")}
+  </span>
+</div>
+
+<style>
+  .profile-orbit {
+    width: min(440px, 88vw);
+    aspect-ratio: 1;
+  }
+
+  .orbit {
+    container-type: inline-size;
+    animation: orbit-spin var(--speed) linear infinite var(--dir);
+  }
+
+  /* Cada ícono se ubica sobre el borde del círculo */
+  .orbit-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: rotate(var(--a)) translateY(-50cqw);
+  }
+
+  .orbit-badge {
+    position: absolute;
+    translate: -50% -50%;
+    rotate: calc(var(--a) * -1);
+    /* Gira al revés que su órbita para quedarse derecho */
+    animation: orbit-spin var(--speed) linear infinite var(--dir-inv);
+    transition: scale 0.3s;
+  }
+
+  .orbit-badge:hover {
+    scale: 1.15;
+  }
+
+  .avatar-ring {
+    background: conic-gradient(
+      from var(--angle),
+      var(--accent),
+      var(--accent-2),
+      transparent 45%,
+      var(--accent)
+    );
+    animation: ring-spin 4s linear infinite;
+    box-shadow: 0 0 70px -12px var(--accent);
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+  }
+
+  @keyframes ring-spin {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  @keyframes orbit-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>

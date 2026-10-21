@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-import profile from "@/assets/profile.jpg";
 import ProjectCard from "@/components/cards/ProjectCard.astro";
 import { certificationsData } from "@/components/certifications/data/certificationsData";
 import { experienceData } from "@/components/experience/data/experienceData";
@@ -8,9 +6,7 @@ import { projectsData } from "@/components/projects/data/projectsData";
 import { techSkillsData } from "@/components/skills/data/techSkillsData";
 import Icon from "@/components/ui/Icon.astro";
 import CodeWindow from "@/components/home/CodeWindow.astro";
-import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
-import KotlinIcon from "@/components/icons/colored/KotlinIcon.astro";
-import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
+import ProfileOrbit from "@/components/home/ProfileOrbit.astro";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import Layout from "@/layouts/Layout.astro";
 import { featuredProjects } from "@/lib/projects";
@@ -28,11 +24,6 @@ const marquee = allTech.filter(
   (tech, i) => allTech.findIndex(({ name }) => name === tech.name) === i
 );
 
-const floatingBadges = [
-  { label: "React", Icon: ReactIcon, position: "-left-6 top-10", delay: "0s", rotate: "-6deg" },
-  { label: "Kotlin", Icon: KotlinIcon, position: "-right-5 top-1/3", delay: "-2s", rotate: "5deg" },
-  { label: "Firebase", Icon: FirebaseIcon, position: "-left-4 bottom-20", delay: "-4s", rotate: "4deg" },
-];
 
 const stats = [
   { value: projectsData.length, label: t("home.stats.projects") },
@@ -124,46 +115,8 @@ const pageLabel = (key: RouteKey) =>
       </div>
     </div>
 
-    <div class="reveal relative mx-auto w-full max-w-sm" style="--i:2">
-      <div
-        class="animate-morph absolute -inset-6 -z-10 bg-gradient-to-br from-accent to-accent-2 opacity-60 blur-2xl"
-        aria-hidden="true"
-      >
-      </div>
-      {
-        floatingBadges.map(({ label, Icon: BadgeIcon, position, delay, rotate }) => (
-          <span
-            class:list={[
-              "chip animate-float absolute z-10 py-1.5 pr-3 pl-1.5 text-xs shadow-lg",
-              position,
-            ]}
-            style={`animation-delay:${delay}; --r:${rotate}`}
-            aria-hidden="true"
-          >
-            <span class="grid size-6 place-items-center rounded-full bg-white/80">
-              <BadgeIcon class="size-4" />
-            </span>
-            {label}
-          </span>
-        ))
-      }
-      <div class="card overflow-hidden p-2.5" data-tilt>
-        <Image
-          src={profile}
-          alt={t("home.photo-alt")}
-          widths={[320, 480, 640]}
-          sizes="(min-width: 1024px) 380px, 80vw"
-          loading="eager"
-          class="aspect-[4/5] w-full rounded-xl object-cover"
-        />
-        <div class="flex items-center justify-between px-2 pt-3 pb-1">
-          <p class="flex items-center gap-1.5 font-mono text-xs text-muted">
-            <Icon name="pin" class="size-3.5" />
-            {t("home.location")}
-          </p>
-          <p class="font-mono text-xs text-accent">Full Stack</p>
-        </div>
-      </div>
+    <div class="reveal" style="--i:2">
+      <ProfileOrbit />
     </div>
   </section>
 
