@@ -167,8 +167,19 @@ const pageLabel = (key: RouteKey) =>
     </div>
   </section>
 
+  <a
+    href="#cifras"
+    class="group mx-auto mb-10 hidden w-fit flex-col items-center gap-2 font-mono text-[0.65rem] tracking-[0.2em] text-muted uppercase transition-colors hover:text-fg lg:flex"
+    aria-label="Scroll"
+  >
+    <span class="grid h-9 w-6 justify-center rounded-full border border-line pt-1.5">
+      <span class="h-2 w-0.5 animate-bounce rounded-full bg-accent"></span>
+    </span>
+    scroll
+  </a>
+
   <!-- Cifras -->
-  <section class="container-page">
+  <section id="cifras" class="container-page scroll-mt-28">
     <dl class="reveal card grid grid-cols-2 overflow-hidden md:grid-cols-4">
       {
         stats.map(({ value, label }, i) => (
