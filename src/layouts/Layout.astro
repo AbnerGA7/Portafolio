@@ -1,18 +1,27 @@
 ---
-import "aos/dist/aos.css";
-import "react-tooltip/dist/react-tooltip.css";
 import "@/styles/global.css";
-import NavbarObserverScript from "@/components/scripts/NavbarObserverScript.astro";
-import ScrollTopButtonObserverScript from "@/components/scripts/ScrollTopButtonObserverScript.astro";
-import AosInitScript from "@/components/scripts/AosInitScript.astro";
+import { ClientRouter } from "astro:transitions";
+import SiteFooter from "@/components/layout/SiteFooter.astro";
+import SiteHeader from "@/components/layout/SiteHeader.astro";
 import { languages } from "@/i18n/ui";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
-import { getAbsoluteLocaleUrl } from "astro:i18n";
+import { getAlternatePath } from "@/lib/routes";
+
+interface Props {
+  /** Título de la página; se completa con "| Abner Gonzales" */
+  title?: string;
+  description?: string;
+}
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const canonicalUrl = getAbsoluteLocaleUrl(lang, "/");
+const { title, description = t("meta.description") } = Astro.props;
+const pageTitle = title ? `${title} | Abner Gonzales` : t("meta.title");
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const alternateUrl = (code: (typeof languages)[number]["code"]) =>
+  new URL(getAlternatePath(Astro.url.pathname, code), Astro.site).href;
 const ogImage = new URL("/og-image.png", Astro.site).href;
 const ogLocale = lang === "es" ? "es_PE" : "en_US";
 
@@ -21,7 +30,7 @@ const personSchema = {
   "@type": "Person",
   name: "Abner Gonzales",
   jobTitle: "Full Stack Developer",
-  url: canonicalUrl,
+  url: new URL("/", Astro.site).href,
   image: ogImage,
   email: "mailto:abner.gonzales.work@gmail.com",
   address: {
@@ -53,49 +62,34 @@ const personSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{t("meta.title")}</title>
-    <meta name="description" content={t("meta.description")} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
     <meta name="author" content="Abner Gonzales" />
-    <meta name="theme-color" content="#1a2232" />
+    <meta name="theme-color" content="#0c0d10" />
 
     <link rel="canonical" href={canonicalUrl} />
     {
       languages.map(({ code }) => (
-        <link
-          rel="alternate"
-          hreflang={code}
-          href={getAbsoluteLocaleUrl(code, "/")}
-        />
+        <link rel="alternate" hreflang={code} href={alternateUrl(code)} />
       ))
     }
-    <link
-      rel="alternate"
-      hreflang="x-default"
-      href={getAbsoluteLocaleUrl("es", "/")}
-    />
+    <link rel="alternate" hreflang="x-default" href={alternateUrl("es")} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link
-      rel="preload"
-      href="/fonts/dm-sans/DMSans-Regular.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
 
     <meta property="og:site_name" content={t("meta.og.site_name")} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content={ogLocale} />
-    <meta property="og:title" content={t("meta.og.title")} />
-    <meta property="og:description" content={t("meta.og.description")} />
+    <meta property="og:title" content={title ? pageTitle : t("meta.og.title")} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={t("meta.og.title")} />
-    <meta name="twitter:description" content={t("meta.og.description")} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
     <script
@@ -104,27 +98,37 @@ const personSchema = {
     />
 
     <script is:inline>
-      // Aplica el tema antes del primer pintado para evitar parpadeos
-      (() => {
+      // Aplica el tema antes de pintar y después de cada navegación
+      const applyTheme = () => {
         let theme = null;
         try {
           theme = localStorage.getItem("theme");
         } catch {}
         if (theme !== "light" && theme !== "dark") {
-          theme = window.matchMedia("(prefers-color-scheme: light)").matches
+          theme = matchMedia("(prefers-color-scheme: light)").matches
             ? "light"
             : "dark";
         }
         document.documentElement.classList.toggle("light", theme === "light");
-      })();
+      };
+      applyTheme();
+      document.addEventListener("astro:after-swap", applyTheme);
     </script>
 
+    <ClientRouter />
     <meta name="generator" content={Astro.generator} />
   </head>
-  <body class="overflow-x-hidden body-bg">
-    <slot />
+  <body>
+    <a
+      href="#main"
+      class="sr-only z-[70] rounded-full bg-accent px-4 py-2 text-accent-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      {t("nav.skip")}
+    </a>
+    <SiteHeader />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter />
   </body>
-  <AosInitScript />
-  <NavbarObserverScript />
-  <ScrollTopButtonObserverScript />
 </html>
