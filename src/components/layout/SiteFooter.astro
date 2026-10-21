@@ -1,10 +1,10 @@
 ---
 import { contactMeData } from "@/data/contactMeData";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getLangFromUrl, useText } from "@/i18n/utils";
 import { getRoute, navLinks } from "@/lib/routes";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const t = useText(lang);
 const year = new Date().getFullYear();
 const socials = contactMeData.filter(
   ({ title }) => title !== "contact.email.title"

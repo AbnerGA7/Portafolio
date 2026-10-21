@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import Icon from "@/components/ui/Icon.astro";
 import PageHeader from "@/components/ui/PageHeader.astro";
-import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getLangFromUrl, useText } from "@/i18n/utils";
 import Layout from "@/layouts/Layout.astro";
 import {
   categoryKey,
@@ -19,7 +19,7 @@ interface Props {
 
 const { project } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const t = useText(lang);
 const { prev, next } = getSiblings(project.id);
 const title = t(project.title);
 ---

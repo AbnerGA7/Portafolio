@@ -21,6 +21,12 @@ export const useTranslations = (lang: Locale): TranslatorFunction => {
   };
 };
 
+/** Igual que useTranslations, pero siempre devuelve texto (útil con claves dinámicas) */
+export const useText = (lang: Locale) => {
+  const t = useTranslations(lang);
+  return (key: TranslationKey): string => String(t(key));
+};
+
 export const getSkillsCategoryMap = (lang: Locale): Record<string, string> => {
   const entries = Object.entries(ui[lang]).filter(([key]) =>
     key.startsWith("skills.categories.")
