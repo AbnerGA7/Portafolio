@@ -16,29 +16,33 @@
 
 ## Sobre el proyecto
 
-Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio estático, rápido y bilingüe, con modo claro/oscuro, animaciones al hacer scroll y una escena 3D interactiva en la sección de habilidades.
+Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio estático, rápido y bilingüe, con modo claro/oscuro y **una página por sección** — el menú lleva a subpáginas reales en lugar de hacer scroll en una sola página.
 
 ## Características
 
-- 🌍 **Bilingüe (ES / EN)** — rutas `/` (español) y `/en/` con selector de idioma
+- 🧭 **Multipágina** — cada sección tiene su propia URL, migas de pan y un enlace a la página siguiente
+- 🗃️ **Ficha por proyecto** — `/proyectos/<id>/` con galería de capturas, stack, estado y navegación anterior/siguiente
+- 🌍 **Bilingüe (ES / EN)** — el selector de idioma conserva la página en la que estás (`/proyectos/` ⇄ `/en/projects/`)
 - 🌗 **Modo claro / oscuro** — respeta la preferencia del sistema y se recuerda entre visitas, sin parpadeo al cargar
-- 🧊 **Escena 3D** con React Three Fiber en la sección de habilidades
-- 🗂️ **Proyectos con filtros** por categoría (Web App, Mobile App, E-commerce, Landing Page) y estado (Producción, Completado, En desarrollo)
+- ⚡ **Transiciones entre páginas** con View Transitions de Astro
+- 🗂️ **Proyectos con filtros** por categoría (el filtro queda en la URL: `?cat=mobile`)
 - 📬 **Formulario de contacto** funcional vía FormSubmit, además de WhatsApp, correo, LinkedIn, GitHub, Instagram y Facebook
 - 🔎 **SEO** — Open Graph, Twitter Cards, `hreflang`, URL canónica y datos estructurados (Schema.org `Person`)
 - ♿ **Accesibilidad** — foco visible con teclado, etiquetas ARIA y soporte para `prefers-reduced-motion`
 - 📱 **Responsive** — diseñado para móvil, tablet y escritorio
 
-## Secciones
+## Páginas
 
-| Sección | Contenido |
-|---|---|
-| **Inicio** | Presentación con efecto typewriter, foto y stack flotante |
-| **Habilidades** | Tecnologías agrupadas por pestañas: Frontend, Mobile, Lenguajes, Backend & BD, Librerías y Herramientas |
-| **Experiencia** | Desarrollo Full Stack freelance, desarrollo Android y formación en Ingeniería de Software |
-| **Proyectos** | Las Torres, Vitalis (Flutter + IA local), Reconocedor MNIST, Memoria Viva, Smart Market Pro, GCorp Store, RescueMal, Admin Cactus, Bella Market Mobile, La Nota Final (Unity) y Exprésate |
-| **Sobre mí** | Quién soy, mi enfoque y mi trayectoria |
-| **Contacto** | Formulario y redes |
+| Página | Ruta (ES / EN) | Contenido |
+|---|---|---|
+| **Inicio** | `/` · `/en/` | Presentación, cifras, proyectos destacados y accesos a cada sección |
+| **Proyectos** | `/proyectos/` · `/en/projects/` | Todos los proyectos con filtros por categoría |
+| **Ficha de proyecto** | `/proyectos/<id>/` · `/en/projects/<id>/` | Resumen, galería, stack, estado y enlaces |
+| **Experiencia** | `/experiencia/` · `/en/experience/` | Línea de tiempo de trabajo, freelance y formación |
+| **Habilidades** | `/habilidades/` · `/en/skills/` | Tecnologías agrupadas por área |
+| **Certificaciones** | `/certificaciones/` · `/en/certifications/` | Diplomas y constancias en PDF |
+| **Sobre mí** | `/sobre-mi/` · `/en/about/` | Perfil, recorrido y CV |
+| **Contacto** | `/contacto/` · `/en/contact/` | Canales directos y formulario |
 
 ## Stack
 
@@ -46,7 +50,6 @@ Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio es
 ![React](https://img.shields.io/badge/React_19-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![Three.js](https://img.shields.io/badge/Three.js-000000?style=flat-square&logo=threedotjs&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
 
 ## Estructura
@@ -54,14 +57,18 @@ Portafolio personal construido con **Astro + React + Tailwind CSS v4**: sitio es
 ```bash
 src/
 ├── assets/       # Foto de perfil y capturas de proyectos
-├── components/   # Secciones (home, skills, experience, projects, about, contact...)
+├── components/
+│   ├── layout/   # Header, footer, selectores de tema e idioma
+│   ├── ui/       # Iconos, cabecera de página y "página siguiente"
+│   ├── cards/    # Tarjeta de proyecto
 │   └── */data/   # Contenido de cada sección (proyectos, skills, experiencia...)
-├── data/         # Navegación y enlaces de contacto
+├── data/         # Enlaces de contacto
 ├── i18n/         # Textos en español e inglés (ui.ts) y utilidades
-├── layouts/      # Layout base con SEO
-├── pages/        # Rutas: / y /[lang]/
-├── react/        # Componentes React reutilizables (Typewriter, TabSwitcher)
-├── styles/       # Estilos globales, tema y fuentes
+├── layouts/      # Layout base con SEO y transiciones
+├── lib/          # Mapa de rutas ES/EN y helpers de proyectos
+├── pages/        # Rutas en español (raíz) y en inglés (/en)
+├── views/        # Una vista por página, compartida entre idiomas
+├── styles/       # Tema (tokens claro/oscuro) y fuentes
 └── types/        # Interfaces de TypeScript
 ```
 
