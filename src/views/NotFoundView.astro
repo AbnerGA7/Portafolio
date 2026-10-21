@@ -1,0 +1,21 @@
+---
+import Icon from "@/components/ui/Icon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import { getRoute } from "@/lib/routes";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("notfound.title")}>
+  <section class="container-page flex min-h-[60vh] flex-col items-start justify-center py-20">
+    <p class="kicker">Error 404</p>
+    <h1 class="mt-4 text-5xl font-bold sm:text-7xl">{t("notfound.title")}</h1>
+    <p class="mt-4 max-w-md text-lg text-muted">{t("notfound.text")}</p>
+    <a href={getRoute("home", lang)} class="btn btn-primary mt-8">
+      <Icon name="arrow-left" />
+      {t("notfound.back")}
+    </a>
+  </section>
+</Layout>
