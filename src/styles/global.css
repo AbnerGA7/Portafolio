@@ -83,25 +83,25 @@
 @layer base {
   /* Oscuro: el azul marino y el violeta de siempre */
   :root {
-    --bg: oklch(23% 0.033 256.848);
-    --bg-deep: oklch(15% 0.033 256.848);
-    --surface: rgb(255 255 255 / 0.06);
+    --bg: #050507;
+    --bg-deep: #000000;
+    --surface: rgb(255 255 255 / 0.045);
     --surface-2: rgb(255 255 255 / 0.09);
-    --surface-solid: oklch(26% 0.036 262);
-    --line: rgb(255 255 255 / 0.13);
+    --surface-solid: #0d0d12;
+    --line: rgb(255 255 255 / 0.11);
     --fg: #f9f9f9;
     --muted: #aeb5c3;
     --accent: oklch(72% 0.17 293);
     --accent-2: oklch(70% 0.14 255);
     --accent-ink: oklch(19% 0.06 293);
     --accent-soft: oklch(72% 0.17 293 / 0.16);
-    --glass-from: rgb(255 255 255 / 0.12);
-    --glass-to: rgb(255 255 255 / 0.03);
+    --glass-from: rgb(255 255 255 / 0.08);
+    --glass-to: rgb(255 255 255 / 0.02);
     --glass-hi: rgb(255 255 255 / 0.28);
     --glass-shadow: 0 18px 50px -20px rgb(0 0 0 / 0.65);
-    --blob-1: oklch(58% 0.22 293 / 0.55);
-    --blob-2: oklch(55% 0.17 255 / 0.5);
-    --blob-3: oklch(62% 0.2 330 / 0.3);
+    --blob-1: oklch(50% 0.22 293 / 0.35);
+    --blob-2: oklch(45% 0.17 255 / 0.28);
+    --blob-3: oklch(50% 0.2 330 / 0.18);
     --header-h: 5.5rem;
     color-scheme: dark;
   }
