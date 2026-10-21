@@ -8,7 +8,7 @@ const t = useTranslations(lang);
 ---
 
 <div
-  class="flex h-9 items-center rounded-full border border-line bg-surface p-0.5 font-mono text-[0.7rem]"
+  class="glass flex h-11 items-center rounded-full p-1 font-mono text-[0.7rem]"
   role="group"
   aria-label={t("nav.lang")}
 >
@@ -21,9 +21,9 @@ const t = useTranslations(lang);
         title={title}
         aria-current={code === lang ? "true" : undefined}
         class:list={[
-          "grid h-full place-items-center rounded-full px-2.5 uppercase transition-colors",
+          "grid h-full place-items-center rounded-full px-3 uppercase transition-all duration-300",
           code === lang
-            ? "bg-fg text-bg"
+            ? "bg-gradient-to-br from-accent to-accent-2 text-accent-ink shadow-[inset_0_1px_0_rgb(255_255_255/0.4)]"
             : "text-muted hover:text-fg",
         ]}
       >
