@@ -1,0 +1,102 @@
+---
+import { Image } from "astro:assets";
+import profile from "@/assets/profile.jpg";
+import { aboutTimelineItems } from "@/components/about/data/aboutTimelineItems";
+import { personalInfoItems } from "@/components/about/data/personalInfoItems";
+import { whoIAmItems } from "@/components/about/data/whoIAmItems";
+import Icon from "@/components/ui/Icon.astro";
+import NextPage from "@/components/ui/NextPage.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import type { TranslationKey } from "@/i18n/types";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("nav.about")}>
+  <PageHeader page="about" title={t("about.title")} />
+
+  <section class="container-page grid gap-10 lg:grid-cols-[340px_1fr] lg:gap-14">
+    <aside class="reveal h-fit lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]" style="--i:2">
+      <div class="card overflow-hidden p-2.5">
+        <Image
+          src={profile}
+          alt={t("home.photo-alt")}
+          widths={[320, 640]}
+          sizes="(min-width: 1024px) 340px, 100vw"
+          class="aspect-square w-full rounded-xl object-cover object-top lg:aspect-[4/5]"
+        />
+        <dl class="divide-y divide-line px-3 pt-2">
+          {
+            personalInfoItems.map(({ label, content, translate, icon: { Icon: InfoIcon } }) => (
+              <div class="flex items-center gap-3 py-3">
+                <InfoIcon class="size-4 shrink-0 fill-current text-muted" />
+                <div class="min-w-0">
+                  <dt class="kicker text-[0.65rem]!">{t(label)}</dt>
+                  <dd class="mt-0.5 text-sm font-medium">
+                    {translate ? t(content as TranslationKey) : content}
+                  </dd>
+                </div>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+      <a
+        href="/documents/cv-abner-gonzales.pdf"
+        download
+        class="btn btn-ghost mt-4 w-full"
+      >
+        <Icon name="download" />
+        {t("home.cv")}
+      </a>
+    </aside>
+
+    <div>
+      <p class="kicker">{t("about.profile")}</p>
+      <div class="mt-5 space-y-8">
+        {
+          whoIAmItems.map(({ title, description }, i) => (
+            <div class="reveal" style={`--i:${i + 3}`}>
+              <h2 class="text-2xl font-semibold sm:text-3xl">{t(title)}</h2>
+              <p class="prose-rich mt-3" set:html={t(description)} />
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-16">
+        <p class="kicker">{t("about.journey.kicker")}</p>
+        <h2 class="mt-3 text-3xl font-semibold sm:text-4xl">
+          {t("about.journey.title")}
+        </h2>
+        <ol class="mt-8 border-l border-line">
+          {
+            aboutTimelineItems.map(({ title, description }, i) => (
+              <li class="relative pb-10 pl-8 last:pb-0">
+                <span class="absolute top-1 -left-[7px] size-3.5 rounded-full border-2 border-bg bg-accent" />
+                <p class="font-mono text-xs text-muted">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 class="mt-1 text-xl font-semibold">{t(title)}</h3>
+                <p
+                  class="mt-2 leading-relaxed text-fg/75"
+                  set:html={t(description)}
+                />
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <blockquote
+        class="mt-16 border-l-2 border-accent pl-6 font-display text-2xl leading-snug font-medium sm:text-3xl"
+        set:html={t("about.closing")}
+      />
+    </div>
+  </section>
+
+  <NextPage page="about" />
+</Layout>
