@@ -7,6 +7,7 @@ import { experienceData } from "@/components/experience/data/experienceData";
 import { projectsData } from "@/components/projects/data/projectsData";
 import { techSkillsData } from "@/components/skills/data/techSkillsData";
 import Icon from "@/components/ui/Icon.astro";
+import CodeWindow from "@/components/home/CodeWindow.astro";
 import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
 import KotlinIcon from "@/components/icons/colored/KotlinIcon.astro";
 import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
@@ -79,7 +80,7 @@ const pageLabel = (key: RouteKey) =>
         {t("home.available")}
       </p>
 
-      <p class="reveal kicker mt-8" style="--i:1">{t("home.intro")} —</p>
+      <p class="reveal caret mt-8 font-mono text-sm text-muted" style="--i:1"><span class="text-accent">&gt;</span> {t("home.intro")}</p>
       <h1
         class="reveal mt-3 text-[clamp(3.2rem,11vw,7.5rem)] leading-[0.92] font-bold"
         style="--i:1"
@@ -210,6 +211,24 @@ const pageLabel = (key: RouteKey) =>
         ))
       }
     </a>
+  </section>
+
+  <!-- Perfil en código -->
+  <section class="container-page mt-24 grid items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+    <div class="reveal">
+      <p class="kicker">whoami</p>
+      <h2 class="mt-3 text-3xl font-semibold sm:text-5xl">{t("home.code.title")}</h2>
+      <p class="prose-rich mt-4 max-w-md">{t("home.code.text")}</p>
+      <div class="mt-6 flex flex-wrap gap-2 font-mono text-xs">
+        <span class="chip">design()</span>
+        <span class="chip">code()</span>
+        <span class="chip">test()</span>
+        <span class="chip">deploy()</span>
+      </div>
+    </div>
+    <div class="reveal" style="--i:1">
+      <CodeWindow />
+    </div>
   </section>
 
   <!-- Proyectos destacados -->

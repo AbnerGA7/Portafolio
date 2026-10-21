@@ -347,6 +347,8 @@ export const ui = {
     "notfound.title": "Page not found",
     "notfound.text": "The page you're looking for doesn't exist or was moved.",
     "notfound.back": "Back to home",
+    "home.code.title": "From idea to production",
+    "home.code.text": "I think in systems: clean data models, typed code, tests and deploys that don't break. This is how I work on every project.",
   },
   es: {
     "site.title": "Abner Gonzales",
@@ -677,5 +679,7 @@ export const ui = {
     "notfound.title": "Página no encontrada",
     "notfound.text": "La página que buscas no existe o fue movida.",
     "notfound.back": "Volver al inicio",
+    "home.code.title": "De la idea a producción",
+    "home.code.text": "Pienso en sistemas: modelos de datos claros, código tipado, pruebas y despliegues que no se rompen. Así trabajo en cada proyecto.",
   },
 } as const;
