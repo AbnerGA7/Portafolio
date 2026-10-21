@@ -1,0 +1,69 @@
+---
+import { Image } from "astro:assets";
+import { certificationsData } from "@/components/certifications/data/certificationsData";
+import Icon from "@/components/ui/Icon.astro";
+import NextPage from "@/components/ui/NextPage.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("certifications.title")}>
+  <PageHeader
+    page="certifications"
+    title={t("certifications.title")}
+    description={t("certifications.description")}
+  />
+
+  <section class="container-page">
+    <ul class="grid gap-5 md:grid-cols-2">
+      {
+        certificationsData.map(
+          ({ title, issuer, date, detail, image, landscape, documentUrl }, i) => (
+            <li class="reveal" style={`--i:${i + 2}`}>
+              <a
+                href={documentUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group card flex h-full flex-col overflow-hidden transition-colors hover:border-fg/25"
+              >
+                <div class="relative h-56 overflow-hidden border-b border-line bg-surface-2 sm:h-64">
+                  <Image
+                    src={image}
+                    alt=""
+                    widths={[480, 800]}
+                    sizes="(min-width: 768px) 540px, 100vw"
+                    class:list={[
+                      "size-full transition-transform duration-500 group-hover:scale-[1.03]",
+                      landscape ? "object-cover object-center" : "object-cover object-top",
+                    ]}
+                  />
+                  <span class="absolute right-3 bottom-3 grid size-10 place-items-center rounded-full bg-bg/85 backdrop-blur transition-colors group-hover:bg-accent group-hover:text-accent-ink">
+                    <Icon name="arrow-up-right" />
+                  </span>
+                </div>
+                <div class="flex flex-1 flex-col p-5 sm:p-6">
+                  <p class="kicker">{t(issuer)}</p>
+                  <h2 class="mt-3 text-xl leading-snug font-semibold">
+                    {t(title)}
+                  </h2>
+                  <p class="mt-1 font-mono text-xs text-accent">{t(date)}</p>
+                  <p class="mt-3 text-sm leading-relaxed text-muted">{t(detail)}</p>
+                  <span class="mt-auto flex items-center gap-1.5 pt-5 text-sm font-medium">
+                    <Icon name="file" />
+                    {t("certifications.button.view")}
+                  </span>
+                </div>
+              </a>
+            </li>
+          )
+        )
+      }
+    </ul>
+  </section>
+
+  <NextPage page="certifications" />
+</Layout>
