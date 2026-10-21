@@ -1,0 +1,34 @@
+---
+import { languages } from "@/i18n/ui";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getAlternatePath } from "@/lib/routes";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div
+  class="flex h-9 items-center rounded-full border border-line bg-surface p-0.5 font-mono text-[0.7rem]"
+  role="group"
+  aria-label={t("nav.lang")}
+>
+  {
+    languages.map(({ code, title }) => (
+      <a
+        href={getAlternatePath(Astro.url.pathname, code)}
+        hreflang={code}
+        lang={code}
+        title={title}
+        aria-current={code === lang ? "true" : undefined}
+        class:list={[
+          "grid h-full place-items-center rounded-full px-2.5 uppercase transition-colors",
+          code === lang
+            ? "bg-fg text-bg"
+            : "text-muted hover:text-fg",
+        ]}
+      >
+        {code}
+      </a>
+    ))
+  }
+</div>
