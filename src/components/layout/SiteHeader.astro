@@ -1,0 +1,176 @@
+---
+import LangSwitch from "./LangSwitch.astro";
+import ThemeSwitch from "./ThemeSwitch.astro";
+import Icon from "@/components/ui/Icon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getRoute, getRouteKeyFromPath, navLinks } from "@/lib/routes";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const active = getRouteKeyFromPath(Astro.url.pathname);
+
+// En escritorio "Inicio" lo cubre el logo y "Contacto" va como botón
+const desktopLinks = navLinks.filter(
+  ({ key }) => key !== "home" && key !== "contact"
+);
+---
+
+<header
+  class="sticky top-0 z-50 border-b border-line bg-bg/80 backdrop-blur-xl"
+>
+  <div
+    class="container-page flex h-(--header-h) items-center justify-between gap-4"
+  >
+    <a
+      href={getRoute("home", lang)}
+      class="group flex items-center gap-2.5"
+      aria-label={t("nav.brand")}
+    >
+      <span
+        class="grid size-9 place-items-center rounded-lg bg-accent font-mono text-sm font-bold text-accent-ink transition-transform group-hover:-rotate-6"
+      >
+        AG
+      </span>
+      <span class="hidden font-display text-[1.05rem] font-semibold sm:block">
+        Abner Gonzales
+      </span>
+    </a>
+
+    <nav class="hidden lg:block" aria-label="Principal">
+      <ul class="flex items-center gap-1">
+        {
+          desktopLinks.map(({ key, label }) => (
+            <li>
+              <a
+                href={getRoute(key, lang)}
+                aria-current={active === key ? "page" : undefined}
+                class:list={[
+                  "relative rounded-full px-3.5 py-2 text-sm transition-colors",
+                  active === key
+                    ? "bg-surface-2 text-fg"
+                    : "text-muted hover:text-fg",
+                ]}
+              >
+                {t(label)}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <LangSwitch />
+      <ThemeSwitch />
+      <a
+        href={getRoute("contact", lang)}
+        aria-current={active === "contact" ? "page" : undefined}
+        class="btn btn-primary hidden py-2 lg:inline-flex"
+      >
+        {t("nav.contact")}
+        <Icon name="arrow-up-right" class="size-3.5" />
+      </a>
+      <button
+        type="button"
+        data-menu-open
+        class="grid size-9 place-items-center rounded-full border border-line bg-surface lg:hidden"
+        aria-label={t("nav.menu.open")}
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <Icon name="menu" class="size-4" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<div
+  id="mobile-menu"
+  data-menu
+  class="fixed inset-0 z-[60] hidden flex-col bg-bg lg:hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label={t("nav.menu")}
+>
+  <div class="container-page flex h-(--header-h) items-center justify-between">
+    <span class="kicker">{t("nav.menu")}</span>
+    <button
+      type="button"
+      data-menu-close
+      class="grid size-9 place-items-center rounded-full border border-line bg-surface"
+      aria-label={t("nav.menu.close")}
+    >
+      <Icon name="close" class="size-4" />
+    </button>
+  </div>
+  <nav class="container-page flex-1 overflow-y-auto pb-10">
+    <ul class="border-t border-line">
+      {
+        navLinks.map(({ key, label }, index) => (
+          <li class="border-b border-line">
+            <a
+              href={getRoute(key, lang)}
+              aria-current={active === key ? "page" : undefined}
+              class="group flex items-baseline gap-4 py-4"
+            >
+              <span class="font-mono text-xs text-muted">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <span
+                class:list={[
+                  "font-display text-3xl font-semibold tracking-tight transition-colors",
+                  active === key ? "text-accent" : "group-hover:text-accent",
+                ]}
+              >
+                {t(label)}
+              </span>
+              <Icon
+                name="arrow-right"
+                class="ml-auto size-5 self-center text-muted transition-transform group-hover:translate-x-1"
+              />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>
+
+<script>
+  const setup = () => {
+    const menu = document.querySelector<HTMLElement>("[data-menu]");
+    const openBtn = document.querySelector<HTMLButtonElement>("[data-menu-open]");
+    const closeBtn = document.querySelector<HTMLButtonElement>("[data-menu-close]");
+    if (!menu || !openBtn || !closeBtn) return;
+
+    const toggle = (open: boolean) => {
+      menu.classList.toggle("hidden", !open);
+      menu.classList.toggle("flex", open);
+      openBtn.setAttribute("aria-expanded", String(open));
+      document.body.style.overflow = open ? "hidden" : "";
+      (open ? closeBtn : openBtn).focus();
+    };
+
+    openBtn.addEventListener("click", () => toggle(true));
+    closeBtn.addEventListener("click", () => toggle(false));
+    menu.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") toggle(false);
+    });
+    menu.querySelectorAll("a").forEach((link) =>
+      link.addEventListener("click", () => {
+        document.body.style.overflow = "";
+      })
+    );
+
+    document.querySelectorAll("[data-theme-toggle]").forEach((button) =>
+      button.addEventListener("click", () => {
+        const light = document.documentElement.classList.toggle("light");
+        try {
+          localStorage.setItem("theme", light ? "light" : "dark");
+        } catch {}
+      })
+    );
+  };
+
+  document.addEventListener("astro:page-load", setup);
+</script>
