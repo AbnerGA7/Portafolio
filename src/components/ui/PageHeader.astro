@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getRoute, navLinks, type RouteKey } from "@/lib/routes";
+
+interface Props {
+  page: RouteKey;
+  /** HTML del título; por defecto el nombre de la página */
+  title?: string;
+  description?: string;
+  /** Migas extra (p. ej. el nombre de un proyecto) */
+  trail?: { label: string; href?: string }[];
+}
+
+const { page, title, description, trail = [] } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const index = navLinks.findIndex(({ key }) => key === page);
+const link = navLinks[index];
+const crumbs = [
+  { label: t("nav.home"), href: getRoute("home", lang) },
+  {
+    label: t(link.label),
+    href: trail.length ? getRoute(page, lang) : undefined,
+  },
+  ...trail,
+];
+---
+
+<header class="container-page pt-10 pb-10 sm:pt-16 sm:pb-14">
+  <nav aria-label={t("page.breadcrumb")} class="reveal">
+    <ol class="flex flex-wrap items-center gap-2 font-mono text-xs text-muted">
+      {
+        crumbs.map(({ label, href }, i) => (
+          <li class="flex items-center gap-2">
+            {i > 0 && <span aria-hidden="true">/</span>}
+            {href ? (
+              <a href={href} class="transition-colors hover:text-fg">
+                {label}
+              </a>
+            ) : (
+              <span aria-current="page" class="text-fg">
+                {label}
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </nav>
+
+  <div class="mt-8 flex items-start gap-4 sm:gap-6">
+    <span
+      class="reveal mt-2 hidden font-mono text-sm text-accent sm:block"
+      style="--i:1"
+    >
+      {String(index + 1).padStart(2, "0")}
+    </span>
+    <div class="min-w-0">
+      <h1
+        class="reveal text-4xl leading-[1.05] font-semibold sm:text-6xl lg:text-7xl"
+        style="--i:1"
+        set:html={title ?? t(link.label)}
+      />
+      {
+        description && (
+          <p
+            class="reveal prose-rich mt-5 max-w-2xl"
+            style="--i:2"
+            set:html={description}
+          />
+        )
+      }
+      <slot />
+    </div>
+  </div>
+</header>
