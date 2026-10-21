@@ -1,0 +1,317 @@
+---
+import { projectsData } from "@/components/projects/data/projectsData";
+import { getLangFromUrl, useText } from "@/i18n/utils";
+import { getProjectRoute, routes } from "@/lib/routes";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useText(lang);
+
+const data = {
+  lang,
+  routes: Object.fromEntries(
+    Object.entries(routes).map(([key, paths]) => [key, paths[lang]])
+  ),
+  projects: projectsData.map((p) => ({
+    id: p.id,
+    title: t(p.title),
+    tagline: t(p.tagline),
+    href: getProjectRoute(p.id, lang),
+  })),
+};
+const es = lang === "es";
+---
+
+<button
+  type="button"
+  data-term-open
+  class="glass group fixed bottom-4 left-4 z-40 flex h-12 items-center gap-2 rounded-full px-4 font-mono text-sm transition-transform duration-300 hover:-translate-y-1 sm:bottom-6 sm:left-6"
+  aria-label={es ? "Abrir terminal" : "Open terminal"}
+>
+  <span class="text-accent">&gt;_</span>
+  <span class="hidden sm:inline">terminal</span>
+  <kbd class="hidden rounded-md border border-line px-1.5 text-[0.65rem] text-muted sm:inline">/</kbd>
+</button>
+
+<div
+  data-term
+  data-terminal={JSON.stringify(data)}
+  class="invisible fixed inset-0 z-[90] grid place-items-end bg-black/50 p-3 opacity-0 backdrop-blur-sm transition-[opacity,visibility] duration-300 data-[open=true]:visible data-[open=true]:opacity-100 sm:place-items-center sm:p-6"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Terminal"
+>
+  <div
+    class="glass flex h-[75vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl font-mono text-[0.8rem] sm:h-[520px] sm:text-sm"
+    style="background-color: color-mix(in oklab, var(--bg) 82%, transparent)"
+  >
+    <div class="flex items-center gap-2 border-b border-line px-4 py-3">
+      <button type="button" data-term-close class="size-3 rounded-full bg-[#ff5f57]" aria-label={es ? "Cerrar" : "Close"}></button>
+      <span class="size-3 rounded-full bg-[#febc2e]"></span>
+      <span class="size-3 rounded-full bg-[#28c840]"></span>
+      <span class="ml-3 text-xs text-muted">visitor@abnergonzales.dev: ~</span>
+      <button type="button" data-term-close class="ml-auto text-[0.7rem] text-muted hover:text-fg">{es ? "cerrar ✕" : "close ✕"}</button>
+    </div>
+    <div data-term-chips class="border-b border-line px-4 py-3">
+      <p class="mb-2 font-sans text-xs text-muted">
+        {es ? "👆 Toca una opción (no necesitas saber comandos):" : "👆 Tap an option (no commands needed):"}
+      </p>
+      <div data-term-chip-list class="flex flex-wrap gap-2"></div>
+    </div>
+    <div data-term-out class="flex-1 space-y-1 overflow-y-auto p-4 break-words"></div>
+    <form data-term-form class="flex items-center gap-2 border-t border-line px-4 py-3">
+      <span class="text-accent">❯</span>
+      <input
+        data-term-input
+        class="flex-1 bg-transparent text-fg caret-accent outline-none placeholder:text-muted/60"
+        autocomplete="off"
+        autocapitalize="off"
+        spellcheck="false"
+        placeholder={es ? "…o escribe un comando (prueba: help)" : "…or type a command (try: help)"}
+        aria-label={es ? "Comando" : "Command"}
+      />
+    </form>
+  </div>
+</div>
+
+<script>
+  type Data = {
+    lang: "es" | "en";
+    routes: Record<string, string>;
+    projects: { id: string; title: string; tagline: string; href: string }[];
+  };
+
+  const history: string[] = [];
+  let historyIndex = 0;
+
+  const setup = () => {
+    const term = document.querySelector<HTMLElement>("[data-term]");
+    if (!term) return;
+    const data: Data = JSON.parse(term.dataset.terminal ?? "{}");
+    const es = data.lang === "es";
+    const out = term.querySelector<HTMLElement>("[data-term-out]")!;
+    const form = term.querySelector<HTMLFormElement>("[data-term-form]")!;
+    const input = term.querySelector<HTMLInputElement>("[data-term-input]")!;
+    const chipList = term.querySelector<HTMLElement>("[data-term-chip-list]")!;
+
+    // Alias de páginas en ambos idiomas
+    const pages: Record<string, string> = {
+      inicio: "home", home: "home", "~": "home",
+      proyectos: "projects", projects: "projects",
+      experiencia: "experience", experience: "experience",
+      habilidades: "skills", skills: "skills", stack: "skills",
+      certificaciones: "certifications", certifications: "certifications",
+      "sobre-mi": "about", about: "about",
+      contacto: "contact", contact: "contact",
+    };
+
+    const esc = (s: string) =>
+      s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    const print = (html: string, cls = "text-fg/85") => {
+      const line = document.createElement("div");
+      line.className = cls;
+      line.innerHTML = html;
+      out.appendChild(line);
+      out.scrollTop = out.scrollHeight;
+    };
+
+    const link = (label: string, cmd: string) =>
+      `<button type="button" data-run="${esc(cmd)}" class="text-accent underline decoration-dotted underline-offset-4 hover:text-accent-2">${esc(label)}</button>`;
+
+    const go = (href: string, label: string) => {
+      print(`<span class="text-emerald-400">→</span> ${es ? "abriendo" : "opening"} <span class="text-accent">${esc(label)}</span>…`);
+      setTimeout(async () => {
+        close();
+        const { navigate } = await import("astro:transitions/client");
+        navigate(href);
+      }, 450);
+    };
+
+    const commands: Record<string, { help: string; run: (args: string[]) => void }> = {
+      help: {
+        help: es ? "muestra los comandos" : "list commands",
+        run: () => {
+          print(es ? "Comandos (también puedes tocarlos):" : "Commands (you can also tap them):", "text-muted");
+          for (const [name, { help }] of Object.entries(commands)) {
+            print(`  <span class="inline-block w-20">${link(name, name)}</span><span class="text-muted">${help}</span>`);
+          }
+        },
+      },
+      whoami: {
+        help: es ? "quién soy" : "who I am",
+        run: () => {
+          print('<span class="text-accent">Abner Gonzales</span> — Full Stack Developer · Lima, PE');
+          print(es
+            ? "React, React Native, Firebase y Android (Kotlin). Apps reales para negocios reales."
+            : "React, React Native, Firebase and Android (Kotlin). Real apps for real businesses.", "text-muted");
+        },
+      },
+      ls: {
+        help: es ? "lista páginas o proyectos" : "list pages or projects",
+        run: ([arg]) => {
+          if (arg && pages[arg] === "projects") {
+            print(es ? "Mis proyectos (toca uno para abrirlo):" : "My projects (tap one to open it):", "text-muted");
+            data.projects.forEach((p) =>
+              print(`  ${link(p.title, `open ${p.id}`)} <span class="text-muted">— ${esc(p.tagline)}</span>`)
+            );
+            return;
+          }
+          print(es ? "Páginas (toca una para ir):" : "Pages (tap one to go):", "text-muted");
+          print(Object.keys(data.routes).map((k) => link(`${k}/`, `cd ${k}`)).join("&nbsp;&nbsp;"));
+        },
+      },
+      cd: {
+        help: es ? "ir a una página (cd contacto)" : "go to a page (cd contact)",
+        run: ([arg]) => {
+          const key = pages[arg ?? "~"];
+          if (!key) return print(`cd: ${esc(arg)}: ${es ? "no existe. prueba" : "not found. try"} ${link("ls", "ls")}`, "text-red-400");
+          go(data.routes[key], arg ?? "~");
+        },
+      },
+      open: {
+        help: es ? "abre un proyecto (open minka)" : "open a project (open minka)",
+        run: ([arg]) => {
+          const p = data.projects.find((x) => x.id === arg || x.id.startsWith(arg ?? "#"));
+          if (!p) return print(`open: ${esc(arg ?? "")}: ${es ? "no encontrado. mira" : "not found. see"} ${link(es ? "ls proyectos" : "ls projects", es ? "ls proyectos" : "ls projects")}`, "text-red-400");
+          go(p.href, p.title);
+        },
+      },
+      theme: {
+        help: es ? "cambia claro/oscuro" : "toggle light/dark",
+        run: () => {
+          const light = document.documentElement.classList.toggle("light");
+          try { localStorage.setItem("theme", light ? "light" : "dark"); } catch {}
+          print(`theme → <span class="text-accent">${light ? "light" : "dark"}</span>`);
+        },
+      },
+      cv: {
+        help: es ? "descarga mi CV" : "download my CV",
+        run: () => {
+          print(`<span class="text-emerald-400">↓</span> cv-abner-gonzales.pdf`);
+          window.open("/documents/cv-abner-gonzales.pdf", "_blank");
+        },
+      },
+      contact: {
+        help: es ? "cómo contactarme" : "how to reach me",
+        run: () => {
+          print('email  <a class="text-accent underline" href="mailto:abner.gonzales.work@gmail.com">abner.gonzales.work@gmail.com</a>');
+          print('github <a class="text-accent underline" target="_blank" rel="noopener noreferrer" href="https://github.com/AbnerGA7">github.com/AbnerGA7</a>');
+        },
+      },
+      clear: { help: es ? "limpia la pantalla" : "clear the screen", run: () => (out.innerHTML = "") },
+      exit: { help: es ? "cierra la terminal" : "close the terminal", run: () => close() },
+    };
+
+    const run = (raw: string) => {
+      const line = raw.trim();
+      print(`<span class="text-accent">❯</span> ${esc(line)}`, "text-fg mt-2");
+      if (!line) return;
+      history.push(line);
+      historyIndex = history.length;
+      const [name, ...args] = line.split(/\s+/);
+      const cmd = commands[name.toLowerCase()];
+      if (cmd) cmd.run(args.map((a) => a.toLowerCase()));
+      else print(`${esc(name)}: ${es ? "comando no encontrado. toca" : "command not found. tap"} ${link("help", "help")}`, "text-red-400");
+    };
+
+    // Escribe el comando letra por letra para que se vea qué se ejecuta
+    let typing = false;
+    const typeAndRun = async (cmd: string) => {
+      if (typing) return;
+      typing = true;
+      input.value = "";
+      for (const ch of cmd) {
+        input.value += ch;
+        await new Promise((r) => setTimeout(r, 25));
+      }
+      run(cmd);
+      input.value = "";
+      typing = false;
+      input.focus();
+    };
+
+    const open = () => {
+      term.dataset.open = "true";
+      if (!out.childElementCount) {
+        print(es ? "Hola 👋 Esta terminal te lleva por mi portafolio." : "Hi 👋 This terminal walks you through my portfolio.", "text-fg");
+        print(es
+          ? "Toca una opción de arriba o escribe un comando y presiona Enter."
+          : "Tap an option above or type a command and press Enter.", "text-muted");
+      }
+      if (matchMedia("(pointer: fine)").matches) setTimeout(() => input.focus(), 50);
+    };
+    const close = () => {
+      term.dataset.open = "false";
+    };
+
+    // Opciones con nombre claro para quien no conoce la terminal
+    const options: [string, string][] = es
+      ? [["🙋 Quién soy", "whoami"], ["📁 Ver proyectos", "ls proyectos"], ["🧭 Ver páginas", "ls"], ["✉️ Contactarme", "contact"], ["📄 Descargar CV", "cv"], ["🌗 Cambiar tema", "theme"], ["❓ Ayuda", "help"]]
+      : [["🙋 Who I am", "whoami"], ["📁 See projects", "ls projects"], ["🧭 See pages", "ls"], ["✉️ Contact me", "contact"], ["📄 Download CV", "cv"], ["🌗 Toggle theme", "theme"], ["❓ Help", "help"]];
+    chipList.innerHTML = "";
+    options.forEach(([label, cmd]) => {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip font-sans text-xs transition-transform hover:-translate-y-0.5 hover:text-accent";
+      b.textContent = label;
+      b.title = cmd;
+      b.addEventListener("click", () => typeAndRun(cmd));
+      chipList.appendChild(b);
+    });
+
+    // Los enlaces dentro de la salida también ejecutan comandos
+    out.addEventListener("click", (e) => {
+      const btn = (e.target as Element).closest<HTMLElement>("[data-run]");
+      if (btn) typeAndRun(btn.dataset.run!);
+    });
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      run(input.value);
+      input.value = "";
+    });
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowUp" && history.length) {
+        historyIndex = Math.max(0, historyIndex - 1);
+        input.value = history[historyIndex];
+        e.preventDefault();
+      } else if (e.key === "ArrowDown") {
+        historyIndex = Math.min(history.length, historyIndex + 1);
+        input.value = history[historyIndex] ?? "";
+      } else if (e.key === "Tab") {
+        e.preventDefault();
+        const [name, arg] = input.value.split(/\s+/);
+        if (arg === undefined) {
+          const match = Object.keys(commands).find((c) => c.startsWith(name));
+          if (match) input.value = match + " ";
+        } else {
+          const pool = name === "open" ? data.projects.map((p) => p.id) : Object.keys(pages);
+          const match = pool.find((x) => x.startsWith(arg));
+          if (match) input.value = `${name} ${match}`;
+        }
+      }
+    });
+
+    term.addEventListener("click", (e) => {
+      if (e.target === term) close();
+    });
+    term.querySelectorAll("[data-term-close]").forEach((b) => b.addEventListener("click", close));
+    document.querySelectorAll("[data-term-open], [data-term-trigger]").forEach((el) => el.addEventListener("click", open));
+
+    (window as any).__termOpen = open;
+    (window as any).__termClose = close;
+  };
+
+  // Atajos de teclado globales (una sola vez)
+  document.addEventListener("keydown", (e) => {
+    const typingField = (e.target as HTMLElement).closest("input, textarea, [contenteditable]");
+    if (e.key === "Escape") (window as any).__termClose?.();
+    if ((e.key === "/" && !typingField) || ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k")) {
+      e.preventDefault();
+      (window as any).__termOpen?.();
+    }
+  });
+
+  document.addEventListener("astro:page-load", setup);
+</script>
