@@ -1,0 +1,76 @@
+---
+import { experienceData } from "@/components/experience/data/experienceData";
+import Icon from "@/components/ui/Icon.astro";
+import NextPage from "@/components/ui/NextPage.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout title={t("experience.title")}>
+  <PageHeader
+    page="experience"
+    title={t("experience.title")}
+    description={t("experience.description")}
+  />
+
+  <section class="container-page">
+    <ol class="relative">
+      {
+        experienceData.map(
+          ({ title, company, date, description, stack, Icon: RoleIcon, documentUrl }, i) => (
+            <li
+              class="reveal relative grid gap-4 border-t border-line py-10 md:grid-cols-[220px_1fr] md:gap-10"
+              style={`--i:${i + 2}`}
+            >
+              <div class="flex items-start gap-3 md:flex-col md:gap-4">
+                <span class="grid size-11 shrink-0 place-items-center rounded-xl border border-line bg-surface text-accent">
+                  <RoleIcon class="size-5 fill-current" />
+                </span>
+                <div>
+                  <p class="font-mono text-xs leading-relaxed text-muted">
+                    {t(date)}
+                  </p>
+                  <p class="mt-1 text-sm font-medium">{t(company)}</p>
+                </div>
+              </div>
+
+              <div class="min-w-0">
+                <h2 class="text-2xl font-semibold sm:text-3xl">{t(title)}</h2>
+                <p
+                  class="prose-rich mt-4 text-base! leading-relaxed"
+                  set:html={t(description)}
+                />
+                <div class="mt-6 flex flex-wrap items-center gap-2">
+                  <span class="kicker mr-1">{t("experience.stack")}</span>
+                  {stack.map(({ title: tech, Icon: TechIcon }) => (
+                    <span class="chip">
+                      <TechIcon class="size-3.5" />
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                {documentUrl && (
+                  <a
+                    href={documentUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-ghost mt-6"
+                  >
+                    <Icon name="file" />
+                    {t("experience.button.certificate")}
+                  </a>
+                )}
+              </div>
+            </li>
+          )
+        )
+      }
+    </ol>
+  </section>
+
+  <NextPage page="experience" />
+</Layout>
