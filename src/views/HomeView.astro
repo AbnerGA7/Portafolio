@@ -1,0 +1,268 @@
+---
+import { Image } from "astro:assets";
+import profile from "@/assets/profile.jpg";
+import ProjectCard from "@/components/cards/ProjectCard.astro";
+import { certificationsData } from "@/components/certifications/data/certificationsData";
+import { experienceData } from "@/components/experience/data/experienceData";
+import { projectsData } from "@/components/projects/data/projectsData";
+import { techSkillsData } from "@/components/skills/data/techSkillsData";
+import Icon from "@/components/ui/Icon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import { featuredProjects } from "@/lib/projects";
+import { getRoute, navLinks, type RouteKey } from "@/lib/routes";
+import type { TranslationKey } from "@/i18n/types";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const roles = t("home.roles");
+
+const techCount = new Set(
+  Object.values(techSkillsData).flatMap((items) => items.map(({ name }) => name))
+).size;
+
+const stats = [
+  { value: projectsData.length, label: t("home.stats.projects") },
+  {
+    value: projectsData.filter(({ status }) => status === "production").length,
+    label: t("home.stats.production"),
+  },
+  { value: certificationsData.length, label: t("home.stats.certs") },
+  { value: 2023, label: t("home.stats.since") },
+];
+
+const explore: { key: RouteKey; text: TranslationKey; meta: string }[] = [
+  {
+    key: "experience",
+    text: "home.explore.experience",
+    meta: `${experienceData.length} roles`,
+  },
+  {
+    key: "skills",
+    text: "home.explore.skills",
+    meta: `${techCount} ${t("skills.count")}`,
+  },
+  {
+    key: "certifications",
+    text: "home.explore.certifications",
+    meta: `${certificationsData.length} PDF`,
+  },
+  { key: "about", text: "home.explore.about", meta: "Lima, PE" },
+];
+
+const pageNumber = (key: RouteKey) =>
+  String(navLinks.findIndex((link) => link.key === key) + 1).padStart(2, "0");
+const pageLabel = (key: RouteKey) =>
+  t(navLinks.find((link) => link.key === key)!.label);
+---
+
+<Layout>
+  <!-- Hero -->
+  <section class="container-page grid items-center gap-12 pt-12 pb-16 sm:pt-20 lg:grid-cols-[1.3fr_0.7fr] lg:gap-16">
+    <div>
+      <p
+        class="reveal inline-flex items-center gap-2.5 rounded-full border border-line bg-surface px-3 py-1.5 text-xs font-medium"
+      >
+        <span class="pulse-dot size-2 rounded-full bg-emerald-400"></span>
+        {t("home.available")}
+      </p>
+
+      <p class="reveal kicker mt-8" style="--i:1">{t("home.intro")} —</p>
+      <h1
+        class="reveal mt-3 text-[clamp(3.2rem,11vw,7.5rem)] leading-[0.92] font-bold"
+        style="--i:1"
+      >
+        Abner<br /><span class="text-muted">Gonzales</span><span
+          class="text-accent">.</span
+        >
+      </h1>
+
+      <p
+        class="reveal mt-6 flex items-center gap-3 font-mono text-sm sm:text-base"
+        style="--i:2"
+      >
+        <span class="h-px w-8 bg-accent" aria-hidden="true"></span>
+        <span
+          data-roles={JSON.stringify(roles)}
+          class="inline-block text-accent transition-[opacity,transform] duration-300"
+          aria-live="polite">{roles[0]}</span
+        >
+      </p>
+
+      <p
+        class="reveal prose-rich mt-6 max-w-xl [&_br]:hidden sm:[&_br]:block"
+        style="--i:3"
+        set:html={t("home.description")}
+      />
+
+      <div class="reveal mt-8 flex flex-wrap gap-3" style="--i:4">
+        <a href={getRoute("projects", lang)} class="btn btn-primary">
+          {t("home.cta")}
+          <Icon name="arrow-right" />
+        </a>
+        <a
+          href="/documents/cv-abner-gonzales.pdf"
+          download
+          class="btn btn-ghost"
+        >
+          <Icon name="download" />
+          {t("home.cv")}
+        </a>
+      </div>
+    </div>
+
+    <div class="reveal relative mx-auto w-full max-w-sm" style="--i:2">
+      <div
+        class="absolute -inset-3 -z-10 rotate-3 rounded-[2rem] border border-dashed border-line"
+        aria-hidden="true"
+      >
+      </div>
+      <div class="card overflow-hidden p-2.5">
+        <Image
+          src={profile}
+          alt={t("home.photo-alt")}
+          widths={[320, 480, 640]}
+          sizes="(min-width: 1024px) 380px, 80vw"
+          loading="eager"
+          class="aspect-[4/5] w-full rounded-xl object-cover"
+        />
+        <div class="flex items-center justify-between px-2 pt-3 pb-1">
+          <p class="flex items-center gap-1.5 font-mono text-xs text-muted">
+            <Icon name="pin" class="size-3.5" />
+            {t("home.location")}
+          </p>
+          <p class="font-mono text-xs text-accent">Full Stack</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cifras -->
+  <section class="container-page">
+    <dl
+      class="grid grid-cols-2 overflow-hidden rounded-2xl border border-line bg-line gap-px md:grid-cols-4"
+    >
+      {
+        stats.map(({ value, label }) => (
+          <div class="bg-surface p-5 sm:p-7">
+            <dt class="kicker">{label}</dt>
+            <dd class="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+              {value}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <!-- Proyectos destacados -->
+  <section class="container-page mt-24">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <p class="kicker">{pageNumber("projects")} / {t("home.featured.kicker")}</p>
+        <h2 class="mt-3 text-3xl font-semibold sm:text-5xl">
+          {t("home.featured.title")}
+        </h2>
+      </div>
+      <a
+        href={getRoute("projects", lang)}
+        class="group flex items-center gap-1.5 text-sm font-medium"
+      >
+        <span class="link-underline">{t("home.featured.all")}</span>
+        <Icon
+          name="arrow-right"
+          class="size-4 transition-transform group-hover:translate-x-1"
+        />
+      </a>
+    </div>
+    <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        featuredProjects.map((project, i) => (
+          <div class={i === 2 ? "sm:col-span-2 lg:col-span-1" : ""}>
+            <ProjectCard project={project} />
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Explorar el resto de páginas -->
+  <section class="container-page mt-24">
+    <p class="kicker">{t("home.explore.kicker")}</p>
+    <h2 class="mt-3 text-3xl font-semibold sm:text-5xl">
+      {t("home.explore.title")}
+    </h2>
+    <div class="mt-8 grid gap-4 sm:grid-cols-2">
+      {
+        explore.map(({ key, text, meta }) => (
+          <a
+            href={getRoute(key, lang)}
+            class="group card flex flex-col justify-between gap-10 p-6 transition-colors hover:border-accent sm:p-8"
+          >
+            <div class="flex items-start justify-between gap-4">
+              <span class="font-mono text-sm text-accent">{pageNumber(key)}</span>
+              <span class="grid size-10 place-items-center rounded-full border border-line transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-accent-ink">
+                <Icon name="arrow-up-right" class="size-4" />
+              </span>
+            </div>
+            <div>
+              <h3 class="text-2xl font-semibold sm:text-3xl">{pageLabel(key)}</h3>
+              <p class="mt-2 text-muted">{t(text)}</p>
+              <p class="chip mt-4">{meta}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Llamado a la acción -->
+  <section class="container-page mt-24">
+    <div
+      class="relative overflow-hidden rounded-3xl bg-accent px-6 py-12 text-accent-ink sm:px-12 sm:py-16"
+    >
+      <p
+        class="pointer-events-none absolute -right-4 -bottom-10 font-display text-[10rem] leading-none font-bold opacity-10 select-none sm:text-[14rem]"
+        aria-hidden="true"
+      >
+        AG
+      </p>
+      <h2 class="max-w-xl text-4xl font-semibold sm:text-6xl">
+        {t("home.cta.title")}
+      </h2>
+      <p class="mt-4 max-w-md text-lg opacity-80">{t("home.cta.text")}</p>
+      <a
+        href={getRoute("contact", lang)}
+        class="btn mt-8 bg-accent-ink text-accent hover:opacity-90"
+      >
+        {t("home.cta.button")}
+        <Icon name="arrow-right" />
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Rota los roles debajo del nombre
+  let timer: ReturnType<typeof setInterval> | undefined;
+
+  document.addEventListener("astro:page-load", () => {
+    clearInterval(timer);
+    const el = document.querySelector<HTMLElement>("[data-roles]");
+    if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const roles: string[] = JSON.parse(el.dataset.roles ?? "[]");
+    let index = 0;
+    timer = setInterval(() => {
+      if (!el.isConnected) return clearInterval(timer);
+      el.style.opacity = "0";
+      el.style.transform = "translateY(6px)";
+      setTimeout(() => {
+        index = (index + 1) % roles.length;
+        el.textContent = roles[index];
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      }, 300);
+    }, 2600);
+  });
+</script>
