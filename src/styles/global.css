@@ -271,6 +271,10 @@
     transform: translateX(120%);
   }
 
+  .btn-lg {
+    @apply h-13 px-6 text-[0.95rem];
+  }
+
   .btn-primary {
     background: linear-gradient(135deg, var(--accent), var(--accent-2));
     color: var(--accent-ink);
@@ -507,4 +511,48 @@
   50% {
     opacity: 0;
   }
+}
+
+/* Tooltip para botones de solo ícono */
+[data-tip] {
+  position: relative;
+}
+
+[data-tip]::before {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  translate: -50% 4px;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  background: var(--fg);
+  color: var(--bg);
+  font: 500 0.7rem var(--font-sans);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s,
+    translate 0.2s;
+}
+
+[data-tip]:hover::before,
+[data-tip]:focus-visible::before {
+  opacity: 1;
+  translate: -50% 0;
+}
+
+/* Header más compacto y con sombra al hacer scroll */
+[data-header] > div {
+  transition:
+    height 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+[data-header][data-scrolled] > div {
+  height: 3.5rem;
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-hi),
+    0 20px 50px -20px rgb(0 0 0 / 0.8);
 }
