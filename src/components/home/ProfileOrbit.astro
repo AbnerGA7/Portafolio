@@ -37,7 +37,7 @@ const inner = [TailwindCSSIcon, JavaScriptIcon, SupabaseIcon];
   </div>
 
   <!-- Órbita interior, gira al revés -->
-  <div class="orbit absolute inset-[17%] rounded-full border border-fg/12" style="--speed: 32s; --dir: reverse; --dir-inv: normal" aria-hidden="true">
+  <div class="orbit absolute inset-[13%] rounded-full border border-fg/12" style="--speed: 32s; --dir: reverse; --dir-inv: normal" aria-hidden="true">
     {
       inner.map((OrbitIcon, i) => (
         <span class="orbit-item" style={`--a:${(360 / inner.length) * i + 30}deg`}>
@@ -50,14 +50,14 @@ const inner = [TailwindCSSIcon, JavaScriptIcon, SupabaseIcon];
   </div>
 
   <!-- Foto con anillo de gradiente girando -->
-  <div class="absolute inset-[27%]">
+  <div class="absolute inset-[21%]">
     <div class="avatar-ring size-full rounded-full p-[3px]">
       <div class="size-full overflow-hidden rounded-full bg-bg p-1.5">
         <Image
           src={profile}
           alt={t("home.photo-alt")}
           widths={[240, 400, 560]}
-          sizes="(min-width: 1024px) 220px, 50vw"
+          sizes="(min-width: 1024px) 300px, 60vw"
           loading="eager"
           class="size-full rounded-full object-cover object-[center_22%] transition-transform duration-700 hover:scale-110"
         />
@@ -80,7 +80,7 @@ const inner = [TailwindCSSIcon, JavaScriptIcon, SupabaseIcon];
 
 <style>
   .profile-orbit {
-    width: min(440px, 88vw);
+    width: min(520px, 92vw);
     aspect-ratio: 1;
   }
 
