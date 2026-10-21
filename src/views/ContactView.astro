@@ -1,0 +1,61 @@
+---
+import ContactForm from "@/components/contact/ContactForm";
+import Icon from "@/components/ui/Icon.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { contactMeData } from "@/data/contactMeData";
+import { getContactFormTranslations, getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const formTranslations = getContactFormTranslations(lang);
+---
+
+<Layout title={t("nav.contact")}>
+  <PageHeader
+    page="contact"
+    title={t("contact.title")}
+    description={t("contact.subtitle")}
+  />
+
+  <section class="container-page grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
+    <div class="reveal" style="--i:2">
+      <p class="kicker">{t("contact.channels.title")}</p>
+      <ul class="mt-4 divide-y divide-line border-y border-line">
+        {
+          contactMeData.map(({ title, description, url, Icon: ChannelIcon }) => (
+            <li>
+              <a
+                href={t(url)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-center gap-4 py-4"
+              >
+                <span class="grid size-11 shrink-0 place-items-center rounded-xl border border-line bg-surface transition-colors group-hover:border-accent group-hover:text-accent">
+                  <ChannelIcon class="size-5 fill-current" />
+                </span>
+                <span class="min-w-0 flex-1">
+                  <span class="block font-medium">{t(title)}</span>
+                  <span class="block truncate text-sm text-muted">
+                    {t(description)}
+                  </span>
+                </span>
+                <Icon
+                  name="arrow-up-right"
+                  class="size-4 shrink-0 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+                />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="reveal card p-5 sm:p-8" style="--i:3">
+      <h2 class="text-2xl font-semibold">{t("contact.form.title")}</h2>
+      <div class="mt-6">
+        <ContactForm translations={formTranslations} client:visible />
+      </div>
+    </div>
+  </section>
+</Layout>
