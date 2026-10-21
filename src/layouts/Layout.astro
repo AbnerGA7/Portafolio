@@ -3,6 +3,7 @@ import "@/styles/global.css";
 import { ClientRouter } from "astro:transitions";
 import SiteFooter from "@/components/layout/SiteFooter.astro";
 import SiteHeader from "@/components/layout/SiteHeader.astro";
+import BootLoader from "@/components/layout/BootLoader.astro";
 import { languages } from "@/i18n/ui";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import { getAlternatePath } from "@/lib/routes";
@@ -120,6 +121,7 @@ const personSchema = {
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <BootLoader />
     <div class="aurora" aria-hidden="true" transition:persist="aurora">
       <span class="grid"></span>
       <span class="blob b1"></span>
