@@ -1,0 +1,107 @@
+---
+import ProjectCard from "@/components/cards/ProjectCard.astro";
+import {
+  projectCategories,
+  projectsData,
+} from "@/components/projects/data/projectsData";
+import NextPage from "@/components/ui/NextPage.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import { categoryKey } from "@/lib/projects";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const filters = [
+  { value: "all", label: t("projects.filter.all"), count: projectsData.length },
+  ...projectCategories.map((category) => ({
+    value: category,
+    label: t(categoryKey(category)),
+    count: projectsData.filter((p) => p.category === category).length,
+  })),
+];
+---
+
+<Layout title={t("nav.projects")} description={t("meta.og.description")}>
+  <PageHeader page="projects" description={t("projects.description")} />
+
+  <section class="container-page">
+    <div
+      class="reveal -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
+      role="toolbar"
+      aria-label={t("projects.filter.label")}
+      style="--i:3"
+    >
+      {
+        filters.map(({ value, label, count }) => (
+          <button
+            type="button"
+            data-filter={value}
+            aria-pressed={value === "all" ? "true" : "false"}
+            class="flex shrink-0 items-center gap-2 rounded-full border border-line bg-surface px-4 py-2 text-sm text-muted transition-colors hover:text-fg aria-pressed:border-fg aria-pressed:bg-fg aria-pressed:text-bg"
+          >
+            {label}
+            <span class="font-mono text-[0.7rem] opacity-70">{count}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    <ul class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-project-grid>
+      {
+        projectsData.map((project, i) => (
+          <li
+            data-category={project.category}
+            class="reveal"
+            style={`--i:${Math.min(i, 6)}`}
+          >
+            <ProjectCard project={project} eager={i < 3} />
+          </li>
+        ))
+      }
+    </ul>
+    <p data-empty class="hidden py-16 text-center text-muted">
+      {t("projects.empty")}
+    </p>
+  </section>
+
+  <NextPage page="projects" />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const grid = document.querySelector("[data-project-grid]");
+    if (!grid) return;
+    const buttons = document.querySelectorAll<HTMLButtonElement>("[data-filter]");
+    const items = grid.querySelectorAll<HTMLElement>("[data-category]");
+    const empty = document.querySelector("[data-empty]");
+
+    const apply = (filter: string) => {
+      let visible = 0;
+      items.forEach((item) => {
+        const show = filter === "all" || item.dataset.category === filter;
+        item.hidden = !show;
+        if (show) visible++;
+      });
+      buttons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b.dataset.filter === filter))
+      );
+      empty?.classList.toggle("hidden", visible > 0);
+
+      const url = new URL(location.href);
+      if (filter === "all") url.searchParams.delete("cat");
+      else url.searchParams.set("cat", filter);
+      history.replaceState(history.state, "", url);
+    };
+
+    buttons.forEach((button) =>
+      button.addEventListener("click", () => apply(button.dataset.filter!))
+    );
+
+    const initial = new URL(location.href).searchParams.get("cat");
+    if (initial && [...buttons].some((b) => b.dataset.filter === initial)) {
+      apply(initial);
+    }
+  });
+</script>
