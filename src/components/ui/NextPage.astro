@@ -1,0 +1,37 @@
+---
+import Icon from "./Icon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { getNextLink, getRoute, navLinks, type RouteKey } from "@/lib/routes";
+
+interface Props {
+  page: RouteKey;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const next = getNextLink(Astro.props.page);
+const number = navLinks.indexOf(next) + 1;
+---
+
+<div class="container-page mt-24">
+  <a
+    href={getRoute(next.key, lang)}
+    class="group card flex items-center justify-between gap-6 p-6 transition-colors hover:border-accent sm:p-10"
+  >
+    <div>
+      <p class="kicker">
+        {t("page.next")} · {String(number).padStart(2, "0")}
+      </p>
+      <p
+        class="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-5xl"
+      >
+        {t(next.label)}
+      </p>
+    </div>
+    <span
+      class="grid size-12 shrink-0 place-items-center rounded-full bg-accent text-accent-ink transition-transform group-hover:translate-x-1 sm:size-16"
+    >
+      <Icon name="arrow-right" class="size-5 sm:size-6" />
+    </span>
+  </a>
+</div>
