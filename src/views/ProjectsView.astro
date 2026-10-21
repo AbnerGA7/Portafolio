@@ -27,6 +27,17 @@ const filters = [
   <PageHeader page="projects" description={t("projects.description")} />
 
   <section class="container-page">
+    <label class="reveal glass mb-4 flex items-center gap-3 rounded-2xl px-4 py-3 focus-within:ring-2 focus-within:ring-accent/50" style="--i:2">
+      <span class="font-mono text-accent">⌕</span>
+      <input
+        type="search"
+        data-search
+        placeholder={lang === "es" ? "Busca por nombre o tecnología: React, Kotlin, POS…" : "Search by name or tech: React, Kotlin, POS…"}
+        class="flex-1 bg-transparent text-sm outline-none placeholder:text-muted/70"
+        aria-label={lang === "es" ? "Buscar proyectos" : "Search projects"}
+      />
+      <kbd class="hidden rounded-md border border-line px-1.5 font-mono text-[0.65rem] text-muted sm:inline">{lang === "es" ? "escribe" : "type"}</kbd>
+    </label>
     <div
       class="reveal -mx-4 flex gap-2 overflow-x-auto px-4 pb-2 sm:mx-0 sm:flex-wrap sm:px-0"
       role="toolbar"
@@ -53,6 +64,7 @@ const filters = [
         projectsData.map((project, i) => (
           <li
             data-category={project.category}
+            data-text={[t(project.title), t(project.tagline), ...project.stack.map(({ title }) => title)].join(" ").toLowerCase()}
             class="reveal"
             style={`--i:${Math.min(i, 6)}`}
           >
@@ -77,10 +89,17 @@ const filters = [
     const items = grid.querySelectorAll<HTMLElement>("[data-category]");
     const empty = document.querySelector("[data-empty]");
 
+    const search = document.querySelector<HTMLInputElement>("[data-search]");
+    let current = "all";
+
     const apply = (filter: string) => {
+      current = filter;
+      const query = (search?.value ?? "").trim().toLowerCase();
       let visible = 0;
       items.forEach((item) => {
-        const show = filter === "all" || item.dataset.category === filter;
+        const show =
+          (filter === "all" || item.dataset.category === filter) &&
+          (!query || (item.dataset.text ?? "").includes(query));
         item.hidden = !show;
         if (show) visible++;
       });
@@ -98,6 +117,7 @@ const filters = [
     buttons.forEach((button) =>
       button.addEventListener("click", () => apply(button.dataset.filter!))
     );
+    search?.addEventListener("input", () => apply(current));
 
     const initial = new URL(location.href).searchParams.get("cat");
     if (initial && [...buttons].some((b) => b.dataset.filter === initial)) {
