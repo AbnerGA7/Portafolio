@@ -15,43 +15,117 @@
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-surface-solid: var(--surface-solid);
   --color-line: var(--line);
   --color-fg: var(--fg);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
   --color-accent-ink: var(--accent-ink);
   --color-accent-soft: var(--accent-soft);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-morph: morph 14s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-shimmer: shimmer 6s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0) rotate(var(--r, 0deg));
+    }
+    50% {
+      transform: translateY(-12px) rotate(var(--r, 0deg));
+    }
+  }
+
+  @keyframes morph {
+    0%,
+    100% {
+      border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+      transform: rotate(0deg) scale(1);
+    }
+    33% {
+      border-radius: 70% 30% 46% 54% / 30% 39% 61% 70%;
+      transform: rotate(60deg) scale(1.05);
+    }
+    66% {
+      border-radius: 32% 68% 38% 62% / 58% 32% 68% 42%;
+      transform: rotate(-30deg) scale(0.97);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes shimmer {
+    to {
+      background-position: 200% center;
+    }
+  }
+}
+
+/* Vidrio líquido: desenfoca y satura lo que hay detrás, con brillo en el borde superior */
+@utility glass {
+  background: linear-gradient(140deg, var(--glass-from), var(--glass-to));
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  backdrop-filter: blur(22px) saturate(180%);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 1px 0 0 var(--glass-hi),
+    inset 0 -1px 0 0 rgb(255 255 255 / 0.04),
+    var(--glass-shadow);
 }
 
 @layer base {
-  /* Oscuro por defecto: tinta casi negra con acento lima */
+  /* Oscuro: el azul marino y el violeta de siempre */
   :root {
-    --bg: #0c0d10;
-    --surface: #131519;
-    --surface-2: #1b1e24;
-    --line: rgb(255 255 255 / 0.09);
-    --fg: #ecebe6;
-    --muted: #9b9a93;
-    --accent: #c8f24a;
-    --accent-ink: #11140a;
-    --accent-soft: rgb(200 242 74 / 0.12);
-    --grid-dot: rgb(255 255 255 / 0.06);
-    --header-h: 4.25rem;
+    --bg: oklch(23% 0.033 256.848);
+    --bg-deep: oklch(15% 0.033 256.848);
+    --surface: rgb(255 255 255 / 0.06);
+    --surface-2: rgb(255 255 255 / 0.09);
+    --surface-solid: oklch(26% 0.036 262);
+    --line: rgb(255 255 255 / 0.13);
+    --fg: #f9f9f9;
+    --muted: #aeb5c3;
+    --accent: oklch(72% 0.17 293);
+    --accent-2: oklch(70% 0.14 255);
+    --accent-ink: oklch(19% 0.06 293);
+    --accent-soft: oklch(72% 0.17 293 / 0.16);
+    --glass-from: rgb(255 255 255 / 0.12);
+    --glass-to: rgb(255 255 255 / 0.03);
+    --glass-hi: rgb(255 255 255 / 0.28);
+    --glass-shadow: 0 18px 50px -20px rgb(0 0 0 / 0.65);
+    --blob-1: oklch(58% 0.22 293 / 0.55);
+    --blob-2: oklch(55% 0.17 255 / 0.5);
+    --blob-3: oklch(62% 0.2 330 / 0.3);
+    --header-h: 5.5rem;
     color-scheme: dark;
   }
 
-  /* Claro: papel cálido con acento verde oliva */
   .light {
-    --bg: #f4f2ec;
-    --surface: #fbfaf7;
-    --surface-2: #ebe8df;
-    --line: rgb(20 20 18 / 0.1);
-    --fg: #17181b;
-    --muted: #5f5e58;
-    --accent: #4b7a0c;
+    --bg: #f9f9f9;
+    --bg-deep: oklch(92% 0.02 256.848);
+    --surface: rgb(255 255 255 / 0.55);
+    --surface-2: rgb(255 255 255 / 0.75);
+    --surface-solid: #ffffff;
+    --line: rgb(26 34 50 / 0.1);
+    --fg: oklch(23% 0.033 256.848);
+    --muted: oklch(47% 0.02 260);
+    --accent: oklch(52% 0.24 293);
+    --accent-2: oklch(54% 0.19 258);
     --accent-ink: #ffffff;
-    --accent-soft: rgb(75 122 12 / 0.1);
-    --grid-dot: rgb(20 20 18 / 0.07);
+    --accent-soft: oklch(52% 0.24 293 / 0.1);
+    --glass-from: rgb(255 255 255 / 0.8);
+    --glass-to: rgb(255 255 255 / 0.45);
+    --glass-hi: rgb(255 255 255 / 1);
+    --glass-shadow: 0 16px 40px -20px rgb(26 34 50 / 0.28);
+    --blob-1: oklch(75% 0.14 293 / 0.45);
+    --blob-2: oklch(80% 0.1 240 / 0.45);
+    --blob-3: oklch(82% 0.1 330 / 0.35);
     color-scheme: light;
   }
 
@@ -67,9 +141,6 @@
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
-    background-color: var(--bg);
-    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
-    background-size: 22px 22px;
     overflow-x: hidden;
   }
 
@@ -97,7 +168,7 @@
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 3px;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -116,33 +187,116 @@
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
-  /* Etiqueta en mono que acompaña títulos: "01 / Proyectos" */
   .kicker {
     @apply font-mono text-xs uppercase tracking-[0.18em] text-muted;
   }
 
   .card {
-    @apply rounded-2xl border border-line bg-surface;
+    @apply glass rounded-3xl;
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* Reflejo que sigue al puntero */
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, -30%),
+      rgb(255 255 255 / 0.13),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.35s;
+    pointer-events: none;
+  }
+
+  /* Borde que se enciende cerca del puntero */
+  .card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(
+      260px circle at var(--mx, 50%) var(--my, 50%),
+      var(--accent),
+      transparent 60%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.35s;
+    pointer-events: none;
+  }
+
+  .card:hover::before,
+  .card:hover::after {
+    opacity: 1;
   }
 
   .chip {
-    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-surface-2 px-2.5 py-1 font-mono text-[0.7rem] text-fg/85;
+    @apply glass inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[0.7rem] text-fg/90;
+    box-shadow: inset 0 1px 0 0 var(--glass-hi);
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-[transform,background-color,border-color,color] duration-200 active:scale-[0.97];
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold transition-[transform,box-shadow,filter] duration-300 ease-out active:scale-[0.96];
+  }
+
+  /* Destello que cruza el botón al pasar el cursor */
+  .btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 30%,
+      rgb(255 255 255 / 0.45) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+  }
+
+  .btn:hover::after {
+    transform: translateX(120%);
   }
 
   .btn-primary {
-    @apply bg-accent text-accent-ink hover:brightness-105;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: var(--accent-ink);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.4),
+      0 10px 30px -10px var(--accent);
+  }
+
+  .btn-primary:hover {
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.4),
+      0 14px 40px -8px var(--accent);
   }
 
   .btn-ghost {
-    @apply border border-line bg-surface text-fg hover:border-fg/30;
+    @apply glass text-fg;
   }
 
   .link-underline {
-    @apply underline decoration-line decoration-1 underline-offset-4 transition-colors hover:decoration-accent;
+    background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px
+      no-repeat;
+    transition: background-size 0.35s ease;
+  }
+
+  .link-underline:hover {
+    background-size: 100% 1px;
   }
 
   .prose-rich {
@@ -152,23 +306,41 @@
   .prose-rich .text-accent {
     @apply font-medium;
   }
+
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      var(--fg) 0%,
+      var(--accent) 30%,
+      var(--accent-2) 50%,
+      var(--fg) 70%,
+      var(--fg) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: var(--animate-shimmer);
+  }
 }
 
 @layer utilities {
-  .reveal {
-    animation: reveal 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    animation-delay: calc(var(--i, 0) * 70ms);
+  /* Aparición al entrar en pantalla (JS agrega .is-in) */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+    filter: blur(8px);
+    transition:
+      opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+      filter 0.8s ease;
+    transition-delay: calc(var(--i, 0) * 80ms);
   }
 
-  @keyframes reveal {
-    from {
-      opacity: 0;
-      transform: translateY(14px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-    }
+  .js .reveal.is-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
   }
 
   .pulse-dot {
@@ -184,10 +356,117 @@
       box-shadow: 0 0 0 8px rgb(74 222 128 / 0);
     }
   }
+
+  .mask-fade-x {
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
 }
 
-/* Transición suave entre páginas */
-::view-transition-old(root),
+/* Fondo vivo: manchas de color que flotan detrás del vidrio */
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 70% at 50% -20%, var(--accent-soft), transparent 70%),
+    var(--bg);
+}
+
+.aurora .blob {
+  position: absolute;
+  width: 42vmax;
+  height: 42vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  animation: drift 26s ease-in-out infinite alternate;
+}
+
+.aurora .b1 {
+  top: -14vmax;
+  left: -10vmax;
+  background: var(--blob-1);
+}
+
+.aurora .b2 {
+  top: 30vh;
+  right: -16vmax;
+  background: var(--blob-2);
+  animation-duration: 32s;
+  animation-delay: -8s;
+}
+
+.aurora .b3 {
+  bottom: -18vmax;
+  left: 20vw;
+  background: var(--blob-3);
+  animation-duration: 38s;
+  animation-delay: -16s;
+}
+
+/* Luz que sigue al cursor */
+.aurora .glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-soft), transparent 65%);
+  transform: translate(calc(var(--cx, 50vw) - 50%), calc(var(--cy, 30vh) - 50%));
+  transition: transform 0.25s ease-out;
+}
+
+/* Rejilla tenue que se desvanece hacia abajo */
+.aurora .grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.35;
+  mask-image: radial-gradient(ellipse 70% 55% at 50% 0%, #000, transparent);
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(8vw, 6vh) scale(1.12);
+  }
+  100% {
+    transform: translate(-6vw, 10vh) scale(0.95);
+  }
+}
+
+/* Transiciones entre páginas */
+::view-transition-old(root) {
+  animation: 0.3s ease both page-out;
+}
+
 ::view-transition-new(root) {
-  animation-duration: 0.25s;
+  animation: 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both page-in;
+}
+
+::view-transition-group(nav-pill) {
+  animation-duration: 0.45s;
+  animation-timing-function: cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+@keyframes page-out {
+  to {
+    opacity: 0;
+    filter: blur(6px);
+  }
+}
+
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: blur(6px);
+  }
 }
