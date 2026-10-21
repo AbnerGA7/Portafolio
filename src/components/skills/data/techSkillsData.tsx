@@ -1,4 +1,4 @@
-import { type TechGridItem } from "@/components/skills/components/TechGrid";
+import type { TechGridItem } from "@/types/TechSkill";
 import { NodeIcon, SanityIcon } from "@/components/skills/icons/server-side";
 import {
   AndroidIcon,
