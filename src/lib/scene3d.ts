@@ -7,7 +7,9 @@ import * as THREE from "three";
  */
 export const startScene = (canvas: HTMLCanvasElement, reduced: boolean) => {
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 1.75));
+  const mobile = innerWidth < 768;
+  // En celular: menos resolución y sin antialias extra para no trabar el scroll
+  renderer.setPixelRatio(mobile ? 1 : Math.min(devicePixelRatio, 1.75));
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
@@ -112,7 +114,7 @@ export const startScene = (canvas: HTMLCanvasElement, reduced: boolean) => {
   place(container(), -9.5, -0.5, -6, 0.7);
 
   // --- Grafo de servicios conectados ---
-  const nodeCount = 34;
+  const nodeCount = mobile ? 16 : 34;
   const nodes: THREE.Vector3[] = [];
   for (let i = 0; i < nodeCount; i++) {
     nodes.push(
@@ -197,7 +199,12 @@ export const startScene = (canvas: HTMLCanvasElement, reduced: boolean) => {
   );
 
   const clock = new THREE.Clock();
-  const frame = () => {
+  let last = 0;
+  const frame = (now = 0) => {
+    if (!reduced) requestAnimationFrame(frame);
+    // En celular dibuja a ~30 fps
+    if (mobile && now - last < 33) return;
+    last = now;
     const t = clock.getElapsedTime();
     const scroll = scrollY / Math.max(1, document.documentElement.scrollHeight - innerHeight);
 
@@ -224,7 +231,6 @@ export const startScene = (canvas: HTMLCanvasElement, reduced: boolean) => {
     camera.lookAt(0, 0, -4);
 
     renderer.render(scene, camera);
-    if (!reduced) requestAnimationFrame(frame);
   };
   frame();
   canvas.style.opacity = "1";
