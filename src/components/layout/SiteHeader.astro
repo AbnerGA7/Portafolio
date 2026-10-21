@@ -70,12 +70,15 @@ const desktopLinks = navLinks.filter(
     </nav>
 
     <div class="flex items-center gap-2">
-      <LangSwitch />
-      <ThemeSwitch />
+      <div class="glass flex h-11 items-center gap-1 rounded-full p-1">
+        <LangSwitch />
+        <span class="h-5 w-px bg-line" aria-hidden="true"></span>
+        <ThemeSwitch />
+      </div>
       <a
         href={getRoute("contact", lang)}
         aria-current={active === "contact" ? "page" : undefined}
-        class="btn btn-primary hidden whitespace-nowrap md:inline-flex"
+        class="btn btn-primary hidden md:inline-flex"
       >
         {t("nav.contact")}
         <Icon name="arrow-up-right" class="size-3.5" />
