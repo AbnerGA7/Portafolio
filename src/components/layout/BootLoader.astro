@@ -52,6 +52,13 @@ const lines =
     const boot = document.getElementById("boot");
     let seen = false;
     try {
+      // Tras redirigir desde el loader, empezar arriba de todo
+      if (sessionStorage.getItem("boot-top") === "1") {
+        sessionStorage.removeItem("boot-top");
+        history.scrollRestoration = "manual";
+        scrollTo(0, 0);
+        addEventListener("load", () => scrollTo(0, 0), { once: true });
+      }
       seen = sessionStorage.getItem("booted") === "1";
       sessionStorage.setItem("booted", "1");
     } catch {}
@@ -73,6 +80,16 @@ const lines =
       boot.style.opacity = "0";
       boot.style.filter = "blur(8px)";
       document.documentElement.style.overflow = "";
+      // Siempre aterriza en el inicio, arriba, donde está la presentación
+      const home = location.pathname.startsWith("/en") ? "/en/" : "/";
+      if (location.pathname !== home) {
+        try {
+          sessionStorage.setItem("boot-top", "1");
+        } catch {}
+        location.replace(home);
+        return;
+      }
+      scrollTo(0, 0);
       setTimeout(() => boot.remove(), 700);
     };
     boot.querySelector("[data-boot-skip]").addEventListener("click", finish);
