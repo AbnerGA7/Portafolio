@@ -5,6 +5,7 @@ import { experienceData } from "@/components/experience/data/experienceData";
 import { projectsData } from "@/components/projects/data/projectsData";
 import { techSkillsData } from "@/components/skills/data/techSkillsData";
 import Icon from "@/components/ui/Icon.astro";
+import { contactMeData } from "@/data/contactMeData";
 import CodeWindow from "@/components/home/CodeWindow.astro";
 import ProfileOrbit from "@/components/home/ProfileOrbit.astro";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
@@ -16,6 +17,9 @@ import type { TranslationKey } from "@/i18n/types";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const roles = t("home.roles");
+const socials = contactMeData.filter(({ title }) =>
+  ["contact.github.title", "contact.linkedin.title", "contact.whatsapp.title", "contact.email.title"].includes(title)
+);
 
 const allTech = Object.values(techSkillsData).flat();
 const techCount = new Set(allTech.map(({ name }) => name)).size;
@@ -62,7 +66,7 @@ const pageLabel = (key: RouteKey) =>
 
 <Layout>
   <!-- Hero -->
-  <section class="container-page grid items-center gap-12 pt-12 pb-16 sm:pt-20 lg:grid-cols-[1.3fr_0.7fr] lg:gap-16">
+  <section class="container-page grid items-center gap-12 pt-12 pb-16 sm:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
     <div>
       <p
         class="reveal glass inline-flex items-center gap-2.5 rounded-full px-3.5 py-2 text-xs font-medium"
@@ -99,19 +103,40 @@ const pageLabel = (key: RouteKey) =>
         set:html={t("home.description")}
       />
 
-      <div class="reveal mt-8 flex flex-wrap gap-3" style="--i:4">
-        <a href={getRoute("projects", lang)} class="btn btn-primary">
+      <div class="reveal mt-9 flex flex-wrap items-center gap-3" style="--i:4">
+        <a href={getRoute("projects", lang)} class="btn btn-primary btn-lg group/cta pr-1.5">
           {t("home.cta")}
-          <Icon name="arrow-right" />
+          <span class="grid size-9 place-items-center rounded-full bg-accent-ink/15 transition-transform duration-300 group-hover/cta:translate-x-1 group-hover/cta:-rotate-45">
+            <Icon name="arrow-right" />
+          </span>
         </a>
-        <a
-          href="/documents/cv-abner-gonzales.pdf"
-          download
-          class="btn btn-ghost"
-        >
-          <Icon name="download" />
+        <a href="/documents/cv-abner-gonzales.pdf" download class="btn btn-ghost btn-lg">
+          <Icon name="download" class="size-4 transition-transform duration-300 group-hover:translate-y-0.5" />
           {t("home.cv")}
         </a>
+      </div>
+
+      <div class="reveal mt-7 flex items-center gap-4" style="--i:5">
+        <span class="font-mono text-xs text-muted">{lang === "es" ? "encuéntrame en" : "find me on"}</span>
+        <span class="h-px w-8 bg-line" aria-hidden="true"></span>
+        <ul class="flex gap-2">
+          {
+            socials.map(({ title, url, Icon: SocialIcon }) => (
+              <li>
+                <a
+                  href={String(t(url))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={String(t(title))}
+                  data-tip={String(t(title))}
+                  class="glass grid size-10 place-items-center rounded-full transition-[color,transform] duration-300 hover:-translate-y-1 hover:text-accent"
+                >
+                  <SocialIcon class="size-4 fill-current" />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </div>
 
