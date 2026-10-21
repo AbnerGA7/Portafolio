@@ -1,0 +1,87 @@
+---
+import { Image } from "astro:assets";
+import Icon from "@/components/ui/Icon.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import { categoryKey, statusKey, statusStyles } from "@/lib/projects";
+import { getProjectRoute } from "@/lib/routes";
+import type { Project } from "@/types/Project";
+
+interface Props {
+  project: Project;
+  /** Carga prioritaria para las tarjetas visibles al entrar */
+  eager?: boolean;
+}
+
+const { project, eager = false } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<a
+  href={getProjectRoute(project.id, lang)}
+  class="group card flex h-full flex-col overflow-hidden transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-fg/25"
+  style={`--project:${project.color}`}
+>
+  <div
+    class="relative aspect-[16/10] overflow-hidden border-b border-line bg-[color-mix(in_oklab,var(--project)_14%,var(--surface-2))]"
+  >
+    {
+      project.image ? (
+        <Image
+          src={project.image}
+          alt=""
+          widths={[400, 640, 800]}
+          sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw"
+          loading={eager ? "eager" : "lazy"}
+          class="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]"
+        />
+      ) : (
+        <div class="grid size-full place-items-center">
+          <span class="text-6xl transition-transform duration-500 group-hover:scale-110">
+            {project.emoji}
+          </span>
+        </div>
+      )
+    }
+    <span
+      class:list={[
+        "absolute top-3 left-3 rounded-full px-2.5 py-1 font-mono text-[0.65rem] font-medium backdrop-blur-md",
+        statusStyles[project.status],
+      ]}
+    >
+      {t(statusKey(project.status))}
+    </span>
+  </div>
+
+  <div class="flex flex-1 flex-col p-5">
+    <p class="kicker flex items-center gap-2">
+      <span class="size-2 rounded-full bg-(--project)" aria-hidden="true"></span>
+      {t(categoryKey(project.category))}
+    </p>
+    <h3 class="mt-3 text-xl font-semibold">{t(project.title)}</h3>
+    <p class="mt-1 text-sm text-muted">{t(project.tagline)}</p>
+
+    <ul class="mt-4 flex flex-wrap gap-1.5">
+      {
+        project.stack.slice(0, 4).map(({ title }) => (
+          <li class="chip">{title}</li>
+        ))
+      }
+      {
+        project.stack.length > 4 && (
+          <li class="chip">+{project.stack.length - 4}</li>
+        )
+      }
+    </ul>
+
+    <span
+      class="mt-auto flex items-center gap-1.5 pt-6 text-sm font-medium text-fg"
+    >
+      {t("projects.card.details")}
+      <Icon
+        name="arrow-right"
+        class="size-4 transition-transform group-hover:translate-x-1"
+      />
+    </span>
+  </div>
+</a>
