@@ -19,7 +19,7 @@ const t = useTranslations(lang);
   <PageHeader page="about" title={t("about.title")} />
 
   <section class="container-page grid gap-10 lg:grid-cols-[340px_1fr] lg:gap-14">
-    <aside class="reveal h-fit lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]" style="--i:2">
+    <aside class="reveal h-fit w-full max-w-md lg:sticky lg:top-[calc(var(--header-h)+1.5rem)] lg:max-w-none" style="--i:2">
       <div class="card overflow-hidden p-2.5">
         <Image
           src={profile}
