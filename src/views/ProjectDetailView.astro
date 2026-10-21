@@ -1,0 +1,304 @@
+---
+import { Image } from "astro:assets";
+import Icon from "@/components/ui/Icon.astro";
+import PageHeader from "@/components/ui/PageHeader.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Layout from "@/layouts/Layout.astro";
+import {
+  categoryKey,
+  getSiblings,
+  statusKey,
+  statusStyles,
+} from "@/lib/projects";
+import { getProjectRoute, getRoute } from "@/lib/routes";
+import type { Project } from "@/types/Project";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { prev, next } = getSiblings(project.id);
+const title = t(project.title);
+---
+
+<Layout title={title} description={t(project.description)}>
+  <PageHeader
+    page="projects"
+    title={title}
+    description={t(project.tagline)}
+    trail={[{ label: title }]}
+  >
+    <div class="reveal mt-6 flex flex-wrap gap-3" style="--i:3">
+      {
+        project.demoUrl && (
+          <a
+            href={project.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            {t(project.demoLabel ?? "projects.button.demo")}
+            <Icon name="arrow-up-right" />
+          </a>
+        )
+      }
+      {
+        project.codeUrl && (
+          <a
+            href={project.codeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-ghost"
+          >
+            <Icon name="code" />
+            {t("projects.button.code")}
+          </a>
+        )
+      }
+    </div>
+  </PageHeader>
+
+  <section class="container-page" style={`--project:${project.color}`}>
+    <div
+      class="reveal card overflow-hidden p-2 sm:p-3"
+      style="--i:3"
+    >
+      <div
+        class="grid aspect-[16/9] place-items-center overflow-hidden rounded-xl bg-[color-mix(in_oklab,var(--project)_16%,var(--surface-2))]"
+      >
+        {
+          project.image ? (
+            <Image
+              src={project.image}
+              alt={title}
+              widths={[640, 960, 1280, 1600]}
+              sizes="(min-width: 1152px) 1100px, 100vw"
+              loading="eager"
+              class="size-full object-cover object-top"
+            />
+          ) : (
+            <span class="text-8xl sm:text-9xl">{project.emoji}</span>
+          )
+        }
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-10 lg:grid-cols-[1fr_320px]">
+      <div>
+        <p class="kicker">{t("projects.detail.overview")}</p>
+        <p class="mt-4 text-lg leading-relaxed text-fg/85 sm:text-xl">
+          {t(project.description)}
+        </p>
+
+        {
+          project.gallery && (
+            <div class="mt-14">
+              <p class="kicker">
+                {t("projects.detail.gallery")} · {project.gallery.length}
+              </p>
+              <ul class="mt-5 grid gap-4 sm:grid-cols-2">
+                {project.gallery.map(({ image, caption }, i) => (
+                  <li>
+                    <button
+                      type="button"
+                      data-shot={i}
+                      class="group block w-full text-left"
+                      aria-label={`${t("projects.gallery.open")}: ${t(caption)}`}
+                    >
+                      <span class="card block overflow-hidden p-1.5 transition-colors group-hover:border-fg/30">
+                        <Image
+                          src={image}
+                          alt=""
+                          widths={[480, 720]}
+                          sizes="(min-width: 640px) 380px, 100vw"
+                          class="aspect-[16/10] w-full rounded-lg object-cover object-top"
+                        />
+                      </span>
+                      <span class="mt-2 block text-sm text-muted">
+                        {t(caption)}
+                      </span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+
+              <dialog
+                data-lightbox
+                class="m-auto w-[min(1100px,calc(100vw-2rem))] max-w-none rounded-2xl border border-line bg-surface p-0 text-fg backdrop:bg-black/80 backdrop:backdrop-blur-sm"
+              >
+                <div class="flex items-center justify-between gap-4 border-b border-line px-4 py-3">
+                  <p data-lightbox-caption class="text-sm text-muted" />
+                  <button
+                    type="button"
+                    data-lightbox-close
+                    class="grid size-8 shrink-0 place-items-center rounded-full border border-line"
+                    aria-label={t("projects.gallery.close")}
+                  >
+                    <Icon name="close" class="size-4" />
+                  </button>
+                </div>
+                <div class="relative">
+                  {project.gallery.map(({ image, caption }, i) => (
+                    <figure data-slide={i} data-caption={t(caption)} hidden>
+                      <Image
+                        src={image}
+                        alt={t(caption)}
+                        widths={[960, 1600]}
+                        sizes="1100px"
+                        class="max-h-[75vh] w-full object-contain"
+                      />
+                    </figure>
+                  ))}
+                  <button
+                    type="button"
+                    data-lightbox-prev
+                    class="absolute top-1/2 left-3 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-bg/80 backdrop-blur"
+                    aria-label={t("projects.gallery.prev")}
+                  >
+                    <Icon name="arrow-left" />
+                  </button>
+                  <button
+                    type="button"
+                    data-lightbox-next
+                    class="absolute top-1/2 right-3 grid size-10 -translate-y-1/2 place-items-center rounded-full bg-bg/80 backdrop-blur"
+                    aria-label={t("projects.gallery.next")}
+                  >
+                    <Icon name="arrow-right" />
+                  </button>
+                </div>
+              </dialog>
+            </div>
+          )
+        }
+      </div>
+
+      <aside class="h-fit space-y-px overflow-hidden rounded-2xl border border-line bg-line lg:sticky lg:top-[calc(var(--header-h)+1.5rem)]">
+        <div class="bg-surface p-5">
+          <p class="kicker">{t("projects.detail.status")}</p>
+          <p
+            class:list={[
+              "mt-2 inline-block rounded-full px-2.5 py-1 font-mono text-xs",
+              statusStyles[project.status],
+            ]}
+          >
+            {t(statusKey(project.status))}
+          </p>
+        </div>
+        <div class="bg-surface p-5">
+          <p class="kicker">{t("projects.detail.category")}</p>
+          <p class="mt-2 flex items-center gap-2 font-medium">
+            <span class="size-2 rounded-full bg-(--project)"></span>
+            {t(categoryKey(project.category))}
+          </p>
+        </div>
+        <div class="bg-surface p-5">
+          <p class="kicker">{t("projects.detail.stack")}</p>
+          <ul class="mt-3 space-y-2.5">
+            {
+              project.stack.map(({ title, Icon: StackIcon }) => (
+                <li class="flex items-center gap-3 text-sm">
+                  <span class="grid size-8 place-items-center rounded-lg border border-line bg-surface-2">
+                    <StackIcon class="size-4" />
+                  </span>
+                  {title}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        {
+          !project.demoUrl && !project.codeUrl && (
+            <div class="bg-surface p-5">
+              <p class="kicker">{t("projects.detail.links")}</p>
+              <p class="mt-2 text-sm text-muted">
+                {t("projects.detail.private")}
+              </p>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </section>
+
+  <nav class="container-page mt-24 grid gap-4 sm:grid-cols-2" aria-label={t("nav.projects")}>
+    <a
+      href={getProjectRoute(prev.id, lang)}
+      class="group card flex items-center gap-4 p-5 transition-colors hover:border-fg/30"
+    >
+      <Icon
+        name="arrow-left"
+        class="size-5 shrink-0 text-muted transition-transform group-hover:-translate-x-1"
+      />
+      <span>
+        <span class="kicker block">{t("projects.detail.prev")}</span>
+        <span class="mt-1 block font-display text-lg font-semibold">
+          {t(prev.title)}
+        </span>
+      </span>
+    </a>
+    <a
+      href={getProjectRoute(next.id, lang)}
+      class="group card flex items-center justify-end gap-4 p-5 text-right transition-colors hover:border-fg/30"
+    >
+      <span>
+        <span class="kicker block">{t("projects.detail.next")}</span>
+        <span class="mt-1 block font-display text-lg font-semibold">
+          {t(next.title)}
+        </span>
+      </span>
+      <Icon
+        name="arrow-right"
+        class="size-5 shrink-0 text-muted transition-transform group-hover:translate-x-1"
+      />
+    </a>
+    <a
+      href={getRoute("projects", lang)}
+      class="link-underline justify-self-center text-sm text-muted sm:col-span-2"
+    >
+      ← {t("projects.detail.back")}
+    </a>
+  </nav>
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const dialog = document.querySelector<HTMLDialogElement>("[data-lightbox]");
+    if (!dialog) return;
+    const slides = dialog.querySelectorAll<HTMLElement>("[data-slide]");
+    const caption = dialog.querySelector("[data-lightbox-caption]");
+    let current = 0;
+
+    const show = (index: number) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => (slide.hidden = i !== current));
+      if (caption)
+        caption.textContent = `${current + 1}/${slides.length} — ${slides[current].dataset.caption}`;
+    };
+
+    document.querySelectorAll<HTMLElement>("[data-shot]").forEach((button) =>
+      button.addEventListener("click", () => {
+        show(Number(button.dataset.shot));
+        dialog.showModal();
+      })
+    );
+    dialog
+      .querySelector("[data-lightbox-prev]")
+      ?.addEventListener("click", () => show(current - 1));
+    dialog
+      .querySelector("[data-lightbox-next]")
+      ?.addEventListener("click", () => show(current + 1));
+    dialog
+      .querySelector("[data-lightbox-close]")
+      ?.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
+    });
+  });
+</script>
