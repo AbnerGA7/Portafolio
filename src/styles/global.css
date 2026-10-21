@@ -248,7 +248,7 @@
   }
 
   .btn {
-    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold transition-[transform,box-shadow,filter] duration-300 ease-out active:scale-[0.96];
+    @apply relative inline-flex h-11 items-center justify-center gap-2 overflow-hidden rounded-full px-5 text-sm font-semibold whitespace-nowrap transition-[transform,box-shadow,filter] duration-300 ease-out active:scale-[0.96];
   }
 
   /* Destello que cruza el botón al pasar el cursor */
