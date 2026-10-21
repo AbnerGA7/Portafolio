@@ -67,7 +67,7 @@ const pageLabel = (key: RouteKey) =>
 <Layout>
   <!-- Hero -->
   <section class="container-page grid items-center gap-12 pt-12 pb-16 sm:pt-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
-    <div>
+    <div class="text-center lg:text-left">
       <p
         class="reveal glass inline-flex items-center gap-2.5 rounded-full px-3.5 py-2 text-xs font-medium"
       >
@@ -86,7 +86,7 @@ const pageLabel = (key: RouteKey) =>
       </h1>
 
       <p
-        class="reveal mt-6 flex items-center gap-3 font-mono text-sm sm:text-base"
+        class="reveal mt-6 flex items-center justify-center gap-3 font-mono text-sm sm:text-base lg:justify-start"
         style="--i:2"
       >
         <span class="h-px w-8 bg-accent" aria-hidden="true"></span>
@@ -98,12 +98,12 @@ const pageLabel = (key: RouteKey) =>
       </p>
 
       <p
-        class="reveal prose-rich mt-6 max-w-xl [&_br]:hidden sm:[&_br]:block"
+        class="reveal prose-rich mx-auto mt-6 max-w-xl [&_br]:hidden sm:[&_br]:block lg:mx-0"
         style="--i:3"
         set:html={t("home.description")}
       />
 
-      <div class="reveal mt-9 flex flex-wrap items-center gap-3" style="--i:4">
+      <div class="reveal mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center lg:justify-start" style="--i:4">
         <a href={getRoute("projects", lang)} class="btn btn-primary btn-lg group/cta pr-1.5">
           {t("home.cta")}
           <span class="grid size-9 place-items-center rounded-full bg-accent-ink/15 transition-transform duration-300 group-hover/cta:translate-x-1 group-hover/cta:-rotate-45">
@@ -116,9 +116,9 @@ const pageLabel = (key: RouteKey) =>
         </a>
       </div>
 
-      <div class="reveal mt-7 flex items-center gap-4" style="--i:5">
+      <div class="reveal mt-7 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 lg:justify-start" style="--i:5">
         <span class="font-mono text-xs text-muted">{lang === "es" ? "encuéntrame en" : "find me on"}</span>
-        <span class="h-px w-8 bg-line" aria-hidden="true"></span>
+        <span class="hidden h-px w-8 bg-line sm:block" aria-hidden="true"></span>
         <ul class="flex gap-2">
           {
             socials.map(({ title, url, Icon: SocialIcon }) => (
@@ -140,7 +140,7 @@ const pageLabel = (key: RouteKey) =>
       </div>
     </div>
 
-    <div class="reveal" style="--i:2">
+    <div class="reveal flex justify-center" style="--i:2">
       <ProfileOrbit />
     </div>
   </section>
