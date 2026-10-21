@@ -20,6 +20,18 @@ const formTranslations = getContactFormTranslations(lang);
 
   <section class="container-page grid gap-8 lg:grid-cols-[1fr_1.2fr] lg:gap-12">
     <div class="reveal" style="--i:2">
+      <button
+        type="button"
+        data-copy="abner.gonzales.work@gmail.com"
+        class="card group mb-6 flex w-full items-center gap-4 p-4 text-left"
+      >
+        <span class="relative z-[2] grid size-12 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-accent to-accent-2 text-accent-ink">@</span>
+        <span class="relative z-[2] min-w-0 flex-1">
+          <span class="block truncate font-mono text-sm">abner.gonzales.work@gmail.com</span>
+          <span data-copy-label class="block text-xs text-muted">{lang === "es" ? "Toca para copiar el email" : "Tap to copy the email"}</span>
+        </span>
+        <span class="relative z-[2] chip">{lang === "es" ? "copiar" : "copy"}</span>
+      </button>
       <p class="kicker">{t("contact.channels.title")}</p>
       <ul class="mt-4 divide-y divide-line border-y border-line">
         {
@@ -59,3 +71,25 @@ const formTranslations = getContactFormTranslations(lang);
     </div>
   </section>
 </Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const button = document.querySelector<HTMLElement>("[data-copy]");
+    const label = button?.querySelector("[data-copy-label]");
+    if (!button || !label) return;
+    const original = label.textContent;
+    button.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(button.dataset.copy!);
+        label.textContent = document.documentElement.lang === "es" ? "✓ ¡Copiado! Pégalo en tu correo" : "✓ Copied! Paste it in your email";
+        label.classList.add("text-emerald-400");
+      } catch {
+        location.href = `mailto:${button.dataset.copy}`;
+      }
+      setTimeout(() => {
+        label.textContent = original;
+        label.classList.remove("text-emerald-400");
+      }, 2200);
+    });
+  });
+</script>
