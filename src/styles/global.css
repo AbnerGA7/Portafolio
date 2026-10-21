@@ -129,6 +129,13 @@
     color-scheme: light;
   }
 
+  html,
+  body {
+    /* clip (no hidden) evita que el celular ensanche la página por elementos que sobresalen */
+    overflow-x: clip;
+    max-width: 100%;
+  }
+
   html {
     font-family: var(--font-sans);
     background: var(--bg);
@@ -555,4 +562,26 @@
   box-shadow:
     inset 0 1px 0 0 var(--glass-hi),
     0 20px 50px -20px rgb(0 0 0 / 0.8);
+}
+
+/* Celular: menos efectos pesados para que el scroll sea fluido */
+@media (max-width: 768px) {
+  .aurora .blob {
+    animation: none;
+    filter: blur(60px);
+  }
+
+  .aurora .glow {
+    display: none;
+  }
+
+  .js .reveal {
+    filter: none;
+    transform: translateY(16px);
+  }
+
+  .glass {
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    backdrop-filter: blur(14px) saturate(160%);
+  }
 }
