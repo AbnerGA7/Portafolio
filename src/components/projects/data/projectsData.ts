@@ -1,3 +1,11 @@
+import mmvrImage from "@/assets/projects/minimarket_vr.webp";
+import mmvrPantalla from "@/assets/projects/minimarket_vr/pantalla.webp";
+import mmvrMostrador from "@/assets/projects/minimarket_vr/mostrador.webp";
+import mmvrTienda from "@/assets/projects/minimarket_vr/tienda.webp";
+import mmvrPasillo from "@/assets/projects/minimarket_vr/pasillo.webp";
+import mmvrEscaner from "@/assets/projects/minimarket_vr/escaner.webp";
+import mmvrTutorial from "@/assets/projects/minimarket_vr/tutorial.webp";
+import mmvrBilletes from "@/assets/projects/minimarket_vr/billetes.webp";
 import minkaImage from "@/assets/projects/minka.webp";
 import minkaAdmin from "@/assets/projects/minka/admin-empresas.webp";
 import minkaFicha from "@/assets/projects/minka/admin-ficha.webp";
@@ -73,6 +81,32 @@ export const projectsData: Project[] = [
       { title: "Supabase (PostgreSQL + RLS)", Icon: SupabaseIcon },
       { title: "Tailwind CSS", Icon: TailwindCSSIcon },
       { title: "Vercel", Icon: VercelIcon },
+    ],
+  },
+  {
+    id: "minimarket-vr",
+    title: "projects.mmvr.title",
+    tagline: "projects.mmvr.tagline",
+    description: "projects.mmvr.description",
+    category: "game",
+    status: "development",
+    color: "#f07820",
+    emoji: "🥽",
+    image: mmvrImage,
+    codeUrl: "https://github.com/ClutchDev23/MiniMarket-VR",
+    gallery: [
+      { image: mmvrPantalla, caption: "projects.mmvr.gallery.pantalla" },
+      { image: mmvrMostrador, caption: "projects.mmvr.gallery.mostrador" },
+      { image: mmvrTienda, caption: "projects.mmvr.gallery.tienda" },
+      { image: mmvrPasillo, caption: "projects.mmvr.gallery.pasillo" },
+      { image: mmvrEscaner, caption: "projects.mmvr.gallery.escaner" },
+      { image: mmvrTutorial, caption: "projects.mmvr.gallery.tutorial" },
+      { image: mmvrBilletes, caption: "projects.mmvr.gallery.billetes" },
+    ],
+    stack: [
+      { title: "Unity 6 (URP)", Icon: UnityIcon },
+      { title: "C#", Icon: CSharpIcon },
+      { title: "Meta Quest · OpenXR", Icon: AndroidIcon },
     ],
   },
   {
