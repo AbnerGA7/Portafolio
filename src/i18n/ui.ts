@@ -24,7 +24,7 @@ export const ui = {
     "site.title": "Abner Gonzales",
     "meta.title": "Abner Gonzales | Full Stack Developer",
     "meta.description":
-      "Abner Gonzales | Full Stack Developer from Lima, Peru, specialized in React, React Native, Firebase and Android (Kotlin). Real-world apps for real businesses.",
+      "Abner Gonzales is a Full Stack Developer from Lima, Peru, and a Software Engineering student at Universidad Autónoma del Perú. He builds web and Android apps for businesses with React, React Native, Firebase and Kotlin.",
     "meta.og.title": "Abner Gonzales | Full Stack Developer",
     "meta.og.description":
       "Real apps for real businesses: POS systems, real-estate management, e-commerce and Android apps built with React, Firebase and Kotlin.",
@@ -221,7 +221,7 @@ export const ui = {
     `,
     "about.who.title-1": "Who am I?",
     "about.who.description-1": `
-      <span class="text-accent">Full Stack Developer</span> and Software Engineering student from Lima, Peru. I build real systems for businesses: from POS systems to real-estate apps and e-commerce with a CMS. I specialize in <span class="text-accent">React, React Native and Firebase</span>, and I also develop <span class="text-accent">Android apps with Kotlin</span>.
+      I'm <strong class="font-semibold">Abner Gonzales</strong>, a <span class="text-accent">Full Stack Developer</span> from Lima, Peru, and a Software Engineering student at Universidad Autónoma del Perú. I build real systems for businesses: from POS systems to real-estate apps and e-commerce with a CMS. I specialize in <span class="text-accent">React, React Native and Firebase</span>, and I also develop <span class="text-accent">Android apps with Kotlin</span>.
     `,
     "about.who.title-2": "My Approach",
     "about.who.description-2": `
@@ -364,7 +364,7 @@ export const ui = {
     "site.title": "Abner Gonzales",
     "meta.title": "Abner Gonzales | Full Stack Developer",
     "meta.description":
-      "Portafolio de Abner Gonzales — desarrollador Full Stack en Lima, Perú, especializado en React, React Native, Firebase y Android (Kotlin). Apps reales para negocios reales.",
+      "Abner Gonzales es desarrollador Full Stack en Lima, Perú, y estudiante de Ingeniería de Software en la Universidad Autónoma del Perú. Crea apps web y Android para negocios con React, React Native, Firebase y Kotlin.",
     "meta.og.title": "Abner Gonzales | Full Stack Developer",
     "meta.og.description":
       "Proyectos reales para negocios reales: sistemas POS, gestión inmobiliaria, e-commerce y apps Android con React, Firebase y Kotlin.",
@@ -561,7 +561,7 @@ export const ui = {
     `,
     "about.who.title-1": "¿Quién soy?",
     "about.who.description-1": `
-      <span class="text-accent">Desarrollador Full Stack</span> y estudiante de Ingeniería de Software en Lima, Perú. Construyo sistemas reales para negocios: desde sistemas POS hasta apps inmobiliarias y e-commerce con CMS. Me especializo en <span class="text-accent">React, React Native y Firebase</span>, y también desarrollo apps <span class="text-accent">Android con Kotlin</span>.
+      Soy <strong class="font-semibold">Abner Gonzales</strong>, <span class="text-accent">desarrollador Full Stack</span> de Lima, Perú, y estudiante de Ingeniería de Software en la Universidad Autónoma del Perú. Construyo sistemas reales para negocios: desde sistemas POS hasta apps inmobiliarias y e-commerce con CMS. Me especializo en <span class="text-accent">React, React Native y Firebase</span>, y también desarrollo apps <span class="text-accent">Android con Kotlin</span>.
     `,
 
     "about.who.title-2": "Mi enfoque",
