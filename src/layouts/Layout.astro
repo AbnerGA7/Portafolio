@@ -7,6 +7,7 @@ import BootLoader from "@/components/layout/BootLoader.astro";
 import { languages } from "@/i18n/ui";
 import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 import { getAlternatePath } from "@/lib/routes";
+import profile from "@/assets/profile.jpg";
 
 interface Props {
   /** Título de la página; se completa con "| Abner Gonzales" */
@@ -24,6 +25,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 const alternateUrl = (code: (typeof languages)[number]["code"]) =>
   new URL(getAlternatePath(Astro.url.pathname, code), Astro.site).href;
 const ogImage = new URL("/og-image.png", Astro.site).href;
+const profileImage = new URL(profile.src, Astro.site).href;
 const ogLocale = lang === "es" ? "es_PE" : "en_US";
 
 const personSchema = {
@@ -31,8 +33,14 @@ const personSchema = {
   "@type": "Person",
   name: "Abner Gonzales",
   jobTitle: "Full Stack Developer",
+  description: t("meta.description"),
   url: new URL("/", Astro.site).href,
-  image: ogImage,
+  image: profileImage,
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidad Autónoma del Perú",
+  },
+  knowsLanguage: ["es", "en"],
   email: "mailto:abner.gonzales.work@gmail.com",
   address: {
     "@type": "PostalAddress",
@@ -76,6 +84,7 @@ const personSchema = {
     }
     <link rel="alternate" hreflang="x-default" href={alternateUrl("es")} />
 
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta property="og:site_name" content={t("meta.og.site_name")} />
