@@ -3,6 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,5 +28,13 @@ export default defineConfig({
     target: "esnext",
     minify: "esbuild",
   },
-  integrations: [react()],
+  integrations: [
+    react(),
+    sitemap({
+      i18n: {
+        defaultLocale: "es",
+        locales: { es: "es-PE", en: "en-US" },
+      },
+    }),
+  ],
 });
