@@ -36,6 +36,7 @@ import CSharpIcon from "@/components/icons/colored/CSharpIcon.astro";
 import JavaIcon from "@/components/icons/colored/JavaIcon.astro";
 import TensorFlowIcon from "@/components/icons/colored/TensorFlowIcon.astro";
 import PythonIcon from "@/components/icons/colored/PythonIcon.astro";
+import recuerdosPortada from "@/assets/projects/recuerdos_vivos/portada.webp";
 import appInicio from "@/assets/projects/recuerdos_vivos/app-inicio.jpg";
 import appBienvenida from "@/assets/projects/recuerdos_vivos/app-bienvenida.jpg";
 import appFamilia from "@/assets/projects/recuerdos_vivos/app-familia.jpg";
@@ -201,6 +202,7 @@ export const projectsData: Project[] = [
     status: "development",
     color: "#5b8a72",
     emoji: "🧠",
+    image: recuerdosPortada,
     codeUrl: "https://github.com/AbnerGA7/recuerdos-vivos",
     gallery: [
       { image: appInicio, caption: "projects.recuerdos.gallery.inicio" },
