@@ -21,7 +21,6 @@ import mnistImage from "@/assets/projects/mnist_android.webp";
 import utilscanImage from "@/assets/projects/utilscan.webp";
 import vitalisImage from "@/assets/projects/vitalis.webp";
 import rescuemalImage from "@/assets/projects/rescuemal.webp";
-import memoriaImage from "@/assets/projects/memoria_viva.webp";
 import smartMarketImage from "@/assets/projects/smart_market.webp";
 import adminCactusImage from "@/assets/projects/admin_cactus.webp";
 import expresateImage from "@/assets/projects/expresate.webp";
@@ -184,23 +183,6 @@ export const projectsData: Project[] = [
       { title: "Android", Icon: AndroidIcon },
       { title: "TensorFlow Lite", Icon: TensorFlowIcon },
       { title: "Python", Icon: PythonIcon },
-    ],
-  },
-  {
-    id: "memoria-viva",
-    title: "projects.memoria.title",
-    tagline: "projects.memoria.tagline",
-    description: "projects.memoria.description",
-    category: "mobile",
-    status: "development",
-    color: "#f59e0b",
-    emoji: "📸",
-    image: memoriaImage,
-    stack: [
-      { title: "Kotlin", Icon: KotlinIcon },
-      { title: "Jetpack Compose", Icon: JetpackComposeIcon },
-      { title: "Supabase", Icon: SupabaseIcon },
-      { title: "MediaPipe LLM", Icon: MediaPipeIcon },
     ],
   },
   {
