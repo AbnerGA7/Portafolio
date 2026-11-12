@@ -188,12 +188,11 @@ export const ui = {
     "projects.recuerdos.title": "Recuerdos Vivos",
     "projects.recuerdos.tagline": "Voice conversation about family photos · Complements treatment",
     "projects.recuerdos.description": "Flutter app for cognitive stimulation of people with Alzheimer's or cognitive decline. It uses the family's own photos and talks about them with a natural voice generated on the phone (Kokoro, no internet needed). Hints appear step by step instead of corrections. It complements care and never replaces it.",
+    "projects.recuerdos.gallery.repo": "Repository on GitHub with the code and documentation",
+    "projects.recuerdos.gallery.commits": "Commit history: each change saved separately, with CI checks",
     "projects.rescuemal.title": "RescueMal",
     "projects.rescuemal.tagline": "Animal Rescue & Adoption · Team project",
     "projects.rescuemal.description": "Android app to report stray animals with geolocation on Google Maps, manage adoptions, partner shelters and an admin panel with metrics, built on Firebase (Auth, Firestore and Storage).",
-    "projects.notafinal.title": "La Nota Final",
-    "projects.notafinal.tagline": "3D Game in Unity · Team project",
-    "projects.notafinal.description": "Low-poly PS1-style 3D stealth game: a student who failed his final exam sneaks into the university at night (Building J) to recover the professor's exams while avoiding the patrolling guard. I worked on camera/player synchronization and automatic item pickup.",
     "certifications.title": "Certifications",
     "certifications.description": `
       Academic credentials and <span class="text-accent">achievements</span> that back my training.
@@ -528,12 +527,11 @@ export const ui = {
     "projects.recuerdos.title": "Recuerdos Vivos",
     "projects.recuerdos.tagline": "Conversación por voz sobre fotos familiares · Complementa el tratamiento",
     "projects.recuerdos.description": "App en Flutter de estimulación cognitiva para personas con Alzheimer o deterioro cognitivo. Usa fotos de la propia familia y conversa sobre ellas con una voz natural generada en el teléfono (Kokoro, sin internet). Las pistas aparecen paso a paso en lugar de corregir. Complementa el cuidado y nunca lo reemplaza.",
+    "projects.recuerdos.gallery.repo": "Repositorio en GitHub con el código y la documentación",
+    "projects.recuerdos.gallery.commits": "Historial de commits: cada cambio guardado por separado, con verificación automática",
     "projects.rescuemal.title": "RescueMal",
     "projects.rescuemal.tagline": "Rescate y adopción de animales · Proyecto en equipo",
     "projects.rescuemal.description": "App Android para reportar animales en situación de calle con geolocalización en Google Maps, gestionar adopciones, albergues afiliados y un panel administrativo con métricas, sobre Firebase (Auth, Firestore y Storage).",
-    "projects.notafinal.title": "La Nota Final",
-    "projects.notafinal.tagline": "Videojuego 3D en Unity · Proyecto en equipo",
-    "projects.notafinal.description": "Juego 3D de sigilo con estética PS1 low-poly: un estudiante que desaprobó el examen final se infiltra de noche en la universidad (Pabellón J) para recuperar los exámenes del profesor, evitando al guardia que patrulla. Trabajé en la sincronización de cámara y jugador y en la recolección automática de ítems.",
     "certifications.title": "Certificaciones",
     "certifications.description": `
       Credenciales académicas y <span class="text-accent">logros</span> que respaldan mi formación.

@@ -36,6 +36,8 @@ import CSharpIcon from "@/components/icons/colored/CSharpIcon.astro";
 import JavaIcon from "@/components/icons/colored/JavaIcon.astro";
 import TensorFlowIcon from "@/components/icons/colored/TensorFlowIcon.astro";
 import PythonIcon from "@/components/icons/colored/PythonIcon.astro";
+import recuerdosRepo from "@/assets/projects/recuerdos_vivos/repositorio.jpg";
+import recuerdosCommits from "@/assets/projects/recuerdos_vivos/commits.jpg";
 import type { Project, ProjectCategory } from "@/types/Project";
 import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
 import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
@@ -195,6 +197,10 @@ export const projectsData: Project[] = [
     color: "#5b8a72",
     emoji: "🧠",
     codeUrl: "https://github.com/AbnerGA7/recuerdos-vivos",
+    gallery: [
+      { image: recuerdosRepo, caption: "projects.recuerdos.gallery.repo" },
+      { image: recuerdosCommits, caption: "projects.recuerdos.gallery.commits" },
+    ],
     stack: [
       { title: "Flutter", Icon: FlutterIcon },
       { title: "Dart", Icon: DartIcon },
@@ -286,20 +292,6 @@ export const projectsData: Project[] = [
       { title: "Jetpack", Icon: JetpackComposeIcon },
       { title: "Firebase", Icon: FirebaseIcon },
       { title: "Material Design", Icon: MaterialDesignIcon },
-    ],
-  },
-  {
-    id: "la-nota-final",
-    title: "projects.notafinal.title",
-    tagline: "projects.notafinal.tagline",
-    description: "projects.notafinal.description",
-    category: "game",
-    status: "completed",
-    color: "#22c55e",
-    emoji: "🎮",
-    stack: [
-      { title: "Unity 3D", Icon: UnityIcon },
-      { title: "C#", Icon: CSharpIcon },
     ],
   },
   {
