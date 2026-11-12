@@ -204,6 +204,21 @@ export const projectsData: Project[] = [
     ],
   },
   {
+    id: "recuerdos-vivos",
+    title: "projects.recuerdos.title",
+    tagline: "projects.recuerdos.tagline",
+    description: "projects.recuerdos.description",
+    category: "mobile",
+    status: "development",
+    color: "#5b8a72",
+    emoji: "🧠",
+    codeUrl: "https://github.com/AbnerGA7/recuerdos-vivos",
+    stack: [
+      { title: "Flutter", Icon: FlutterIcon },
+      { title: "Dart", Icon: DartIcon },
+    ],
+  },
+  {
     id: "smart-market-pro",
     title: "projects.smart_market.title",
     tagline: "projects.smart_market.tagline",
