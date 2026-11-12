@@ -36,6 +36,11 @@ import CSharpIcon from "@/components/icons/colored/CSharpIcon.astro";
 import JavaIcon from "@/components/icons/colored/JavaIcon.astro";
 import TensorFlowIcon from "@/components/icons/colored/TensorFlowIcon.astro";
 import PythonIcon from "@/components/icons/colored/PythonIcon.astro";
+import appInicio from "@/assets/projects/recuerdos_vivos/app-inicio.jpg";
+import appBienvenida from "@/assets/projects/recuerdos_vivos/app-bienvenida.jpg";
+import appFamilia from "@/assets/projects/recuerdos_vivos/app-familia.jpg";
+import appNombre from "@/assets/projects/recuerdos_vivos/app-nombre.jpg";
+import appAjustes from "@/assets/projects/recuerdos_vivos/app-ajustes.jpg";
 import recuerdosRepo from "@/assets/projects/recuerdos_vivos/repositorio.jpg";
 import recuerdosCommits from "@/assets/projects/recuerdos_vivos/commits.jpg";
 import type { Project, ProjectCategory } from "@/types/Project";
@@ -198,6 +203,11 @@ export const projectsData: Project[] = [
     emoji: "🧠",
     codeUrl: "https://github.com/AbnerGA7/recuerdos-vivos",
     gallery: [
+      { image: appInicio, caption: "projects.recuerdos.gallery.inicio" },
+      { image: appBienvenida, caption: "projects.recuerdos.gallery.bienvenida" },
+      { image: appFamilia, caption: "projects.recuerdos.gallery.familia" },
+      { image: appNombre, caption: "projects.recuerdos.gallery.nombre" },
+      { image: appAjustes, caption: "projects.recuerdos.gallery.ajustes" },
       { image: recuerdosRepo, caption: "projects.recuerdos.gallery.repo" },
       { image: recuerdosCommits, caption: "projects.recuerdos.gallery.commits" },
     ],
