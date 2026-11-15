@@ -95,6 +95,24 @@ const title = t(project.title);
         </p>
 
         {
+          project.video && (
+            <div class="mt-14">
+              <p class="kicker">{t("projects.detail.video")}</p>
+              <div class="card mt-5 overflow-hidden p-1.5">
+                <video
+                  src={project.video}
+                  poster={project.videoPoster}
+                  controls
+                  playsinline
+                  preload="metadata"
+                  class="aspect-video w-full rounded-lg bg-black"
+                />
+              </div>
+            </div>
+          )
+        }
+
+        {
           project.gallery && (
             <div class="mt-14">
               <p class="kicker">

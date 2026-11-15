@@ -34,4 +34,8 @@ export interface Project {
   codeUrl?: string;
   /** Capturas que se ven en la galería del proyecto */
   gallery?: ProjectScreenshot[];
+  /** Video demo servido desde /public (ruta absoluta, por ejemplo /projects/x/demo.mp4) */
+  video?: string;
+  /** Imagen que se ve antes de reproducir el video */
+  videoPoster?: string;
 }
