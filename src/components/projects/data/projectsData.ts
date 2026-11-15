@@ -44,6 +44,13 @@ import appNombre from "@/assets/projects/recuerdos_vivos/app-nombre.jpg";
 import appAjustes from "@/assets/projects/recuerdos_vivos/app-ajustes.jpg";
 import recuerdosRepo from "@/assets/projects/recuerdos_vivos/repositorio.jpg";
 import recuerdosCommits from "@/assets/projects/recuerdos_vivos/commits.jpg";
+import motoradioPortada from "@/assets/projects/motoradio/portada.webp";
+import motoradioInicio from "@/assets/projects/motoradio/app-inicio.jpg";
+import motoradioDj from "@/assets/projects/motoradio/app-dj.jpg";
+import motoradioCopiloto from "@/assets/projects/motoradio/app-copiloto.jpg";
+import motoradioEnVivo from "@/assets/projects/motoradio/app-envivo.jpg";
+import motoradioAjustes from "@/assets/projects/motoradio/app-ajustes.jpg";
+import motoradioPruebas from "@/assets/projects/motoradio/pruebas.jpg";
 import type { Project, ProjectCategory } from "@/types/Project";
 import ReactIcon from "@/components/icons/colored/ReactIcon.astro";
 import FirebaseIcon from "@/components/icons/colored/FirebaseIcon.astro";
@@ -88,6 +95,32 @@ export const projectsData: Project[] = [
       { title: "Supabase (PostgreSQL + RLS)", Icon: SupabaseIcon },
       { title: "Tailwind CSS", Icon: TailwindCSSIcon },
       { title: "Vercel", Icon: VercelIcon },
+    ],
+  },
+  {
+    id: "motoradio",
+    title: "projects.motoradio.title",
+    tagline: "projects.motoradio.tagline",
+    description: "projects.motoradio.description",
+    category: "mobile",
+    status: "development",
+    color: "#ff4f8b",
+    emoji: "🏍️",
+    image: motoradioPortada,
+    video: "/projects/motoradio/demo.mp4",
+    videoPoster: "/projects/motoradio/poster.jpg",
+    gallery: [
+      { image: motoradioInicio, caption: "projects.motoradio.gallery.inicio" },
+      { image: motoradioDj, caption: "projects.motoradio.gallery.dj" },
+      { image: motoradioCopiloto, caption: "projects.motoradio.gallery.copiloto" },
+      { image: motoradioEnVivo, caption: "projects.motoradio.gallery.envivo" },
+      { image: motoradioAjustes, caption: "projects.motoradio.gallery.ajustes" },
+      { image: motoradioPruebas, caption: "projects.motoradio.gallery.pruebas" },
+    ],
+    stack: [
+      { title: "Kotlin", Icon: KotlinIcon },
+      { title: "Android SDK nativo", Icon: AndroidIcon },
+      { title: "Java Sockets (TCP/UDP)", Icon: JavaIcon },
     ],
   },
   {
